@@ -1,0 +1,16 @@
+.root {
+  display: flex;
+  flex-direction: column;
+
+  background-repeat: cover;
+  align-items: center;
+  padding: '3%';
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  background-color: aqua;
+  width: 30vw;
+  padding: 2%;
+}

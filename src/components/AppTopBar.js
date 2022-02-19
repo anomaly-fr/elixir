@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import './AppTopBar.css'
 import CardGiftcardIcon from '@mui/icons-material/CardGiftcard'
 import MenuButton from './MenuButton'
+import { Link } from 'react-router-dom'
 
 const AppTopBar = () => {
   return (
@@ -12,12 +13,19 @@ const AppTopBar = () => {
 
       <div className="empty" />
       <div className="App-top-bar-menu">
-        <MenuButton title={'About Us'} />
-        <MenuButton title={'Home'} />
+        <Link to="/about">
+          <MenuButton title={'About Us'} />
+        </Link>
+
+        <Link to="/home">
+          <MenuButton title={'Home'} />
+        </Link>
 
         <MenuButton title={'Projects'} />
 
-        <MenuButton title={'Sign Up'} />
+        <Link to="/login">
+          <MenuButton title={'Sign Up'} />
+        </Link>
       </div>
     </div>
   )
