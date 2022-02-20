@@ -6,7 +6,7 @@ import {
   ImageListItemBar,
 } from '@mui/material'
 import React from 'react'
-import Charity from '../components/Charity'
+import Charity from '../../components/Charity'
 
 export default function CharityList({ loggedIn }) {
   console.log('Cl ' + loggedIn)

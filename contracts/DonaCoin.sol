@@ -33,6 +33,9 @@ contract DonaCoin is DonaCoinInterface {
         return true;
     }
 
+    function get() public returns(String ok){
+        return "ok";
+    }
     function transferFrom(address _from, address _to, uint256 _value) public returns (bool success) {
         uint256 allowance = allowed[_from][msg.sender];
         require(balances[_from] >= _value && allowance >= _value);

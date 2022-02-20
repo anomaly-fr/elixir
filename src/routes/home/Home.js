@@ -1,7 +1,7 @@
 import React from 'react'
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
-import '../App.css'
-import Logo from '../components/Logo'
+import '../../App.css'
+import Logo from '../../components/Logo'
 import CharityList from './CharityList'
 
 export default function Home({ loggedIn }) {

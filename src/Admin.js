@@ -1,15 +1,19 @@
 import { Button, Card, TextField, Typography } from '@mui/material'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import CompareArrowsIcon from '@mui/icons-material/CompareArrows'
 import PaidIcon from '@mui/icons-material/Paid'
-import Web3 from 'web3'
+import Web3 from 'web3/dist/web3.min'
+import DonaCoin from './contracts/DonaCoin.json'
 
 import './Admin.css'
 
 const EXCHANGE_RATE = 100
 export default function Admin() {
-  const [DCFirst, isDCFirst] = React.useState(true)
-  const [value, setValue] = React.useState(1)
+  const [DCFirst, isDCFirst] = useState(true)
+  const [value, setValue] = useState(1)
+  const [donaCoin, setDonaCoin] = useState()
+  const [balance, setBalance] = useState('')
+  const [account, setAccount] = useState('')
 
   const setUp = async () => {
     const my1Func = async () => {
@@ -32,7 +36,33 @@ export default function Admin() {
     })
   }
 
-  const loadBlockchainData = () => {}
+  const loadBlockchainData = async () => {
+    const web3 = window.web3
+    // Load account
+
+    const accounts = await web3.eth.getAccounts()
+    console.log('Account: ' + accounts)
+    setAccount(accounts[0])
+    //  this.setState({ account: accounts[0] })
+    // Network ID
+    const networkId = await web3.eth.net.getId()
+    const deployedNetwork = DonaCoin.networks[networkId]
+    if (deployedNetwork) {
+      // Assign contract
+      const DC = new web3.eth.Contract(
+        DonaCoin.abi,
+        deployedNetwork && deployedNetwork.address,
+      )
+      setDonaCoin(DC)
+      // Get the balance
+      const bal = await donaCoin.methods.get().call()
+      setBalance(bal)
+      console.log(balance)
+      console.log('Done')
+    } else {
+      console.log('error')
+    }
+  }
 
   const loadWeb3 = async () => {
     if (window.ethereum) {
