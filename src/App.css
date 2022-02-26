@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 .App-header {
   display: flex;
-  background-color: #eef4f8;
   min-height: 30vh;
   flex-direction: column;
   padding: 1%;
   justify-content: space-between;
+  margin: 3%;
 }
 
 .App-body {
@@ -20,12 +20,15 @@
   font-size: 2.3rem;
   font-weight: 600;
   font-family: 'Poppins', sans-serif;
+  padding-left: 3%;
 }
 
 .App-main-heading-small {
   font-weight: 500;
   font-size: 1.3rem;
   font-weight: 600;
+  padding-left: 3%;
+
   font-family: 'Poppins', sans-serif;
 }
 .App-link {
@@ -38,12 +41,14 @@
   justify-content: center;
   flex: 8;
   width: 60vw;
+  height: 60vh;
 }
 
 .App-logo {
   display: flex;
   align-items: center;
   justify-content: center;
+
   flex: 3;
 }
 .App-headings {
