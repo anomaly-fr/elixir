@@ -5,7 +5,9 @@
   flex-direction: column;
   justify-content: space-between;
 }
-
+html {
+  scroll-behavior: smooth;
+}
 .App-body {
   display: flex;
   flex-direction: column;

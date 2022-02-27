@@ -12,7 +12,7 @@ const App = () => {
       <div className="App-header">
         <AppTopBar
           about={() => {
-            window.scrollTo(10, 200)
+            window.scrollTo(10, 400)
           }}
         />
         <Outlet />
