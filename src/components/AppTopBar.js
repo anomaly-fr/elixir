@@ -4,7 +4,7 @@ import CardGiftcardIcon from '@mui/icons-material/CardGiftcard'
 import MenuButton from './MenuButton'
 import { Link } from 'react-router-dom'
 
-const AppTopBar = ({ current }) => {
+const AppTopBar = ({ about }) => {
   return (
     <div className="App-top-bar">
       <div className="icon">
@@ -13,18 +13,23 @@ const AppTopBar = ({ current }) => {
 
       <div className="empty" />
       <div className="App-top-bar-menu">
-        <Link to="/about">
+        {/* <Link className="link" to="/about"> */}
+        <div onClick={about}>
           <MenuButton title={'About Us'} />
-        </Link>
+        </div>
+        {/* </Link> */}
 
-        <Link to="/">
+        <Link className="link" to="/">
           <MenuButton title={'Home'} />
         </Link>
 
         <MenuButton title={'Projects'} />
 
-        <Link to="/login">
+        <Link className="link" to="/login">
           <MenuButton title={'Connect Wallet'} />
+        </Link>
+        <Link className="link" to="/profile">
+          <MenuButton title={'Me'} />
         </Link>
       </div>
     </div>

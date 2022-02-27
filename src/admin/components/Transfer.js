@@ -66,7 +66,7 @@ export default function Transfer({ contractAddress }) {
     const donaCoin = new ethers.Contract(contractAddress, DonaCoinAbi, signer)
     const b = await donaCoin.balanceOf(signerAddress)
     console.log('New balance', b.toNumber())
-    setBalance(b.toNumber() + 10)
+    setBalance(b.toNumber())
   }
 
   const transfer = async () => {
@@ -78,7 +78,7 @@ export default function Transfer({ contractAddress }) {
     console.log('To', toAddress)
     await donaCoin.transfer(toAddress, amount)
 
-    //  updateBalance(b.toNumber())
+    updateBalance()
   }
   return (
     <div className="root">
@@ -114,7 +114,7 @@ export default function Transfer({ contractAddress }) {
           style={{ margin: '5%' }}
           variant="contained"
           onClick={() => {
-            updateBalance()
+            transfer()
           }}
           endIcon={<PaidIcon />}
         >

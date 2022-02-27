@@ -1,11 +1,12 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import '../../App.css'
 import Logo from '../../components/Logo'
 import CharityList from './CharityList'
 
-export default function Home({ loggedIn }) {
-  console.log('Logged' + loggedIn)
+export default function Home({ goToRef }) {
+  const aboutRef = useRef()
+  goToRef = aboutRef
   return (
     <div>
       <div
@@ -15,7 +16,14 @@ export default function Home({ loggedIn }) {
         }}
       >
         <div className="div-column">
-          <p className="App-main-heading">Charity Blocks</p>
+          <p
+            // onClick={() => {
+            //   aboutRef.current.scrollIntoView({ behavior: 'smooth' })
+            // }}
+            className="App-main-heading"
+          >
+            Charity Blocks
+          </p>
           <p className="App-main-heading-small">
             A Blockchain based charity platform
           </p>
@@ -26,7 +34,9 @@ export default function Home({ loggedIn }) {
       </div>
       <div className="App-body">
         <div className="App-sections">
-          <div className="App-headings">About us</div>
+          <div ref={aboutRef} className="App-headings">
+            About Us
+          </div>
           <div className="App-paragraphs">
             We are the most trusted and powerful blockchain based charity
             platform. Use our cryptocurrency, Dona Coin to to donate to a cause

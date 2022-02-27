@@ -3,9 +3,7 @@
   display: flex;
   min-height: 30vh;
   flex-direction: column;
-  padding: 1%;
   justify-content: space-between;
-  margin: 3%;
 }
 
 .App-body {
@@ -33,6 +31,7 @@
 }
 .App-link {
   color: #61dafb;
+  text-decoration: none;
 }
 
 .div-column {
