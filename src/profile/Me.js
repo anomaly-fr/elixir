@@ -14,7 +14,7 @@ import {
 
 import DonaCoinAbi from '../DonaCoinAbi.json'
 
-const CONTRACT_ADDRESS = '0x366cc6C6cF435386562E8B03656c571f77d4fdAA'
+const CONTRACT_ADDRESS = '0xd7Aa490Afe35474a6c46940f9A5f038042fcefF6'
 
 const getBalance = async () => {
   const provider = new ethers.providers.Web3Provider(window.ethereum)
@@ -50,7 +50,7 @@ const Profile = () => {
     <div>
       <div className="profile-header">
         <p className="profile-header-text">Your Profile</p>
-        <p className="center">Address: {user.get('username')}</p>
+        <p className="center">Address: {user.get('ethAddress')}</p>
       </div>
       <Accordion>
         <AccordionSummary

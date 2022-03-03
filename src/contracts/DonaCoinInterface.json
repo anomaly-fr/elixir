@@ -203,28 +203,18 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "// Abstract contract for the full ERC 20 Token standard\r\n// https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20.md\r\npragma solidity >=0.4.25 <0.7.0;\r\n\r\n\r\ncontract DonaCoinInterface {\r\n\r\n    uint256 public totalSupply;\r\n\r\n    function balanceOf(address _owner) public view returns (uint256 balance);\r\n\r\n    function transfer(address _to, uint256 _value) public returns (bool success);\r\n\r\n    function transferFrom(address _from, address _to, uint256 _value) public returns (bool success);\r\n\r\n    function approve(address _spender, uint256 _value) public returns (bool success);\r\n\r\n    function allowance(address _owner, address _spender) public view returns (uint256 remaining);\r\n\r\n    event Transfer(address indexed _from, address indexed _to, uint256 _value);\r\n    event Approval(address indexed _owner, address indexed _spender, uint256 _value);\r\n}",
-  "sourcePath": "C:\\Users\\anamx\\Projects\\charity-blocks\\contracts\\DonaCoinInterface.sol",
+  "sourcePath": "C:\\Users\\anamx\\Projects\\elixir\\contracts\\DonaCoinInterface.sol",
   "ast": {
     "absolutePath": "project:/contracts/DonaCoinInterface.sol",
     "exportedSymbols": {
-      "DonaCoinInterface": [
-        293
-      ]
+      "DonaCoinInterface": [293]
     },
     "id": 294,
     "nodeType": "SourceUnit",
     "nodes": [
       {
         "id": 229,
-        "literals": [
-          "solidity",
-          ">=",
-          "0.4",
-          ".25",
-          "<",
-          "0.7",
-          ".0"
-        ],
+        "literals": ["solidity", ">=", "0.4", ".25", "<", "0.7", ".0"],
         "nodeType": "PragmaDirective",
         "src": "121:32:1"
       },
@@ -235,9 +225,7 @@
         "documentation": null,
         "fullyImplemented": false,
         "id": 293,
-        "linearizedBaseContracts": [
-          293
-        ],
+        "linearizedBaseContracts": [293],
         "name": "DonaCoinInterface",
         "nodeType": "ContractDefinition",
         "nodes": [
@@ -1016,23 +1004,13 @@
     "attributes": {
       "absolutePath": "project:/contracts/DonaCoinInterface.sol",
       "exportedSymbols": {
-        "DonaCoinInterface": [
-          293
-        ]
+        "DonaCoinInterface": [293]
       }
     },
     "children": [
       {
         "attributes": {
-          "literals": [
-            "solidity",
-            ">=",
-            "0.4",
-            ".25",
-            "<",
-            "0.7",
-            ".0"
-          ]
+          "literals": ["solidity", ">=", "0.4", ".25", "<", "0.7", ".0"]
         },
         "id": 229,
         "name": "PragmaDirective",
@@ -1040,18 +1018,12 @@
       },
       {
         "attributes": {
-          "baseContracts": [
-            null
-          ],
-          "contractDependencies": [
-            null
-          ],
+          "baseContracts": [null],
+          "contractDependencies": [null],
           "contractKind": "contract",
           "documentation": null,
           "fullyImplemented": false,
-          "linearizedBaseContracts": [
-            293
-          ],
+          "linearizedBaseContracts": [293],
           "name": "DonaCoinInterface",
           "scope": 294
         },
@@ -1089,9 +1061,7 @@
               "implemented": false,
               "isConstructor": false,
               "kind": "function",
-              "modifiers": [
-                null
-              ],
+              "modifiers": [null],
               "name": "balanceOf",
               "scope": 293,
               "stateMutability": "view",
@@ -1178,9 +1148,7 @@
               "implemented": false,
               "isConstructor": false,
               "kind": "function",
-              "modifiers": [
-                null
-              ],
+              "modifiers": [null],
               "name": "transfer",
               "scope": 293,
               "stateMutability": "nonpayable",
@@ -1293,9 +1261,7 @@
               "implemented": false,
               "isConstructor": false,
               "kind": "function",
-              "modifiers": [
-                null
-              ],
+              "modifiers": [null],
               "name": "transferFrom",
               "scope": 293,
               "stateMutability": "nonpayable",
@@ -1435,9 +1401,7 @@
               "implemented": false,
               "isConstructor": false,
               "kind": "function",
-              "modifiers": [
-                null
-              ],
+              "modifiers": [null],
               "name": "approve",
               "scope": 293,
               "stateMutability": "nonpayable",
@@ -1550,9 +1514,7 @@
               "implemented": false,
               "isConstructor": false,
               "kind": "function",
-              "modifiers": [
-                null
-              ],
+              "modifiers": [null],
               "name": "allowance",
               "scope": 293,
               "stateMutability": "view",

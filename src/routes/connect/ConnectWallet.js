@@ -6,26 +6,25 @@ import './ConnectWallet.css'
 export default function ConnectWallet() {
   const { authenticate, isAuthenticated, user, auth, logout } = useMoralis()
 
-  if (!isAuthenticated) {
-    console.log(auth)
-    return (
-      <div>
-        <Button variant="contained" onClick={() => authenticate()}>
-          Authenticate
-        </Button>
-      </div>
-    )
-  }
-
   return (
-    <div>
+    <div className="root">
       {!isAuthenticated ? (
-        <p className="text">Connect with Metamask</p>
+        <div>
+          <p className="text">Connect with Metamask</p>
+          <Button
+            variant="contained"
+            onClick={() => {
+              authenticate()
+            }}
+          >
+            Sign with Metamask
+          </Button>
+        </div>
       ) : (
         <div
           style={{
             display: 'flex',
-            flexDirection: 'row',
+            flexDirection: 'column',
             justifyContent: 'space-between',
             padding: '1%',
           }}
@@ -34,9 +33,9 @@ export default function ConnectWallet() {
           <Button onClick={logout} variant="contained">
             Logout
           </Button>
+          <p className="center">Address: {user.get('ethAddress')}</p>
         </div>
       )}
-      <p className="center">Address: {user.get('username')}</p>
     </div>
   )
 }
