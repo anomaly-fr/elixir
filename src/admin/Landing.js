@@ -57,10 +57,8 @@ const Landing = () => {
         }}
       >
         <div className="div-column">
-          <p className="App-main-heading">Charity Blocks</p>
-          <p className="App-main-heading-small">
-            A Blockchain based charity platform
-          </p>
+          <p className="App-main-heading">Elixir</p>
+          <p className="App-main-heading-small">A Blockchain based platform</p>
         </div>
         <div className="App-logo">
           <Logo />

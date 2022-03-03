@@ -22,11 +22,9 @@ export default function Home({ goToRef }) {
             // }}
             className="App-main-heading"
           >
-            Charity Blocks
+            Elixir
           </p>
-          <p className="App-main-heading-small">
-            A Blockchain based charity platform
-          </p>
+          <p className="App-main-heading-small">A Blockchain based platform</p>
         </div>
         <div className="App-logo">
           <Logo />
@@ -38,10 +36,10 @@ export default function Home({ goToRef }) {
             About Us
           </div>
           <div className="App-paragraphs">
-            We are the most trusted and powerful blockchain based charity
-            platform. Use our cryptocurrency, Dona Coin to to donate to a cause
-            that you care about. Every cause is supported by a trusted charity
-            that will be verified by us
+            We are the most trusted and powerful blockchain based platform. Use
+            our token, Dona Coin to to donate to a cause that you care about.
+            Every cause is supported by a trusted charity that will be verified
+            by us
           </div>
         </div>
         <div className="App-sections" style={{ backgroundColor: '#eff7f6' }}>
