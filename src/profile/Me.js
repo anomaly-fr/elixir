@@ -12,16 +12,16 @@ import {
   Typography,
 } from '@mui/material'
 
-import DonaCoinAbi from '../DonaCoinAbi.json'
+import LitresAbi from '../LitresAbi.json'
 
-const CONTRACT_ADDRESS = '0xd7Aa490Afe35474a6c46940f9A5f038042fcefF6'
+const CONTRACT_ADDRESS = process.env.REACT_APP_ETH_CONTRACT_ADDRESS
 
 const getBalance = async () => {
   const provider = new ethers.providers.Web3Provider(window.ethereum)
   await provider.send('eth_requestAccounts', [])
   const signer = await provider.getSigner()
-  const donaCoin = new ethers.Contract(CONTRACT_ADDRESS, DonaCoinAbi, signer)
-  const balance = await donaCoin.balanceOf(signer.getAddress())
+  const litres = new ethers.Contract(CONTRACT_ADDRESS, LitresAbi, signer)
+  const balance = await litres.balanceOf(signer.getAddress())
   return balance
 }
 
@@ -61,7 +61,7 @@ const Profile = () => {
           <Typography fontWeight={'bold'}>Wallet</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>{`Balance: ${balance} DC`}</Typography>
+          <Typography>{`Balance: ${balance} LIT`}</Typography>
         </AccordionDetails>
       </Accordion>
     </div>

@@ -1,8 +1,8 @@
 pragma solidity >=0.4.25 <0.7.0;
 
-import "./DonaCoinInterface.sol";
+import "./ERC20.sol";
 
-contract DonaCoin is DonaCoinInterface {
+contract Litres is ERC20 {
 
     uint256 constant private MAX_UINT256 = 2**256 - 1;
     mapping (address => uint256) public balances;

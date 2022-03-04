@@ -1,6 +1,6 @@
 import { ethers } from 'ethers'
 import { React, useEffect, useState } from 'react'
-import DonaCoinAbi from './DonaCoinAbi.json'
+import LitresAbi from './LitresAbi.json'
 
 export default function Test() {
   const [contractDetails, setContractDetails] = useState({
@@ -18,17 +18,17 @@ export default function Test() {
   const getData = async () => {
     const provider = new ethers.providers.Web3Provider(window.ethereum)
     await provider.send('eth_requestAccounts', [])
-    const donaCoin = new ethers.Contract(
+    const litres = new ethers.Contract(
       '0x4Ff0774eCAE45348E345Fb535229631e24937EB4',
-      DonaCoinAbi,
+      LitresAbi,
       provider,
     )
 
-    const name = await donaCoin.name()
-    const symbol = await donaCoin.symbol()
-    const decimals = await donaCoin.decimals()
-    const initialSupply = await donaCoin.totalSupply()
-    // const num = await donaCoin.balanceOf(
+    const name = await litres.name()
+    const symbol = await litres.symbol()
+    const decimals = await litres.decimals()
+    const initialSupply = await litres.totalSupply()
+    // const num = await litres.balanceOf(
     //   '0x95ecb96042969c8026F25aB0dEec130B4E8fE040',
     // )
     // console.log(num)
@@ -42,7 +42,7 @@ export default function Test() {
     const signer = await provider.getSigner()
     const signerAddress = await signer.getAddress()
 
-    const balance = await donaCoin.balanceOf(signerAddress)
+    const balance = await litres.balanceOf(signerAddress)
     console.log('Balance', balance.toNumber())
   }
 

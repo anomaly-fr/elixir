@@ -2,7 +2,7 @@ import { Button, Card, TextField, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import PaidIcon from '@mui/icons-material/Paid'
 import { ethers } from 'ethers'
-import DonaCoinAbi from '../../DonaCoinAbi.json'
+import LitresAbi from '../../LitresAbi.json'
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto'
 
 import './Transfer.css'
@@ -26,7 +26,7 @@ export default function Transfer({ contractAddress }) {
     const provider = new ethers.providers.Web3Provider(window.ethereum)
     console.log(provider)
     await provider.send('eth_requestAccounts', [])
-    const donaCoin = new ethers.Contract(contractAddress, DonaCoinAbi, provider)
+    const donaCoin = new ethers.Contract(contractAddress, LitresAbi, provider)
 
     const name = await donaCoin.name()
     const symbol = await donaCoin.symbol()
@@ -63,7 +63,7 @@ export default function Transfer({ contractAddress }) {
     await provider.send('eth_requestAccounts', [])
     const signer = await provider.getSigner()
     const signerAddress = await signer.getAddress()
-    const donaCoin = new ethers.Contract(contractAddress, DonaCoinAbi, signer)
+    const donaCoin = new ethers.Contract(contractAddress, LitresAbi, signer)
     const b = await donaCoin.balanceOf(signerAddress)
     console.log('New balance', b.toNumber())
     setBalance(b.toNumber())
@@ -74,7 +74,7 @@ export default function Transfer({ contractAddress }) {
     await provider.send('eth_requestAccounts', [])
     const signer = await provider.getSigner()
 
-    const donaCoin = new ethers.Contract(contractAddress, DonaCoinAbi, signer)
+    const donaCoin = new ethers.Contract(contractAddress, LitresAbi, signer)
     console.log('To', toAddress)
     await donaCoin.transfer(toAddress, amount)
 
@@ -106,7 +106,7 @@ export default function Transfer({ contractAddress }) {
         />
         <TextField
           onChange={(e) => setAmount(e.target.value)}
-          placeholder="Amount in DC"
+          placeholder="Amount in LIT"
           id="filled-basic"
           variant="filled"
         />

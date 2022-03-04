@@ -3,7 +3,7 @@
 pragma solidity >=0.4.25 <0.7.0;
 
 
-contract DonaCoinInterface {
+contract ERC20 {
 
     uint256 public totalSupply;
 

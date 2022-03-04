@@ -7,7 +7,7 @@ import Convert from './components/Convert'
 import Transfer from './components/Transfer'
 import Balance from './components/Balance'
 
-const CONTRACT_ADDRESS = '0x366cc6C6cF435386562E8B03656c571f77d4fdAA'
+const CONTRACT_ADDRESS = process.env.REACT_APP_CONTRACT_ADDRESS
 const menuItems = ['Convert', 'Transfer', 'Check Balance']
 function TabPanel(props) {
   const { children, value, index, ...other } = props

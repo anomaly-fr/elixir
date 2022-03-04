@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import CompareArrowsIcon from '@mui/icons-material/CompareArrows'
 import CheckCircleIcon from '@mui/icons-material/CheckCircle'
 import { ethers } from 'ethers'
-import DonaCoinAbi from '../../DonaCoinAbi.json'
+import LitresAbi from '../../LitresAbi.json'
 
 export default function Balance({ contractAddress }) {
   console.log('Addre', contractAddress)
@@ -14,10 +14,10 @@ export default function Balance({ contractAddress }) {
     const provider = new ethers.providers.Web3Provider(window.ethereum)
     await provider.send('eth_requestAccounts', [])
 
-    const donaCoin = new ethers.Contract(contractAddress, DonaCoinAbi, provider)
+    const litres = new ethers.Contract(contractAddress, LitresAbi, provider)
     const signer = await provider.getSigner()
     const signerAddress = await signer.getAddress()
-    const b = await donaCoin.balanceOf(account)
+    const b = await litres.balanceOf(account)
     console.log('b', b)
 
     setBalance(b)

@@ -4,7 +4,7 @@ import CompareArrowsIcon from '@mui/icons-material/CompareArrows'
 const EXCHANGE_RATE = 100
 
 export default function Convert() {
-  const [DCFirst, isDCFirst] = useState(true)
+  const [LITFirst, isLITFirst] = useState(true)
   const [value, setValue] = useState(1)
 
   return (
@@ -19,22 +19,22 @@ export default function Convert() {
         <TextField
           id="filled-basic"
           variant="filled"
-          label={DCFirst ? 'DC' : 'INR'}
+          label={LITFirst ? 'LIT' : 'INR'}
           onChange={(e) => {
             setValue(e.target.value)
           }}
         />
         <TextField
-          label={DCFirst ? 'INR' : 'DC'}
+          label={LITFirst ? 'INR' : 'LIT'}
           id="filled-basic"
           variant="filled"
-          value={DCFirst ? DCToINR(value) : INRToDC(value)}
+          value={LITFirst ? LITToINR(value) : INRToLIT(value)}
         />
         <Button
           style={{ margin: '2%' }}
           variant="contained"
           endIcon={<CompareArrowsIcon />}
-          onClick={() => isDCFirst(!DCFirst)}
+          onClick={() => isLITFirst(!LITFirst)}
         >
           Flip
         </Button>{' '}
@@ -42,11 +42,11 @@ export default function Convert() {
     </div>
   )
 }
-const DCToINR = (value) => {
-  // 1 DC=100INR
+const LITToINR = (value) => {
+  // 1 LIT=100INR
   return value * EXCHANGE_RATE
 }
-const INRToDC = (value) => {
+const INRToLIT = (value) => {
   // 1 INR=0.01
   return value / EXCHANGE_RATE
 }
