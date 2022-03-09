@@ -1,4 +1,5 @@
 const Litres = artifacts.require('Litres')
+const User = artifacts.require('User')
 //const LitresInterface = artifacts.require('LitresInterface')
 
 module.exports = function (deployer) {
@@ -6,4 +7,5 @@ module.exports = function (deployer) {
   // deployer.deploy(LitresInterface)
   // deployer.link(LitresInterface, Litres)
   deployer.deploy(Litres, 10000, 'Litres', 0, 'LIT')
+  deployer.deploy(User)
 }

@@ -7,7 +7,6 @@ import Convert from './components/Convert'
 import Transfer from './components/Transfer'
 import Balance from './components/Balance'
 
-const CONTRACT_ADDRESS = process.env.REACT_APP_CONTRACT_ADDRESS
 const menuItems = ['Convert', 'Transfer', 'Check Balance']
 function TabPanel(props) {
   const { children, value, index, ...other } = props
@@ -48,6 +47,8 @@ const Landing = () => {
   const handleChange = (event, newValue) => {
     setValue(newValue)
   }
+  const code = process.env.REACT_APP_ETH_CONTACT_ADDRESS
+  console.log('ENV', code)
   return (
     <div>
       <div
@@ -85,10 +86,14 @@ const Landing = () => {
           <Convert />
         </TabPanel>
         <TabPanel value={value} index={1}>
-          <Transfer contractAddress={CONTRACT_ADDRESS} />
+          <Transfer
+            contractAddress={process.env.REACT_APP_ETH_CONTACT_ADDRESS}
+          />
         </TabPanel>
         <TabPanel value={value} index={2}>
-          <Balance contractAddress={CONTRACT_ADDRESS} />
+          <Balance
+            contractAddress={process.env.REACT_APP_ETH_CONTACT_ADDRESS}
+          />
         </TabPanel>
       </Box>
     </div>

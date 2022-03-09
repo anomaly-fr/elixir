@@ -14,6 +14,7 @@ const App = () => {
           about={() => {
             window.scrollTo(10, 400)
           }}
+          location={location.pathname}
         />
         <Outlet />
         {location.pathname === '/' ? <Home /> : null}

@@ -1,12 +1,11 @@
-import React, { useRef } from 'react'
+import React from 'react'
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import '../../App.css'
 import Logo from '../../components/Logo'
 import CharityList from './CharityList'
+import { ethers } from 'ethers'
 
-export default function Home({ goToRef }) {
-  const aboutRef = useRef()
-  goToRef = aboutRef
+export default function Home() {
   return (
     <div>
       <div
@@ -32,9 +31,7 @@ export default function Home({ goToRef }) {
       </div>
       <div className="App-body">
         <div className="App-sections">
-          <div ref={aboutRef} className="App-headings">
-            About Us
-          </div>
+          <div className="App-headings">About Us</div>
           <div className="App-paragraphs">
             We are the most trusted and powerful blockchain based platform. Use
             our token, Dona Coin to to donate to a cause that you care about.

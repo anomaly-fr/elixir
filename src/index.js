@@ -7,7 +7,6 @@ import About from './routes/about/About'
 import ConnectWallet from './routes/connect/ConnectWallet'
 import Home from './routes/home/Home'
 import PayToCharity from './routes/charities/PayToCharity'
-import Test from './Test'
 import Landing from './admin/Landing'
 import { MoralisProvider } from 'react-moralis'
 import Me from './profile/Me'
@@ -29,7 +28,6 @@ ReactDOM.render(
             <Route path="/profile" element={<Me />} />
           </Route>
           <Route path="/admin" element={<Landing />} />
-          <Route path="/test" element={<Test />} />
           <Route
             path="*"
             element={

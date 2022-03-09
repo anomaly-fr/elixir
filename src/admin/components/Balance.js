@@ -5,18 +5,23 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle'
 import { ethers } from 'ethers'
 import LitresAbi from '../../LitresAbi.json'
 
-export default function Balance({ contractAddress }) {
-  console.log('Addre', contractAddress)
+export default function Balance() {
+  console.log('Contract Address', process.env.REACT_APP_ETH_CONTRACT_ADDRESS)
 
   const [account, setAccount] = useState(null)
   const [balance, setBalance] = useState(null)
-  const getBalance = async (contractAddress) => {
+  const getBalance = async () => {
     const provider = new ethers.providers.Web3Provider(window.ethereum)
     await provider.send('eth_requestAccounts', [])
 
-    const litres = new ethers.Contract(contractAddress, LitresAbi, provider)
+    const litres = new ethers.Contract(
+      process.env.REACT_APP_ETH_CONTRACT_ADDRESS,
+      LitresAbi,
+      provider,
+    )
     const signer = await provider.getSigner()
     const signerAddress = await signer.getAddress()
+    console.log(account)
     const b = await litres.balanceOf(account)
     console.log('b', b)
 
@@ -50,7 +55,7 @@ export default function Balance({ contractAddress }) {
           style={{ margin: '2%' }}
           variant="contained"
           endIcon={<CheckCircleIcon />}
-          onClick={() => getBalance(contractAddress)}
+          onClick={() => getBalance(process.env.REACT_APP_ETH_CONTRACT_ADDRESS)}
         >
           Get Balance
         </Button>{' '}

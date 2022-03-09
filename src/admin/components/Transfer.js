@@ -7,33 +7,35 @@ import AddAPhotoIcon from '@mui/icons-material/AddAPhoto'
 
 import './Transfer.css'
 
-export default function Transfer({ contractAddress }) {
+export default function Transfer() {
   const [balance, setBalance] = useState(0)
   const [toAddress, setToAddress] = useState(null)
   const [amount, setAmount] = useState(0)
   const [adminAccount, setAdminAccount] = useState(
     'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',
   )
+
+  const { REACT_APP_ETH_CONTRACT_ADDRESS } = process.env
   const [contractDetails, setContractDetails] = useState({
-    address: '',
-    name: '',
-    symbol: '',
-    decimals: '',
-    initialSupply: '',
+    address: 'loading...',
+    name: 'loading...',
+    symbol: 'loading...',
+    decimals: 'loading...',
+    initialSupply: 'loading...',
   })
 
   const getData = async () => {
     const provider = new ethers.providers.Web3Provider(window.ethereum)
     console.log(provider)
     await provider.send('eth_requestAccounts', [])
-    const donaCoin = new ethers.Contract(contractAddress, LitresAbi, provider)
+    const litres = new ethers.Contract(process.env, LitresAbi, provider)
 
-    const name = await donaCoin.name()
-    const symbol = await donaCoin.symbol()
-    const decimals = await donaCoin.decimals()
-    const initialSupply = await donaCoin.totalSupply()
+    const name = await litres.name()
+    const symbol = await litres.symbol()
+    const decimals = await litres.decimals()
+    const initialSupply = await litres.totalSupply()
 
-    // const num = await donaCoin.balanceOf(
+    // const num = await litres.balanceOf(
     //   '0x95ecb96042969c8026F25aB0dEec130B4E8fE040',
     // )
     // console.log(num)
@@ -48,7 +50,7 @@ export default function Transfer({ contractAddress }) {
     const signerAddress = await signer.getAddress()
     setAdminAccount(signerAddress)
 
-    const balance = await donaCoin.balanceOf(signerAddress)
+    const balance = await litres.balanceOf(signerAddress)
     setBalance(balance.toNumber())
     console.log('Balance', balance.toNumber())
     // console.log('Signer', signerAddress)
@@ -56,17 +58,28 @@ export default function Transfer({ contractAddress }) {
 
   useEffect(() => {
     getData()
+    console.log('FETCHED')
   }, [])
 
   const updateBalance = async () => {
+    console.log('Called')
     const provider = new ethers.providers.Web3Provider(window.ethereum)
     await provider.send('eth_requestAccounts', [])
     const signer = await provider.getSigner()
     const signerAddress = await signer.getAddress()
-    const donaCoin = new ethers.Contract(contractAddress, LitresAbi, signer)
-    const b = await donaCoin.balanceOf(signerAddress)
-    console.log('New balance', b.toNumber())
+    const litres = new ethers.Contract(
+      REACT_APP_ETH_CONTRACT_ADDRESS,
+      LitresAbi,
+      signer,
+    )
+    const b = await litres.balanceOf(signerAddress)
+
     setBalance(b.toNumber())
+  }
+
+  const actualTransfer = async (litres) => {
+    await litres.transfer(toAddress, amount)
+    return 'done'
   }
 
   const transfer = async () => {
@@ -74,16 +87,22 @@ export default function Transfer({ contractAddress }) {
     await provider.send('eth_requestAccounts', [])
     const signer = await provider.getSigner()
 
-    const donaCoin = new ethers.Contract(contractAddress, LitresAbi, signer)
+    const litres = new ethers.Contract(
+      REACT_APP_ETH_CONTRACT_ADDRESS,
+      LitresAbi,
+      signer,
+    )
     console.log('To', toAddress)
-    await donaCoin.transfer(toAddress, amount)
-
-    updateBalance()
+    console.log('Amount', amount)
+    actualTransfer(litres).then((res) => {
+      console.log('After actual transfer', balance)
+      console.log('res', res)
+    })
   }
   return (
     <div className="root">
       <Typography fontSize={'2em'} fontWeight={'bold'}>
-        Dona Coin
+        Litres
       </Typography>
       <Typography>{`Symbol: ${contractDetails.symbol}`}</Typography>
       <Typography>{`InitialSupply: ${contractDetails.initialSupply}`}</Typography>
@@ -114,7 +133,10 @@ export default function Transfer({ contractAddress }) {
           style={{ margin: '5%' }}
           variant="contained"
           onClick={() => {
-            transfer()
+            transfer().then((res) => {
+              console.log('Transfer complete', res)
+              updateBalance()
+            })
           }}
           endIcon={<PaidIcon />}
         >

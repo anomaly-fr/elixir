@@ -77,6 +77,39 @@
         "type": "address"
       }
     ],
+    "name": "getUser",
+    "outputs": [
+      {
+        "components": [
+          {
+            "name": "type1",
+            "type": "bool"
+          },
+          {
+            "name": "type2",
+            "type": "bool"
+          },
+          {
+            "name": "type3",
+            "type": "bool"
+          }
+        ],
+        "name": "_user",
+        "type": "tuple"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "_address",
+        "type": "address"
+      }
+    ],
     "name": "isType1",
     "outputs": [
       {

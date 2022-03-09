@@ -1,7 +1,7 @@
 pragma solidity >=0.4.25 <0.7.0;
 pragma experimental ABIEncoderV2;
 
-contract Users {
+contract User {
 
 
 address creator;
@@ -40,6 +40,9 @@ function createUser(address _address) public {
     emit CreatedUser(_address);
 }
 
+function getUser(address _address) public view returns(User memory _user){
+    return users[_address];
+}
 
 function isType1(address _address) public view returns(bool _value){
     return users[_address].type1;
