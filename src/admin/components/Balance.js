@@ -6,7 +6,7 @@ import { ethers } from 'ethers'
 import LitresAbi from '../../LitresAbi.json'
 
 export default function Balance() {
-  console.log('Contract Address', process.env.REACT_APP_ETH_CONTRACT_ADDRESS)
+  console.log('Contract Address', process.env.REACT_APP_LITRES_CONTRACT_ADDRESS)
 
   const [account, setAccount] = useState(null)
   const [balance, setBalance] = useState(null)
@@ -14,14 +14,15 @@ export default function Balance() {
     const provider = new ethers.providers.Web3Provider(window.ethereum)
     await provider.send('eth_requestAccounts', [])
 
+    const signer = await provider.getSigner()
     const litres = new ethers.Contract(
-      process.env.REACT_APP_ETH_CONTRACT_ADDRESS,
+      process.env.REACT_APP_LITRES_CONTRACT_ADDRESS,
       LitresAbi,
       provider,
+      signer,
     )
-    const signer = await provider.getSigner()
     const signerAddress = await signer.getAddress()
-    console.log(account)
+    console.log('Acc', account)
     const b = await litres.balanceOf(account)
     console.log('b', b)
 
@@ -55,7 +56,9 @@ export default function Balance() {
           style={{ margin: '2%' }}
           variant="contained"
           endIcon={<CheckCircleIcon />}
-          onClick={() => getBalance(process.env.REACT_APP_ETH_CONTRACT_ADDRESS)}
+          onClick={() =>
+            getBalance(process.env.REACT_APP_LITRES_CONTRACT_ADDRESS)
+          }
         >
           Get Balance
         </Button>{' '}

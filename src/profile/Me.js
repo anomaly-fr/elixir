@@ -14,14 +14,14 @@ import {
 
 import LitresAbi from '../LitresAbi.json'
 
-const { REACT_APP_ETH_CONTRACT_ADDRESS } = process.env
+const { REACT_APP_LITRES_CONTRACT_ADDRESS } = process.env
 
 const getBalance = async () => {
   const provider = new ethers.providers.Web3Provider(window.ethereum)
   await provider.send('eth_requestAccounts', [])
   const signer = await provider.getSigner()
   const litres = new ethers.Contract(
-    REACT_APP_ETH_CONTRACT_ADDRESS,
+    REACT_APP_LITRES_CONTRACT_ADDRESS,
     LitresAbi,
     signer,
   )
@@ -38,7 +38,7 @@ const Me = () => {
 
 const Profile = () => {
   useEffect(() => {
-    const bal = getBalance().then((res) => {
+    getBalance().then((res) => {
       console.log('Res', res)
       updateBalance(res.toNumber())
     })

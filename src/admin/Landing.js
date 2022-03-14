@@ -47,8 +47,7 @@ const Landing = () => {
   const handleChange = (event, newValue) => {
     setValue(newValue)
   }
-  const code = process.env.REACT_APP_ETH_CONTACT_ADDRESS
-  console.log('ENV', code)
+
   return (
     <div>
       <div

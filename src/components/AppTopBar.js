@@ -13,17 +13,13 @@ const AppTopBar = ({ about, location }) => {
 
       <div className="empty" />
       <div className="App-top-bar-menu">
-        <Link className="link" to={(location = '/' ? '' : '/')}>
-          <div onClick={about}>
-            <MenuButton title={'About Us'} />
-          </div>
-        </Link>
-
         <Link className="link" to="/">
           <MenuButton title={'Home'} />
         </Link>
-
-        <MenuButton title={'Projects'} />
+        <Link className="link" to="/donate">
+          <MenuButton title={'Donate'} />
+        </Link>
+        <MenuButton title={'My Projects'} />
 
         <Link className="link" to="/login">
           <MenuButton title={'Connect Wallet'} />

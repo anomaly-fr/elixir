@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react'
 import PaidIcon from '@mui/icons-material/Paid'
 import { ethers } from 'ethers'
 import LitresAbi from '../../LitresAbi.json'
-import AddAPhotoIcon from '@mui/icons-material/AddAPhoto'
 
 import './Transfer.css'
 
@@ -15,7 +14,7 @@ export default function Transfer() {
     'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',
   )
 
-  const { REACT_APP_ETH_CONTRACT_ADDRESS } = process.env
+  const { REACT_APP_LITRES_CONTRACT_ADDRESS } = process.env
   const [contractDetails, setContractDetails] = useState({
     address: 'loading...',
     name: 'loading...',
@@ -28,7 +27,11 @@ export default function Transfer() {
     const provider = new ethers.providers.Web3Provider(window.ethereum)
     console.log(provider)
     await provider.send('eth_requestAccounts', [])
-    const litres = new ethers.Contract(process.env, LitresAbi, provider)
+    const litres = new ethers.Contract(
+      REACT_APP_LITRES_CONTRACT_ADDRESS,
+      LitresAbi,
+      provider,
+    )
 
     const name = await litres.name()
     const symbol = await litres.symbol()
@@ -39,12 +42,13 @@ export default function Transfer() {
     //   '0x95ecb96042969c8026F25aB0dEec130B4E8fE040',
     // )
     // console.log(num)
-    setContractDetails({
+    const newContract = {
       name,
       symbol,
       decimals,
       initialSupply,
-    })
+    }
+    setContractDetails(newContract)
 
     const signer = await provider.getSigner()
     const signerAddress = await signer.getAddress()
@@ -68,7 +72,7 @@ export default function Transfer() {
     const signer = await provider.getSigner()
     const signerAddress = await signer.getAddress()
     const litres = new ethers.Contract(
-      REACT_APP_ETH_CONTRACT_ADDRESS,
+      REACT_APP_LITRES_CONTRACT_ADDRESS,
       LitresAbi,
       signer,
     )
@@ -88,7 +92,7 @@ export default function Transfer() {
     const signer = await provider.getSigner()
 
     const litres = new ethers.Contract(
-      REACT_APP_ETH_CONTRACT_ADDRESS,
+      REACT_APP_LITRES_CONTRACT_ADDRESS,
       LitresAbi,
       signer,
     )

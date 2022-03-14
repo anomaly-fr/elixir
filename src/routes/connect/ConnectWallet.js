@@ -7,7 +7,7 @@ import UserAbi from '../../UserAbi.json'
 
 export default function ConnectWallet() {
   const { authenticate, isAuthenticated, user, auth, logout } = useMoralis()
-  const { REACT_APP_ETH_CONTRACT_ADDRESS } = process.env
+  const { REACT_APP_USER_CONTRACT_ADDRESS } = process.env
   const [ethUser, setEthUser] = useState(null)
 
   const [userTypes, setUserTypes] = useState({
@@ -17,7 +17,7 @@ export default function ConnectWallet() {
   })
 
   useEffect(() => {
-    console.log('Fetching user types', REACT_APP_ETH_CONTRACT_ADDRESS)
+    console.log('Fetching user types', REACT_APP_USER_CONTRACT_ADDRESS)
     fetchUserInfo()
   }, [])
 
@@ -28,7 +28,7 @@ export default function ConnectWallet() {
     await provider.send('eth_requestAccounts', [])
     const signer = await provider.getSigner()
     const userContract = new ethers.Contract(
-      REACT_APP_ETH_CONTRACT_ADDRESS,
+      REACT_APP_USER_CONTRACT_ADDRESS,
       UserAbi,
       signer,
       provider,
@@ -37,7 +37,7 @@ export default function ConnectWallet() {
     // console.log('ADD', user.get('ethAddress'))
 
     const userType1 = await userContract.isType1(user.get('ethAddress'))
-    console.log('Here')
+    console.log('Here', userType1)
     // const userType2 = await user.isType2(user.get('ethAddress'))
     // const userType3 = await user.isType3(user.get('ethAddress'))
     if (!userType1) {

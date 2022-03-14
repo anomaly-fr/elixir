@@ -1,0 +1,147 @@
+[
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "numberOfCampaigns",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "campaigns",
+    "outputs": [
+      {
+        "name": "campaignID",
+        "type": "uint256"
+      },
+      {
+        "name": "owner",
+        "type": "address"
+      },
+      {
+        "name": "campaignName",
+        "type": "string"
+      },
+      {
+        "name": "aboutHash",
+        "type": "string"
+      },
+      {
+        "name": "imageHash",
+        "type": "string"
+      },
+      {
+        "name": "amountToRaise",
+        "type": "uint256"
+      },
+      {
+        "name": "amountRaised",
+        "type": "uint256"
+      },
+      {
+        "name": "targetReached",
+        "type": "bool"
+      },
+      {
+        "name": "category1",
+        "type": "string"
+      },
+      {
+        "name": "numberOfDonations",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "owner",
+        "type": "address"
+      },
+      {
+        "name": "campaignName",
+        "type": "string"
+      },
+      {
+        "name": "aboutHash",
+        "type": "string"
+      },
+      {
+        "name": "imageHash",
+        "type": "string"
+      },
+      {
+        "name": "amountToRaise",
+        "type": "uint256"
+      },
+      {
+        "name": "category1",
+        "type": "string"
+      }
+    ],
+    "name": "createCampaign",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "name": "campaignID",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "owner",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "campaignName",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "name": "aboutHash",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "name": "imageHash",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "name": "amountToRaise",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "category1",
+        "type": "string"
+      }
+    ],
+    "name": "createCampaignEvent",
+    "type": "event"
+  }
+]
