@@ -1,4 +1,4 @@
-import { Card, Chip, LinearProgress } from '@mui/material'
+import { Card, Chip, Button, LinearProgress } from '@mui/material'
 import React, { useState } from 'react'
 import ProgressBar from '../../components/ProgressBar'
 import './Project.css'
@@ -18,22 +18,35 @@ const Project = ({ projectDetails }) => {
         className="project-card"
       >
         <h3>{projectDetails.campaignName}</h3>
-        <Chip
+        {/* <Chip
           className="project-chip"
           color="secondary"
           label={projectDetails.category1}
-        />
+        /> */}
         <div
           style={{
             display: 'flex',
             flexDirection: 'row',
-            width: '50vw',
-            justifyContent: 'flex-end',
             alignItems: 'center',
           }}
         >
-          <h3>{`${progress}%`}</h3>
-          <ProgressBar progress={progress} />
+          <h3 style={{ flex: 1 }}>{`${progress}%`}</h3>
+          <div
+            style={{
+              display: 'flex',
+              flex: 4,
+              margin: '2%',
+            }}
+          >
+            <ProgressBar progress={progress} />
+          </div>
+        </div>
+        <div
+          style={{ display: 'flex', justifyContent: 'flex-end', margin: '3%' }}
+        >
+          <Button variant="contained" fullWidth={false}>
+            Donor
+          </Button>
         </div>
       </Card>
     </div>

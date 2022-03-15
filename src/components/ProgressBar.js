@@ -6,7 +6,7 @@ const ProgressBar = ({ progress }) => {
       style={{
         backgroundColor: '#EEF4F8',
         padding: '5px',
-        width: '30%',
+        width: '100%',
         borderRadius: '10px',
       }}
     >

@@ -8,6 +8,7 @@ import ConnectWallet from './routes/connect/ConnectWallet'
 import Home from './routes/home/Home'
 import PayToCharity from './routes/charities/PayToCharity'
 import Landing from './admin/Landing'
+import MyProjects from './routes/MyProjects/MyProjects'
 import { MoralisProvider } from 'react-moralis'
 import Me from './profile/Me'
 import Donate from './routes/donate/Donate'
@@ -27,8 +28,11 @@ ReactDOM.render(
             <Route path="/login" element={<ConnectWallet />} />
             <Route path="/pay-to-charity" element={<PayToCharity />} />
             <Route path="/profile" element={<Me />} />
-            <Route path="/donate" element={<Donate />} />
+            <Route path="/projects" element={<Donate />}>
+              <Route path="/projects/my-projects" element={<MyProjects />} />
+            </Route>
           </Route>
+
           <Route path="/admin" element={<Landing />} />
           <Route
             path="*"

@@ -3,18 +3,23 @@
 .project-card {
   background-color: #fff;
   margin: 0.5%;
-  padding: 1%;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
+  width: 30vw;
+  height: 35vh;
   font-family: 'poppins', 'roboto';
 }
 .project-container {
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+  margin: 1%;
 }
 .project-chip {
   color: 'white';
   background-color: plum;
+}
+
+h3 {
+  padding: 1%;
+  margin: 3%;
+  font-family: 'poppins', 'roboto';
 }
