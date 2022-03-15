@@ -3,14 +3,13 @@ contract Campaigns {
     struct Campaign {
         uint campaignID;
         address owner;
+        string ownerName;
         string campaignName;
         string aboutHash;
         string imageHash;
         uint amountToRaise;
         uint amountRaised;
-        bool targetReached;
-        string category1;
-      
+        string category;
         uint numberOfDonations;
     }
 
@@ -18,12 +17,12 @@ mapping(uint => Campaign) public campaigns;
 
 uint public numberOfCampaigns = 0;
 
-event createCampaignEvent(uint campaignID,address owner,string campaignName, string aboutHash, string imageHash, uint amountToRaise,string category1);
+event createCampaignEvent(uint campaignID,address owner,string ownerName,string campaignName, string aboutHash, string imageHash, uint amountToRaise,string category);
 
-    function createCampaign(address owner,string memory campaignName, string memory aboutHash, string memory imageHash, uint amountToRaise,string memory category1) public {
+    function createCampaign(address owner,string memory ownerName,string memory campaignName, string memory aboutHash, string memory imageHash, uint amountToRaise,string memory category) public {
         numberOfCampaigns++;
-        campaigns[numberOfCampaigns] = Campaign(numberOfCampaigns,owner,campaignName,aboutHash,imageHash,amountToRaise,0,false,category1,0);
-        emit createCampaignEvent(numberOfCampaigns,owner,campaignName, aboutHash,imageHash,amountToRaise,category1);
+        campaigns[numberOfCampaigns] = Campaign(numberOfCampaigns,owner,ownerName,campaignName,aboutHash,imageHash,amountToRaise,0,category,0);
+        emit createCampaignEvent(numberOfCampaigns,owner,ownerName,campaignName, aboutHash,imageHash,amountToRaise,category);
     }
 
 }

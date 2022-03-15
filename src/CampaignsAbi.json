@@ -1,22 +1,63 @@
 [
   {
-    "constant": true,
-    "inputs": [],
-    "name": "numberOfCampaigns",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
+    "anonymous": false,
     "inputs": [
       {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "campaignID",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "owner",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "ownerName",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "campaignName",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "aboutHash",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "imageHash",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "amountToRaise",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "category",
+        "type": "string"
+      }
+    ],
+    "name": "createCampaignEvent",
+    "type": "event"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
         "name": "",
         "type": "uint256"
       }
@@ -24,124 +65,113 @@
     "name": "campaigns",
     "outputs": [
       {
+        "internalType": "uint256",
         "name": "campaignID",
         "type": "uint256"
       },
       {
+        "internalType": "address",
         "name": "owner",
         "type": "address"
       },
       {
+        "internalType": "string",
+        "name": "ownerName",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
         "name": "campaignName",
         "type": "string"
       },
       {
+        "internalType": "string",
         "name": "aboutHash",
         "type": "string"
       },
       {
+        "internalType": "string",
         "name": "imageHash",
         "type": "string"
       },
       {
+        "internalType": "uint256",
         "name": "amountToRaise",
         "type": "uint256"
       },
       {
+        "internalType": "uint256",
         "name": "amountRaised",
         "type": "uint256"
       },
       {
-        "name": "targetReached",
-        "type": "bool"
-      },
-      {
-        "name": "category1",
+        "internalType": "string",
+        "name": "category",
         "type": "string"
       },
       {
+        "internalType": "uint256",
         "name": "numberOfDonations",
         "type": "uint256"
       }
     ],
-    "payable": false,
     "stateMutability": "view",
     "type": "function"
   },
   {
-    "constant": false,
     "inputs": [
       {
+        "internalType": "address",
         "name": "owner",
         "type": "address"
       },
       {
+        "internalType": "string",
+        "name": "ownerName",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
         "name": "campaignName",
         "type": "string"
       },
       {
+        "internalType": "string",
         "name": "aboutHash",
         "type": "string"
       },
       {
+        "internalType": "string",
         "name": "imageHash",
         "type": "string"
       },
       {
+        "internalType": "uint256",
         "name": "amountToRaise",
         "type": "uint256"
       },
       {
-        "name": "category1",
+        "internalType": "string",
+        "name": "category",
         "type": "string"
       }
     ],
     "name": "createCampaign",
     "outputs": [],
-    "payable": false,
     "stateMutability": "nonpayable",
     "type": "function"
   },
   {
-    "anonymous": false,
-    "inputs": [
+    "inputs": [],
+    "name": "numberOfCampaigns",
+    "outputs": [
       {
-        "indexed": false,
-        "name": "campaignID",
+        "internalType": "uint256",
+        "name": "",
         "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "name": "owner",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "name": "campaignName",
-        "type": "string"
-      },
-      {
-        "indexed": false,
-        "name": "aboutHash",
-        "type": "string"
-      },
-      {
-        "indexed": false,
-        "name": "imageHash",
-        "type": "string"
-      },
-      {
-        "indexed": false,
-        "name": "amountToRaise",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "name": "category1",
-        "type": "string"
       }
     ],
-    "name": "createCampaignEvent",
-    "type": "event"
+    "stateMutability": "view",
+    "type": "function"
   }
 ]

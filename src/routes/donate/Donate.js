@@ -5,103 +5,9 @@ import { ethers } from 'ethers'
 import CampaignsAbi from '../../CampaignsAbi.json'
 import { Button, Divider } from '@mui/material'
 import { Outlet, useLocation } from 'react-router-dom'
-import { HorizontalRule } from '@mui/icons-material'
 
 const Donate = () => {
-  const [numberOfCampaigns, setNumberOfCampaigns] = useState(0)
-  let campaigns = []
-  const campaignstest = [
-    {},
-    {
-      campaignID: 1,
-      owner: '0x0CA65e2fF354dB324c0eD99BD008cea231a9b9B3',
-      campaignName: 'Save the children',
-      aboutHash: '#####',
-      imageHash: '#####',
-      amountToRaise: 10,
-      amountRaised: 2,
-      targetReached: false,
-      category1: 'health',
-    },
-    {
-      campaignID: 2,
-      owner: '0x0CA65e2fF354dB324c0eD99BD008cea231a9b9B3',
-      campaignName: 'Ukraine Refugees',
-      aboutHash: '#####',
-      imageHash: '#####',
-      amountToRaise: 20,
-      amountRaised: 15,
-      targetReached: false,
-      category1: 'refugees',
-    },
-    {
-      campaignID: 3,
-      owner: '0x0CA65e2fF354dB324c0eD99BD008cea231a9b9B3',
-      campaignName: 'Save the children',
-      aboutHash: '#####',
-      imageHash: '#####',
-      amountToRaise: 10,
-      amountRaised: 2,
-      targetReached: false,
-      category1: 'health',
-    },
-    {
-      campaignID: 4,
-      owner: '0x0CA65e2fF354dB324c0eD99BD008cea231a9b9B3',
-      campaignName: 'Ukraine Refugees',
-      aboutHash: '#####',
-      imageHash: '#####',
-      amountToRaise: 20,
-      amountRaised: 15,
-      targetReached: false,
-      category1: 'refugees',
-    },
-    {
-      campaignID: 1,
-      owner: '0x0CA65e2fF354dB324c0eD99BD008cea231a9b9B3',
-      campaignName: 'Save the children',
-      aboutHash: '#####',
-      imageHash: '#####',
-      amountToRaise: 10,
-      amountRaised: 2,
-      targetReached: false,
-      category1: 'nature',
-    },
-    {
-      campaignID: 2,
-      owner: '0x0CA65e2fF354dB324c0eD99BD008cea231a9b9B3',
-      campaignName: 'Ukraine Refugees',
-      aboutHash: '#####',
-      imageHash: '#####',
-      amountToRaise: 20,
-      amountRaised: 15,
-      targetReached: false,
-      category1: 'hunger',
-    },
-    {
-      campaignID: 3,
-      owner: '0x0CA65e2fF354dB324c0eD99BD008cea231a9b9B3',
-      campaignName: 'Save the children',
-      aboutHash: '#####',
-      imageHash: '#####',
-      amountToRaise: 10,
-      amountRaised: 2,
-      targetReached: false,
-      category1: 'education',
-    },
-    {
-      campaignID: 4,
-      owner: '0x0CA65e2fF354dB324c0eD99BD008cea231a9b9B3',
-      campaignName: 'Ukraine Refugees',
-      aboutHash: '#####',
-      imageHash: '#####',
-      amountToRaise: 20,
-      amountRaised: 15,
-      targetReached: false,
-      category1: 'education',
-    },
-  ]
-
+  const [totalNumberOfCampaigns, setNumberOfCampaigns] = useState(0)
   const location = useLocation()
   const [projects, setProjects] = useState([])
   const [contract, setContract] = useState()
@@ -115,9 +21,14 @@ const Donate = () => {
     )
     setContract(campaignContract)
 
-    const numberOfProjects = await contract.numberOfCampaigns()
-
-    setNumberOfCampaigns(() => numberOfProjects.toNumber())
+    try {
+      const numberOfProjects = await contract.numberOfCampaigns()
+      setNumberOfCampaigns(() => numberOfProjects.toNumber())
+      console.log(numberOfProjects.toNumber(), 'Now set')
+    } catch (e) {
+      setNumberOfCampaigns(0)
+      console.log('Error fetching number of campaigns')
+    }
 
     const categories = [
       'health',
@@ -141,10 +52,10 @@ const Donate = () => {
       other: [],
     }
 
-    let campaigns = []
-    for (let i = 1; i <= numberOfProjects; i++) {
+    for (let i = 1; i <= totalNumberOfCampaigns; i++) {
       let campaign = await contract.campaigns(i)
-      switch (campaign.category1) {
+      console.log(campaign)
+      switch (campaign.category) {
         case 'health':
           allCampaigns.health.push(campaign)
           break
@@ -184,33 +95,43 @@ const Donate = () => {
   const ProjectList = () => {
     return (
       <div className="donate-body">
-        {projects.refugees.length !== 0 ? (
+        {projects.refugees && projects.refugees.length !== 0 ? (
           <div>
             <h1>Refugees</h1>
 
             {projects.refugees.map((campaign) => (
-              <Project projectDetails={campaign} />
+              <Project key={campaign.campaignID} projectDetails={campaign} />
             ))}
           </div>
         ) : null}
 
-        {projects.health.length !== 0 ? (
+        {projects.health && projects.health.length !== 0 ? (
           <>
             <h1>Health</h1>
             <div style={{ display: 'flex' }}>
               {projects.health.map((campaign) => (
-                <Project projectDetails={campaign} />
+                <Project key={campaign.campaignID} projectDetails={campaign} />
               ))}
             </div>
           </>
         ) : null}
 
-        {projects.education.length !== 0 ? (
+        {projects.education && projects.education.length !== 0 ? (
           <div>
             <h1>Education</h1>
 
             {projects.education.map((campaign) => (
-              <Project projectDetails={campaign} />
+              <Project key={campaign.campaignID} projectDetails={campaign} />
+            ))}
+          </div>
+        ) : null}
+
+        {projects.poverty && projects.poverty.length !== 0 ? (
+          <div>
+            <h1>Poverty</h1>
+
+            {projects.poverty.map((campaign) => (
+              <Project key={campaign.campaignID} projectDetails={campaign} />
             ))}
           </div>
         ) : null}

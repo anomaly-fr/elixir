@@ -18,6 +18,7 @@ const Project = ({ projectDetails }) => {
         className="project-card"
       >
         <h3>{projectDetails.campaignName}</h3>
+        <h4>{`Created by ${projectDetails.ownerName}`}</h4>
         {/* <Chip
           className="project-chip"
           color="secondary"
@@ -41,11 +42,12 @@ const Project = ({ projectDetails }) => {
             <ProgressBar progress={progress} />
           </div>
         </div>
+        <h4>{`${projectDetails.amountRaised} LIT raised out of ${projectDetails.amountToRaise} LIT`}</h4>
         <div
           style={{ display: 'flex', justifyContent: 'flex-end', margin: '3%' }}
         >
           <Button variant="contained" fullWidth={false}>
-            Donor
+            Donate
           </Button>
         </div>
       </Card>

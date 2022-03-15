@@ -8,6 +8,7 @@ import CampaignsAbi from '../CampaignsAbi.json'
 
 const AppTopBar = ({ about, location }) => {
   const [contract, setContract] = useState()
+  const [totalNumberOfCampaigns, setTotalNumberOfCampaigns] = useState(0)
 
   const [projects, setProjects] = useState([])
   const [example, setExample] = useState('Some Word')
@@ -21,11 +22,16 @@ const AppTopBar = ({ about, location }) => {
     )
 
     setContract(campaignContract)
-
-    const numberOfProjects = await contract.numberOfCampaigns()
+    try {
+      const numberOfProjects = await contract.numberOfCampaigns()
+      setTotalNumberOfCampaigns(() => numberOfProjects.toNumber())
+    } catch (e) {
+      console.log('Error fetching number of campaigns')
+      setTotalNumberOfCampaigns(0)
+    }
 
     const campaigns = []
-    for (let i = 1; i <= numberOfProjects; i++) {
+    for (let i = 1; i <= totalNumberOfCampaigns; i++) {
       campaigns.push(await contract.campaigns(i))
     }
 
