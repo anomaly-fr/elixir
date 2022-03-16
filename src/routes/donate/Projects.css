@@ -4,7 +4,7 @@
   background-color: #f9f9f9;
   text-align: center;
   font-family: 'Poppins', sans-serif;
-  height: 25vh;
+  height: 30vh;
 }
 h3 {
   font-weight: 500;
@@ -13,10 +13,12 @@ h3 {
 }
 h1 {
   font-family: 'poppins', 'roboto';
+  padding: 1%;
 }
 
 .projects-body {
   display: flex;
   flex-direction: column;
+  margin: 2%;
   /* align-items: center; */
 }

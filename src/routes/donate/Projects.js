@@ -97,9 +97,7 @@ const Projects = () => {
 
   const ProjectList = () => {
     return (
-      <div
-      //  className="projects-body"
-      >
+      <div className="projects-body">
         {projects.refugees && projects.refugees.length !== 0 ? (
           <div>
             <h1>Refugees</h1>
@@ -112,6 +110,7 @@ const Projects = () => {
               {projects.refugees.map((campaign) => (
                 <Grid item xs={2} sm={4} md={4}>
                   <Project
+                    id={3}
                     key={campaign.campaignID}
                     projectDetails={campaign}
                   />
@@ -125,6 +124,7 @@ const Projects = () => {
           <div>
             <h1>Health</h1>
             <Grid
+              numColumns={window.innerWidth < 600 ? 1 : 3}
               container
               spacing={{ xs: 2, md: 3 }}
               columns={{ xs: 4, sm: 8, md: 12 }}
@@ -132,6 +132,7 @@ const Projects = () => {
               {projects.health.map((campaign) => (
                 <Grid item xs={2} sm={4} md={4}>
                   <Project
+                    id={1}
                     key={campaign.campaignID}
                     projectDetails={campaign}
                   />
@@ -152,6 +153,7 @@ const Projects = () => {
               {projects.education.map((campaign) => (
                 <Grid item xs={2} sm={4} md={4}>
                   <Project
+                    id={2}
                     key={campaign.campaignID}
                     projectDetails={campaign}
                   />
@@ -166,7 +168,11 @@ const Projects = () => {
             <h1>Poverty</h1>
 
             {projects.poverty.map((campaign) => (
-              <Project key={campaign.campaignID} projectDetails={campaign} />
+              <Project
+                id={1}
+                key={campaign.campaignID}
+                projectDetails={campaign}
+              />
             ))}
           </Grid>
         ) : null}
@@ -175,16 +181,20 @@ const Projects = () => {
   }
   return (
     <>
-      <div className="projects-header">
-        <h1>
-          {location.pathname === '/projects' ? 'Projects' : 'Your projects'}
-        </h1>
-        <h3>
-          {location.pathname === '/projects'
-            ? 'Donate to a good cause'
-            : 'Start a Campaign and get funded'}
-        </h3>
-      </div>
+      <Outlet />
+      {location.pathname === '/projects' ||
+      location.pathname === '/projects/my-projects' ? (
+        <div className="projects-header">
+          <h1>
+            {location.pathname === '/projects' ? 'Campaigns!' : 'Your projects'}
+          </h1>
+          <h3>
+            {location.pathname === '/projects'
+              ? 'All running campaigns'
+              : 'Start a Campaign and get funded'}
+          </h3>
+        </div>
+      ) : null}
       {/* <Button
         onClick={() => {
           getData()
@@ -192,7 +202,7 @@ const Projects = () => {
       >
         Add New
       </Button> */}
-      <Outlet />
+
       {location.pathname === '/projects' ? <ProjectList /> : null}
     </>
   )

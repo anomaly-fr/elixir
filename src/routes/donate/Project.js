@@ -3,11 +3,15 @@ import React, { useState } from 'react'
 import ProgressBar from '../../components/ProgressBar'
 import './Project.css'
 import { Link, Outlet } from 'react-router-dom'
+import image from '../../charity.jpg'
+import image2 from '../../charity2.jfif'
+import image3 from '../../charity3.jpg'
 
-const Project = ({ projectDetails }) => {
+const Project = ({ projectDetails, id }) => {
   const [progress, setProgress] = useState(
     (projectDetails.amountRaised / projectDetails.amountToRaise) * 100,
   )
+
   const [over, isOver] = useState(false)
 
   return (
@@ -20,6 +24,11 @@ const Project = ({ projectDetails }) => {
           elevation={1}
           className="project-card"
         >
+          <img
+            src={id === 1 ? image : id === 2 ? image2 : image3}
+            alt="project"
+            className="project-image"
+          />
           <h3>{projectDetails.campaignName}</h3>
           <h4>{`Created by ${projectDetails.ownerName}`}</h4>
           {/* <Chip
@@ -55,6 +64,7 @@ const Project = ({ projectDetails }) => {
           >
             <Link
               to={`${projectDetails.campaignID.toNumber()}`}
+              state={projectDetails}
               className="project-link"
             >
               <Button

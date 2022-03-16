@@ -66,7 +66,7 @@ const AppTopBar = ({ about, location }) => {
           <MenuButton title={'My Projects'} />
         </Link>
         <Link className="link" to="/login">
-          <MenuButton title={'Connect Wallet'} />
+          <MenuButton title={'Connect'} />
         </Link>
         <Link className="link" to="/profile">
           <MenuButton title={'Me'} />

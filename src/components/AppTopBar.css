@@ -3,6 +3,7 @@
   display: flex;
   background-color: #eef4f8;
   flex-direction: row;
+  height: min-content;
   justify-content: space-around;
 }
 .icon {
@@ -11,19 +12,19 @@
   display: flex;
 }
 .empty {
-  flex: 3;
+  flex: 5;
 }
 .App-top-bar-menu {
   cursor: pointer;
-  flex: 5;
+  flex: 4;
 
   display: flex;
 
   justify-content: space-around;
 }
 .menu {
-  width: 8vw;
   font-weight: 600;
+  width: 8vw;
   font-size: small;
   align-items: center;
   text-align: center;
@@ -32,7 +33,6 @@
 }
 
 .menu-hover {
-  width: 8vw;
   text-align: center;
   color: white;
 
