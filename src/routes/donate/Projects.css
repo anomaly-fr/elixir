@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
-.donate-header {
+.projects-header {
   background-color: #f9f9f9;
   text-align: center;
   font-family: 'Poppins', sans-serif;
@@ -15,7 +15,7 @@ h1 {
   font-family: 'poppins', 'roboto';
 }
 
-.donate-body {
+.projects-body {
   display: flex;
   flex-direction: column;
   /* align-items: center; */
