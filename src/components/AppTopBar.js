@@ -5,43 +5,9 @@ import MenuButton from './MenuButton'
 import { Link } from 'react-router-dom'
 import { ethers } from 'ethers'
 import CampaignsAbi from '../CampaignsAbi.json'
+import { useMoralis } from 'react-moralis'
 
 const AppTopBar = ({ about, location }) => {
-  const [contract, setContract] = useState()
-  const [totalNumberOfCampaigns, setTotalNumberOfCampaigns] = useState(0)
-
-  const [projects, setProjects] = useState([])
-  const [example, setExample] = useState('Some Word')
-  const getData = async () => {
-    const provider = new ethers.providers.Web3Provider(window.ethereum)
-    await provider.send('eth_requestAccounts', [])
-    const campaignContract = new ethers.Contract(
-      process.env.REACT_APP_CAMPAIGNS_CONTRACT_ADDRESS,
-      CampaignsAbi,
-      provider,
-    )
-
-    setContract(campaignContract)
-    try {
-      const numberOfProjects = await contract.numberOfCampaigns()
-      setTotalNumberOfCampaigns(() => numberOfProjects.toNumber())
-    } catch (e) {
-      console.log('Error fetching number of campaigns')
-      setTotalNumberOfCampaigns(0)
-    }
-
-    const campaigns = []
-    for (let i = 1; i <= totalNumberOfCampaigns; i++) {
-      campaigns.push(await contract.campaigns(i))
-    }
-
-    setProjects([...campaigns])
-  }
-
-  useEffect(() => {
-    getData()
-  }, [contract])
-
   return (
     <div className="App-top-bar">
       <div className="icon">
@@ -61,7 +27,7 @@ const AppTopBar = ({ about, location }) => {
           to={{
             pathname: '/projects/my-projects',
           }}
-          state={projects}
+          //    state={projects}
         >
           <MenuButton title={'My Projects'} />
         </Link>

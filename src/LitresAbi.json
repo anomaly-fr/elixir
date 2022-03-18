@@ -6,7 +6,7 @@
     "outputs": [
       {
         "name": "",
-        "type": "string" 
+        "type": "string"
       }
     ],
     "payable": false,
@@ -32,6 +32,20 @@
         "type": "bool"
       }
     ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_address",
+        "type": "address"
+      }
+    ],
+    "name": "setUserAddress",
+    "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
     "type": "function"
@@ -111,6 +125,28 @@
     "type": "function"
   },
   {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_to",
+        "type": "address"
+      },
+      {
+        "name": "_value",
+        "type": "uint256"
+      },
+      {
+        "name": "_campaignID",
+        "type": "uint256"
+      }
+    ],
+    "name": "donateToCampaign",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
     "constant": true,
     "inputs": [
       {
@@ -121,7 +157,7 @@
         "name": "",
         "type": "address"
       }
-    ],   
+    ],
     "name": "allowed",
     "outputs": [
       {
@@ -150,6 +186,20 @@
     ],
     "payable": false,
     "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_address",
+        "type": "address"
+      }
+    ],
+    "name": "setCampaignsAddress",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
     "type": "function"
   },
   {
@@ -229,6 +279,14 @@
       {
         "name": "_tokenSymbol",
         "type": "string"
+      },
+      {
+        "name": "_campaignsAddress",
+        "type": "address"
+      },
+      {
+        "name": "_usersAddress",
+        "type": "address"
       }
     ],
     "payable": false,

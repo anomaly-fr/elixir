@@ -12,7 +12,7 @@
       {
         "components": [
           {
-            "name": "_otherAddress",
+            "name": "toAddress",
             "type": "address"
           },
           {
@@ -20,11 +20,11 @@
             "type": "uint256"
           },
           {
-            "name": "symbol",
-            "type": "bool"
+            "name": "campaignID",
+            "type": "uint256"
           }
         ],
-        "name": "",
+        "name": "_transactions",
         "type": "tuple[]"
       }
     ],
@@ -36,66 +36,27 @@
     "constant": true,
     "inputs": [
       {
-        "name": "_address",
-        "type": "address"
-      }
-    ],
-    "name": "isType3",
-    "outputs": [
-      {
-        "name": "_value",
-        "type": "bool"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": false,
-    "inputs": [
-      {
-        "name": "_address",
+        "name": "",
         "type": "address"
       },
       {
-        "name": "typeNumber",
+        "name": "",
         "type": "uint256"
       }
     ],
-    "name": "addType",
-    "outputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [
-      {
-        "name": "_address",
-        "type": "address"
-      }
-    ],
-    "name": "getUser",
+    "name": "transactions",
     "outputs": [
       {
-        "components": [
-          {
-            "name": "type1",
-            "type": "bool"
-          },
-          {
-            "name": "type2",
-            "type": "bool"
-          },
-          {
-            "name": "type3",
-            "type": "bool"
-          }
-        ],
-        "name": "_user",
-        "type": "tuple"
+        "name": "toAddress",
+        "type": "address"
+      },
+      {
+        "name": "amount",
+        "type": "uint256"
+      },
+      {
+        "name": "campaignID",
+        "type": "uint256"
       }
     ],
     "payable": false,
@@ -110,38 +71,11 @@
         "type": "address"
       }
     ],
-    "name": "isType1",
+    "name": "getTransactionCount",
     "outputs": [
       {
-        "name": "_value",
-        "type": "bool"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [
-      {
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "name": "users",
-    "outputs": [
-      {
-        "name": "type1",
-        "type": "bool"
-      },
-      {
-        "name": "type2",
-        "type": "bool"
-      },
-      {
-        "name": "type3",
-        "type": "bool"
+        "name": "_number",
+        "type": "uint256"
       }
     ],
     "payable": false,
@@ -152,11 +86,11 @@
     "constant": false,
     "inputs": [
       {
-        "name": "_address",
+        "name": "_fromAddress",
         "type": "address"
       },
       {
-        "name": "_otherAddress",
+        "name": "_toAddress",
         "type": "address"
       },
       {
@@ -164,109 +98,19 @@
         "type": "uint256"
       },
       {
-        "name": "_symbol",
-        "type": "bool"
+        "name": "_campaignID",
+        "type": "uint256"
       }
     ],
     "name": "createTransaction",
-    "outputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "constant": false,
-    "inputs": [
-      {
-        "name": "_address",
-        "type": "address"
-      }
-    ],
-    "name": "createUser",
-    "outputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [
-      {
-        "name": "_address",
-        "type": "address"
-      }
-    ],
-    "name": "isType2",
     "outputs": [
       {
-        "name": "_value",
+        "name": "success",
         "type": "bool"
       }
     ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "constructor"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "name": "_address",
-        "type": "address"
-      }
-    ],
-    "name": "CreatedUser",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "name": "_address",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "name": "typeNumber",
-        "type": "uint256"
-      }
-    ],
-    "name": "TypeAdded",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "name": "_address",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "name": "_otherAddress",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "name": "_amount",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "name": "_symbol",
-        "type": "bool"
-      }
-    ],
-    "name": "CreatedTransaction",
-    "type": "event"
+    "type": "function"
   }
 ]

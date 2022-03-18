@@ -60,7 +60,7 @@ html {
   margin: 0.5rem;
 }
 
-p {
+.App-paragraphs {
   display: flex;
   align-items: center;
   flex-direction: column;

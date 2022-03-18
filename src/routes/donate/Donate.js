@@ -1,9 +1,12 @@
-import { React, useState } from 'react'
+import { React, useEffect, useState } from 'react'
 import { useLocation, useParams } from 'react-router-dom'
-import { Avatar, Button, TextField } from '@mui/material'
+import { Avatar, Button, TextField, Alert } from '@mui/material'
 import image from '../../charity.jpg'
 import './Donate.css'
 import ProgressBar from '../../components/ProgressBar'
+import { useMoralis } from 'react-moralis'
+import { ethers } from 'ethers'
+import LitresAbi from '../../LitresAbi.json'
 
 const Donate = () => {
   const location = useLocation()
@@ -11,6 +14,54 @@ const Donate = () => {
   const project = location.state
   let amountRaised = parseInt(project.amountRaised._hex)
   let amountToRaise = parseInt(project.amountToRaise._hex)
+  const [errorText, setErrorText] = useState('')
+  const [amount, setAmount] = useState(0)
+  const [contract, setContract] = useState()
+  const [signerAddress, setSignerAddress] = useState()
+
+  const { isAuthenticated, user, auth } = useMoralis()
+
+  useEffect(() => {
+    setUp()
+  }, [])
+
+  useEffect(() => {
+    window.ethereum.on('accountsChanged', () => {
+      window.location.reload()
+    })
+  })
+
+  const setUp = async () => {
+    const provider = new ethers.providers.Web3Provider(window.ethereum)
+    await provider.send('eth_requestAccounts', [])
+    const signer = await provider.getSigner()
+    const address = await signer.getAddress()
+    setSignerAddress(address)
+
+    const litres = new ethers.Contract(
+      process.env.REACT_APP_LITRES_CONTRACT_ADDRESS,
+      LitresAbi,
+      signer,
+    )
+    setContract(litres)
+    console.log('LITS', litres)
+  }
+
+  const makeDonation = async () => {
+    console.log(project.owner, amount, parseInt(project.campaignID._hex))
+    await contract
+      .donateToCampaign(
+        project.owner,
+        amount,
+        parseInt(project.campaignID._hex),
+      )
+      .then(() => {
+        alert('Donation Successful')
+      })
+    // console.log('Alive', contract)
+    // const bal = await contract.balanceOf(contract.signer.getAddress())
+    // console.log('BAL', bal)
+  }
 
   return (
     <div
@@ -73,10 +124,37 @@ const Donate = () => {
             id="outlined-basic"
             placeholder="Amount in LIT"
             variant="outlined"
+            value={amount}
+            onChange={(e) => setAmount(e.target.value)}
           />
-          <Button variant="contained" color="primary">
+          <Button
+            onClick={() => {
+              if (!isAuthenticated)
+                setErrorText('Connect with Metamask to donate!')
+              else if (
+                signerAddress.toUpperCase() !==
+                user.get('ethAddress').toUpperCase()
+              ) {
+                setErrorText('You are logged in with a different account!')
+                console.log(
+                  'Signer',
+                  signerAddress,
+                  'User',
+                  user.get('ethAddress'),
+                )
+              } else if (amount <= 0 || amount > amountToRaise - amountRaised) {
+                setErrorText('Invalid amount!')
+              } else {
+                makeDonation()
+                //  console.log(user, auth)
+              }
+            }}
+            variant="contained"
+            color="primary"
+          >
             Contribute Now
           </Button>
+          <h4 style={{ color: 'red' }}>{errorText}</h4>
         </div>
       </div>
     </div>
