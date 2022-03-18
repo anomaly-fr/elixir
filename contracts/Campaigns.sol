@@ -18,6 +18,7 @@ contract Campaigns {
 
 mapping(uint => Campaign) public campaigns; 
 mapping(address => mapping(uint => Campaign)) public userCampaigns;
+mapping(address => uint) public campaignCounts;
 
 uint public numberOfCampaigns = 0;
 
@@ -28,8 +29,10 @@ event createCampaignEvent(uint campaignID,address owner,string ownerName,string 
         
         campaigns[numberOfCampaigns] = Campaign(numberOfCampaigns,owner,ownerName,campaignName,aboutHash,imageHash,amountToRaise,0,category,0);
         userCampaigns[owner][numberOfCampaigns] = Campaign(numberOfCampaigns,owner,ownerName,campaignName,aboutHash,imageHash,amountToRaise,0,category,0);
+        campaignCounts[owner]++;
         emit createCampaignEvent(numberOfCampaigns,owner,ownerName,campaignName, aboutHash,imageHash,amountToRaise,category);
-    }
+        
+    } 
 
     function getUserCampaigns(address _address,uint _campaignID) public view returns (Campaign memory _campaign){
         return userCampaigns[_address][_campaignID];

@@ -13,6 +13,7 @@ import { MoralisProvider } from 'react-moralis'
 import Me from './profile/Me'
 import Projects from './routes/donate/Projects'
 import Donate from './routes/donate/Donate'
+import CreateCampaign from './routes/donate/CreateCampaign'
 
 const loggedIn = false
 
@@ -30,8 +31,10 @@ ReactDOM.render(
             <Route path="/pay-to-charity" element={<PayToCharity />} />
             <Route path="/profile" element={<Me />} />
             <Route path="/projects" element={<Projects />}>
-              <Route path="/projects/my-projects" element={<MyProjects />} />
               <Route path="/projects/:projectID" element={<Donate />} />
+            </Route>
+            <Route path="/my-projects" element={<MyProjects />}>
+              <Route path="/my-projects/new" element={<CreateCampaign />} />
             </Route>
           </Route>
 

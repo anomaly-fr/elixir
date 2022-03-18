@@ -7,7 +7,7 @@ import image from '../../charity.jpg'
 import image2 from '../../charity2.jfif'
 import image3 from '../../charity3.jpg'
 
-const Project = ({ projectDetails, id }) => {
+const Project = ({ projectDetails, id, myProjects }) => {
   const [progress, setProgress] = useState(
     (projectDetails.amountRaised / projectDetails.amountToRaise) * 100,
   )
@@ -30,7 +30,10 @@ const Project = ({ projectDetails, id }) => {
             className="project-image"
           />
           <h3>{projectDetails.campaignName}</h3>
-          <h4>{`Created by ${projectDetails.ownerName}`}</h4>
+          {!myProjects ? (
+            <h4>{`Created by ${projectDetails.ownerName}`}</h4>
+          ) : null}
+
           {/* <Chip
           className="project-chip"
           color="secondary"
@@ -54,7 +57,9 @@ const Project = ({ projectDetails, id }) => {
               <ProgressBar progress={progress} />
             </div>
           </div>
-          <h4>{`${projectDetails.amountRaised} LIT raised out of ${projectDetails.amountToRaise} LIT`}</h4>
+          <h4>{`${projectDetails.amountRaised} ${
+            !myProjects ? `LIT raised out` : `LIT received out of`
+          } ${projectDetails.amountToRaise} LIT!`}</h4>
           <div
             style={{
               display: 'flex',
@@ -67,13 +72,15 @@ const Project = ({ projectDetails, id }) => {
               state={projectDetails}
               className="project-link"
             >
-              <Button
-                onClick={() => {
-                  console.log(':(')
-                }}
-              >
-                Donate
-              </Button>
+              {!myProjects ? (
+                <Button
+                  onClick={() => {
+                    console.log(':(')
+                  }}
+                >
+                  Donate
+                </Button>
+              ) : null}
             </Link>
           </div>
         </Card>

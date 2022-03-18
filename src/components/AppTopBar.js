@@ -8,6 +8,7 @@ import CampaignsAbi from '../CampaignsAbi.json'
 import { useMoralis } from 'react-moralis'
 
 const AppTopBar = ({ about, location }) => {
+  const { isAuthenticated } = useMoralis()
   return (
     <div className="App-top-bar">
       <div className="icon">
@@ -24,9 +25,7 @@ const AppTopBar = ({ about, location }) => {
         </Link>
         <Link
           className="link"
-          to={{
-            pathname: '/projects/my-projects',
-          }}
+          to={isAuthenticated ? '/projects/my-projects' : '/login'}
           //    state={projects}
         >
           <MenuButton title={'My Projects'} />

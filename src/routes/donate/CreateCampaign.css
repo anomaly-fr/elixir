@@ -1,0 +1,11 @@
+.form-root {
+  background-color: antiquewhite;
+  border-radius: 10px;
+}
+
+.form-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 50%;
+}

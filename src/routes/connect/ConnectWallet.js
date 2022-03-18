@@ -7,14 +7,6 @@ import UserAbi from '../../UserAbi.json'
 
 export default function ConnectWallet() {
   const { authenticate, isAuthenticated, user, auth, logout } = useMoralis()
-  const { REACT_APP_USER_CONTRACT_ADDRESS } = process.env
-  const [ethUser, setEthUser] = useState(null)
-
-  const [userTypes, setUserTypes] = useState({
-    userType1: false,
-    userType2: false,
-    userType3: false,
-  })
 
   return (
     <div className="root">
