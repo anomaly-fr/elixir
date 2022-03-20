@@ -14,7 +14,7 @@ const Donate = () => {
   const project = location.state
 
   const [errorText, setErrorText] = useState('')
-  const [amount, setAmount] = useState(0)
+  const [amount, setAmount] = useState()
   const [contract, setContract] = useState()
   const [signerAddress, setSignerAddress] = useState()
   const [amountRaised, setAmountRaised] = useState(
@@ -120,17 +120,8 @@ const Donate = () => {
           style={{ fontWeight: 'bold', fontSize: '1.5rem', padding: '0%' }}
           className="about"
         >{`${amountRaised} LIT raised out of ${amountToRaise} LIT`}</p>
-        <ProgressBar progress={24} />
-        <p className="about">
-          Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-          commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus
-          et magnis dis parturient montes, nascetur ridiculus mus. Donec quam
-          felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla
-          consequat massa quis enim. Donec pede justo, fringilla vel, aliquet
-          nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a,
-          venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium.
-          Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi
-        </p>
+        <ProgressBar progress={(amountRaised / amountToRaise) * 100} />
+        <p className="about">{project.aboutHash}</p>
         <div
           style={{
             display: 'flex',
@@ -166,7 +157,7 @@ const Donate = () => {
                 )
               } else if (amount <= 0 || amount > amountToRaise - amountRaised) {
                 setErrorText('Invalid amount!')
-              } else {
+              } else if (amount) {
                 makeDonation()
                 //  console.log(user, auth)
               }

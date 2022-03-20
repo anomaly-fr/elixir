@@ -1,36 +1,120 @@
-import { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import '../donate/Projects.css'
+import Project from '../donate/Project'
+import { ethers } from 'ethers'
+import CampaignsAbi from '../../CampaignsAbi.json'
+import { Button, Divider, Grid, IconButton } from '@mui/material'
+import { Link, Outlet, useLocation } from 'react-router-dom'
+import { useMoralis } from 'react-moralis'
+import AddIcon from '@mui/icons-material/Add'
 
-const Create = () => {
-  const [title, setTitle] = useState('')
-  const [body, setBody] = useState('')
-  const [author, setAuthor] = useState('mario')
+const MyProjects = () => {
+  const location = useLocation()
+  const [projects, setProjects] = useState([])
+  const [contract, setContract] = useState()
+
+  const { isAuthenticated, user } = useMoralis()
+
+  const setup = async () => {
+    const provider = new ethers.providers.Web3Provider(window.ethereum)
+    await provider.send('eth_requestAccounts', [])
+    const campaignContract = new ethers.Contract(
+      process.env.REACT_APP_CAMPAIGNS_CONTRACT_ADDRESS,
+      CampaignsAbi,
+      provider,
+    )
+    setContract(campaignContract)
+  }
+
+  useEffect(() => {
+    setup().then(() => {
+      console.log('setup done', contract)
+    })
+  }, [])
+  useEffect(() => {
+    window.ethereum.on('accountsChanged', () => {
+      window.location.reload()
+    })
+  })
+
+  useEffect(() => {
+    window.ethereum.on('chainChanged', () => {
+      window.location.reload()
+    })
+  })
+
+  const getData = async () => {
+    console.log('got')
+    // if (contract) {
+    //   let campaigns = await contract.getUserCampaigns(user.get('ethAddress'))
+    //   setProjects(campaigns)
+
+    //   console.log('Contract', contract)
+    // }
+    // console.log('Contract not set')
+
+    // // getData()
+
+    // //   console.log('totalNumberOfCampaigns', totalNumberOfCampaigns)
+  }
+
+  useEffect(() => {
+    setTimeout(() => {
+      getData()
+      console.log('AGAIN')
+    }, 2000)
+  }, [projects])
+
+  const ProjectList = () => {
+    // console.log(window.location.pathname)
+    return (
+      <div className="projects-body">
+        <Outlet />
+
+        {window.location.pathname === '/my-projects' ? (
+          <div style={{ margin: '2%' }}>
+            <Link
+              style={{ textDecoration: 'none' }}
+              to={isAuthenticated ? '/my-projects/new' : '/login'}
+            >
+              <Button startIcon={<AddIcon />} variant={'contained'}>
+                Create New Campaign
+              </Button>
+            </Link>
+          </div>
+        ) : null}
+        {window.location.pathname === '/my-projects' ? (
+          <div>
+            {projects.map((campaign) => (
+              <Grid item xs={2} sm={4} md={4}>
+                <Project myProjects projectDetails={campaign} />
+              </Grid>
+            ))}
+          </div>
+        ) : null}
+      </div>
+    )
+  }
 
   return (
-    <div className="create">
-      <h2>Add a New Blog</h2>
-      <form>
-        <label>Blog title:</label>
-        <input
-          type="text"
-          required
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
-        <label>Blog body:</label>
-        <textarea
-          required
-          value={body}
-          onChange={(e) => setBody(e.target.value)}
-        ></textarea>
-        <label>Blog author:</label>
-        <select value={author} onChange={(e) => setAuthor(e.target.value)}>
-          <option value="mario">mario</option>
-          <option value="yoshi">yoshi</option>
-        </select>
-        <button>Add Blog</button>
-      </form>
-    </div>
+    <>
+      {location.pathname === '/projects' ||
+      location.pathname === '/projects/my-projects' ? (
+        <div className="projects-header">
+          <h1>
+            {location.pathname === '/projects' ? 'Campaigns!' : 'Your projects'}
+          </h1>
+          <h3>
+            {location.pathname === '/projects'
+              ? 'All running campaigns'
+              : 'Start a Campaign and get funded'}
+          </h3>
+        </div>
+      ) : null}
+
+      <ProjectList />
+    </>
   )
 }
 
-export default Create
+export default MyProjects

@@ -6,12 +6,15 @@ import { Link, Outlet } from 'react-router-dom'
 import image from '../../charity.jpg'
 import image2 from '../../charity2.jfif'
 import image3 from '../../charity3.jpg'
+import { useMoralis } from 'react-moralis'
 
 const Project = ({ projectDetails, myProjects }) => {
-  console.log('PEOZECT', projectDetails)
+  console.log('PROZECT', projectDetails)
   const [progress, setProgress] = useState(
     (projectDetails.amountRaised / projectDetails.amountToRaise) * 100,
   )
+
+  const { user } = useMoralis()
 
   const [over, isOver] = useState(false)
   useEffect(() => {
@@ -80,19 +83,26 @@ const Project = ({ projectDetails, myProjects }) => {
             }}
           >
             <Link
-              to={`${projectDetails.campaignID.toNumber()}`}
+              to={`${
+                user.get('ethAddress').toUpperCase() !==
+                projectDetails.owner.toUpperCase()
+                  ? projectDetails.campaignID.toNumber()
+                  : '/projects'
+              }`}
               state={projectDetails}
               className="project-link"
             >
-              {!myProjects ? (
-                <Button
-                  onClick={() => {
-                    console.log(':(')
-                  }}
-                >
-                  Donate
-                </Button>
-              ) : null}
+              <Button
+                disabled={
+                  user.get('ethAddress').toUpperCase() ===
+                  projectDetails.owner.toUpperCase()
+                }
+                onClick={() => {
+                  console.log(':(')
+                }}
+              >
+                Donate
+              </Button>
             </Link>
           </div>
         </Card>
