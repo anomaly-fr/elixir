@@ -25,7 +25,7 @@ const AppTopBar = ({ about, location }) => {
         </Link>
         <Link
           className="link"
-          to={isAuthenticated ? '/projects/my-projects' : '/login'}
+          to={'/my-projects'}
           //    state={projects}
         >
           <MenuButton title={'My Projects'} />

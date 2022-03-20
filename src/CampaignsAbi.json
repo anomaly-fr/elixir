@@ -193,10 +193,6 @@
       {
         "name": "_address",
         "type": "address"
-      },
-      {
-        "name": "_campaignID",
-        "type": "uint256"
       }
     ],
     "name": "getUserCampaigns",
@@ -244,27 +240,8 @@
             "type": "uint256"
           }
         ],
-        "name": "_campaign",
-        "type": "tuple"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [
-      {
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "name": "campaignCounts",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256"
+        "name": "_campaigns",
+        "type": "tuple[]"
       }
     ],
     "payable": false,

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useLayoutEffect } from 'react'
 import './Projects.css'
 import Project from './Project'
 import { ethers } from 'ethers'
@@ -21,14 +21,13 @@ const Projects = () => {
       provider,
     )
     setContract(campaignContract)
+    console.log('End of setup function')
   }
 
   useEffect(() => {
     setup()
     console.log('setup done', contract)
   }, [])
-
-  const getNumberOfCampaigns = async () => {}
 
   const getData = async () => {
     //setTimeout(getData, 1500)
@@ -56,43 +55,49 @@ const Projects = () => {
     //   console.log('totalNumberOfCampaigns', totalNumberOfCampaigns)
     for (let i = 1; i <= numberOfProjects; i++) {
       let campaign = await contract.campaigns(i)
-      //  console.log(campaign)
+      console.log(i, campaign.campaignID.toNumber())
       switch (campaign.category) {
-        case 'health':
+        case '1':
           allCampaigns.health.push(campaign)
           break
-        case 'refugees':
+        case '2':
           allCampaigns.refugees.push(campaign)
           break
-        case 'education':
+        case '3':
           allCampaigns.education.push(campaign)
           break
-        case 'hunger':
+        case '4':
           allCampaigns.hunger.push(campaign)
           break
-        case 'poverty':
+        case '5':
           allCampaigns.poverty.push(campaign)
           break
-        case 'nature':
+        case '6':
           allCampaigns.nature.push(campaign)
           break
-        case 'personal':
+        case '7':
           allCampaigns.personal.push(campaign)
           break
-        case 'other':
+        case '8':
           allCampaigns.other.push(campaign)
           break
         default:
           allCampaigns.other.push(campaign)
       }
+
+      console.log('Data is got')
     }
     setProjects(allCampaigns)
     // return allCampaigns
   }
-  useEffect(() => {
+  useLayoutEffect(() => {
     setTimeout(() => {
       getData()
+      console.log('AGAIN')
     }, 2000)
+    return () => {
+      console.log('Unmounting')
+    }
   }, [projects])
 
   const ProjectList = () => {
@@ -179,6 +184,17 @@ const Projects = () => {
       </div>
     )
   }
+  useEffect(() => {
+    window.ethereum.on('accountsChanged', () => {
+      window.location.reload()
+    })
+  })
+
+  useEffect(() => {
+    window.ethereum.on('chainChanged', () => {
+      window.location.reload()
+    })
+  })
   return (
     <>
       <Outlet />

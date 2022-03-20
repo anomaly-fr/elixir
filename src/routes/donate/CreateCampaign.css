@@ -1,11 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
 .form-root {
-  background-color: antiquewhite;
   border-radius: 10px;
+  align-items: center;
+  justify-content: center;
 }
 
 .form-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 50%;
+  width: 80%;
+}
+
+.form-text-area {
+  width: 50vw;
+  height: 2vh;
+  border-radius: 5px;
+  border: 1px solid #c0b5a5;
+  background-color: transparent;
+  font-family: 'Roboto', sans-serif;
+}
+
+.form-text-field {
+  width: 50vw;
+  min-height: 2vh;
+  padding: 2%;
+  display: flex;
+}
+::placeholder {
+  color: gray;
+  font-size: large;
+}
+
+.form-image {
+  width: 30vw;
+  height: 50vh;
+  padding: '3%';
+}
+
+a {
+  text-decoration: none;
+  font-family: 'poppins', 'Roboto';
 }

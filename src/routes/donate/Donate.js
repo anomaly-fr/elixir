@@ -12,12 +12,17 @@ const Donate = () => {
   const location = useLocation()
   console.log('This', location.state)
   const project = location.state
-  let amountRaised = parseInt(project.amountRaised._hex)
-  let amountToRaise = parseInt(project.amountToRaise._hex)
+
   const [errorText, setErrorText] = useState('')
   const [amount, setAmount] = useState(0)
   const [contract, setContract] = useState()
   const [signerAddress, setSignerAddress] = useState()
+  const [amountRaised, setAmountRaised] = useState(
+    parseInt(project?.amountRaised._hex),
+  )
+  const [amountToRaise, setAmountToRaise] = useState(
+    parseInt(project?.amountToRaise._hex),
+  )
 
   const { isAuthenticated, user, auth } = useMoralis()
 
@@ -54,6 +59,7 @@ const Donate = () => {
   }
 
   const makeDonation = async () => {
+    setErrorText('')
     console.log(project.owner, amount, parseInt(project.campaignID._hex))
     await contract
       .donateToCampaign(
@@ -61,8 +67,14 @@ const Donate = () => {
         amount,
         parseInt(project.campaignID._hex),
       )
-      .then(() => {
-        alert('Donation Successful')
+      .then(async () => {
+        const newAmount = await contract.campaigns(project.campaignID._hex)
+          .amountRaised
+        console.log('newAmount', newAmount)
+        setAmountRaised(amountRaised + amount)
+      })
+      .catch((e) => {
+        setErrorText('You might have insufficent funds')
       })
     // console.log('Alive', contract)
     // const bal = await contract.balanceOf(contract.signer.getAddress())
@@ -84,9 +96,13 @@ const Donate = () => {
         // fontFamily={'Poppins'}
         className="donate-heading"
       >
-        {project.campaignName}
+        {project?.campaignName}
       </h1>
-      <img className="donate-image" src={image} alt="project" />
+      <img
+        className="donate-image"
+        src={`https://ipfs.moralis.io:2053/ipfs/${project.imageHash}`}
+        alt="project"
+      />
       <div
         style={{
           justifyContent: 'center',

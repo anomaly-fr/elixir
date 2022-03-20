@@ -5,7 +5,8 @@ h1 {
 }
 
 img {
-  width: 50vw;
+  width: 30vw;
+  height: 50vh;
 }
 @media only screen and (max-width: 600px) {
   img {

@@ -7,6 +7,17 @@ import UserAbi from '../../UserAbi.json'
 
 export default function ConnectWallet() {
   const { authenticate, isAuthenticated, user, auth, logout } = useMoralis()
+  useEffect(() => {
+    window.ethereum.on('accountsChanged', () => {
+      window.location.reload()
+    })
+  })
+
+  useEffect(() => {
+    window.ethereum.on('chainChanged', () => {
+      window.location.reload()
+    })
+  })
 
   return (
     <div className="root">

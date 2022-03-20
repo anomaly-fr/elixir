@@ -1,5 +1,5 @@
 import { TextField, Card, Button } from '@mui/material'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import CompareArrowsIcon from '@mui/icons-material/CompareArrows'
 import CheckCircleIcon from '@mui/icons-material/CheckCircle'
 import { ethers } from 'ethers'
@@ -28,6 +28,18 @@ export default function Balance() {
 
     setBalance(b)
   }
+
+  useEffect(() => {
+    window.ethereum.on('accountsChanged', () => {
+      window.location.reload()
+    })
+  })
+
+  useEffect(() => {
+    window.ethereum.on('chainChanged', () => {
+      window.location.reload()
+    })
+  })
   return (
     <div
       style={{

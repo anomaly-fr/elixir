@@ -7,10 +7,8 @@ import { Button, Divider, Grid, IconButton } from '@mui/material'
 import { Link, Outlet, useLocation } from 'react-router-dom'
 import { useMoralis } from 'react-moralis'
 import AddIcon from '@mui/icons-material/Add'
-import { Add } from '@mui/icons-material'
 
 const MyProjects = () => {
-  const [totalNumberOfCampaigns, setNumberOfCampaigns] = useState(0)
   const location = useLocation()
   const [projects, setProjects] = useState([])
   const [contract, setContract] = useState()
@@ -29,49 +27,58 @@ const MyProjects = () => {
   }
 
   useEffect(() => {
-    setup()
-    console.log('setup done', contract)
+    setup().then(() => {
+      console.log('setup done', contract)
+    })
   }, [])
-
-  const getData = async () => {
-    //setTimeout(getData, 1500)
-    console.log('alive', contract)
-
-    let numberOfProjects
-    try {
-      console.log(user.get('ethAddress'))
-      numberOfProjects = await contract.campaignCounts(user.get('ethAddress'))
-      setNumberOfCampaigns(() => numberOfProjects.toNumber())
-
-      console.log(numberOfProjects.toNumber(), 'Now set')
-    } catch (e) {
-      //  setNumberOfCampaigns(0)
-      console.log('Error fetching number of campaigns', e)
-    }
-
-    //   console.log('totalNumberOfCampaigns', totalNumberOfCampaigns)
-    let allCampaigns = []
-    for (let i = 1; i <= numberOfProjects; i++) {
-      let campaign = await contract.userCampaigns(user.get('ethAddress'), i)
-      console.log('yaw', campaign)
-      allCampaigns.push(campaign)
-    }
-    setProjects(allCampaigns)
-  }
   useEffect(() => {
+    window.ethereum.on('accountsChanged', () => {
+      window.location.reload()
+    })
+  })
+
+  useEffect(() => {
+    window.ethereum.on('chainChanged', () => {
+      window.location.reload()
+    })
+  })
+
+  useEffect(() => {
+    const getData = async () => {
+      console.log('got')
+      try {
+        let campaigns = []
+        campaigns = await contract.getUserCampaigns(user.get('ethAddress'))
+        setProjects(campaigns)
+
+        console.log('Contract', contract)
+      } catch (e) {
+        console.log('error contract no set :(', e)
+      }
+      // setProjects([...projects])
+
+      // getData()
+
+      //   console.log('totalNumberOfCampaigns', totalNumberOfCampaigns)
+    }
     setTimeout(() => {
       getData()
+      console.log('AGAIN')
     }, 2000)
-  }, [projects])
+  }, [contract, projects])
 
   const ProjectList = () => {
+    // console.log(window.location.pathname)
     return (
       <div className="projects-body">
         <Outlet />
 
         {window.location.pathname === '/my-projects' ? (
           <div style={{ margin: '2%' }}>
-            <Link style={{ textDecoration: 'none' }} to="/my-projects/new">
+            <Link
+              style={{ textDecoration: 'none' }}
+              to={isAuthenticated ? '/my-projects/new' : '/login'}
+            >
               <Button startIcon={<AddIcon />} variant={'contained'}>
                 Create New Campaign
               </Button>
@@ -81,13 +88,8 @@ const MyProjects = () => {
         {window.location.pathname === '/my-projects' ? (
           <div>
             {projects.map((campaign) => (
-              <Grid key={campaign.campaignID} item xs={2} sm={4} md={4}>
-                <Project
-                  myProjects
-                  id={3}
-                  key={campaign.campaignID}
-                  projectDetails={campaign}
-                />
+              <Grid item xs={2} sm={4} md={4}>
+                <Project myProjects projectDetails={campaign} />
               </Grid>
             ))}
           </div>

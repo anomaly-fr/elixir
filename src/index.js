@@ -3,10 +3,8 @@ import ReactDOM from 'react-dom'
 import './index.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import App from './App'
-import About from './routes/about/About'
 import ConnectWallet from './routes/connect/ConnectWallet'
 import Home from './routes/home/Home'
-import PayToCharity from './routes/charities/PayToCharity'
 import Landing from './admin/Landing'
 import MyProjects from './routes/MyProjects/MyProjects'
 import { MoralisProvider } from 'react-moralis'
@@ -26,16 +24,13 @@ ReactDOM.render(
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<App />}>
-            <Route path="/about" element={<About />} />
             <Route path="/login" element={<ConnectWallet />} />
-            <Route path="/pay-to-charity" element={<PayToCharity />} />
             <Route path="/profile" element={<Me />} />
             <Route path="/projects" element={<Projects />}>
               <Route path="/projects/:projectID" element={<Donate />} />
             </Route>
-            <Route path="/my-projects" element={<MyProjects />}>
-              <Route path="/my-projects/new" element={<CreateCampaign />} />
-            </Route>
+            <Route path="/my-projects" element={<MyProjects />} />
+            <Route path="/my-projects/new" element={<CreateCampaign />} />
           </Route>
 
           <Route path="/admin" element={<Landing />} />

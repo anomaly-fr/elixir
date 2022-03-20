@@ -1,5 +1,5 @@
 import { Card, Chip, Button, LinearProgress } from '@mui/material'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import ProgressBar from '../../components/ProgressBar'
 import './Project.css'
 import { Link, Outlet } from 'react-router-dom'
@@ -7,12 +7,24 @@ import image from '../../charity.jpg'
 import image2 from '../../charity2.jfif'
 import image3 from '../../charity3.jpg'
 
-const Project = ({ projectDetails, id, myProjects }) => {
+const Project = ({ projectDetails, myProjects }) => {
+  console.log('PEOZECT', projectDetails)
   const [progress, setProgress] = useState(
     (projectDetails.amountRaised / projectDetails.amountToRaise) * 100,
   )
 
   const [over, isOver] = useState(false)
+  useEffect(() => {
+    window.ethereum.on('accountsChanged', () => {
+      window.location.reload()
+    })
+  })
+
+  useEffect(() => {
+    window.ethereum.on('chainChanged', () => {
+      window.location.reload()
+    })
+  })
 
   return (
     <>
@@ -25,7 +37,7 @@ const Project = ({ projectDetails, id, myProjects }) => {
           className="project-card"
         >
           <img
-            src={id === 1 ? image : id === 2 ? image2 : image3}
+            src={`https://ipfs.moralis.io:2053/ipfs/${projectDetails.imageHash}`}
             alt="project"
             className="project-image"
           />

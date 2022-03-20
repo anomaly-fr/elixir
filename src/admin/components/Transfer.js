@@ -64,6 +64,17 @@ export default function Transfer() {
     getData()
     console.log('FETCHED')
   }, [])
+  useEffect(() => {
+    window.ethereum.on('accountsChanged', () => {
+      window.location.reload()
+    })
+  })
+
+  useEffect(() => {
+    window.ethereum.on('chainChanged', () => {
+      window.location.reload()
+    })
+  })
 
   const updateBalance = async () => {
     console.log('Called')
