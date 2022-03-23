@@ -101,6 +101,20 @@ const Projects = () => {
   }, [projects])
 
   const ProjectList = () => {
+    if (totalNumberOfCampaigns === 0) {
+      return (
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: '100%',
+          }}
+        >
+          <h2>Such Empty!</h2>
+        </div>
+      )
+    }
     return (
       <div className="projects-body">
         {projects.refugees && projects.refugees.length !== 0 ? (
@@ -204,11 +218,11 @@ const Projects = () => {
           <h1>
             {location.pathname === '/projects' ? 'Campaigns!' : 'Your projects'}
           </h1>
-          <h3>
+          {/* <h3>
             {location.pathname === '/projects'
               ? 'All running campaigns'
               : 'Start a Campaign and get funded'}
-          </h3>
+          </h3> */}
         </div>
       ) : null}
       {/* <Button

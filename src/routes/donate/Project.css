@@ -27,6 +27,12 @@ h3 {
   margin: 3%;
   font-family: 'poppins', 'roboto';
 }
+h2 {
+  padding: 1%;
+  margin: 3%;
+  font-weight: 400;
+  font-family: 'poppins', 'roboto';
+}
 h4 {
   padding: 1%;
   margin: 3%;

@@ -33,9 +33,6 @@ const AppTopBar = ({ about, location }) => {
         <Link className="link" to="/login">
           <MenuButton title={'Connect'} />
         </Link>
-        <Link className="link" to="/profile">
-          <MenuButton title={'Me'} />
-        </Link>
       </div>
     </div>
   )

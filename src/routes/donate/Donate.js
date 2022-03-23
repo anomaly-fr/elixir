@@ -66,6 +66,7 @@ const Donate = () => {
         project.owner,
         amount,
         parseInt(project.campaignID._hex),
+        Math.floor(new Date().getTime() / 1000),
       )
       .then(async () => {
         const newAmount = await contract.campaigns(project.campaignID._hex)

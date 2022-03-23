@@ -51,10 +51,10 @@ export default function Transfer() {
     setContractDetails(newContract)
 
     const signer = await provider.getSigner()
-    const signerAddress = await signer.getAddress()
-    setAdminAccount(signerAddress)
+    const signerA = await signer.getAddress()
+    setAdminAccount(signerA)
 
-    const balance = await litres.balanceOf(signerAddress)
+    const balance = await litres.balanceOf(signerA)
     setBalance(balance.toNumber())
     console.log('Balance', balance.toNumber())
     // console.log('Signer', signerAddress)
@@ -81,19 +81,21 @@ export default function Transfer() {
     const provider = new ethers.providers.Web3Provider(window.ethereum)
     await provider.send('eth_requestAccounts', [])
     const signer = await provider.getSigner()
-    const signerAddress = await signer.getAddress()
     const litres = new ethers.Contract(
       REACT_APP_LITRES_CONTRACT_ADDRESS,
       LitresAbi,
       signer,
     )
-    const b = await litres.balanceOf(signerAddress)
+    const b = await litres.balanceOf(
+      process.env.REACT_APP_LITRES_CREATOR_ADDRESS,
+    )
 
     setBalance(b.toNumber())
   }
 
   const actualTransfer = async (litres) => {
     await litres.transfer(toAddress, amount)
+
     return 'done'
   }
 

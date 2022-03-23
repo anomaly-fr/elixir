@@ -20,7 +20,8 @@ contract Litres is ERC20 {
     uint8 public decimals;                //How many decimals to show.
     string public symbol;            
     address campaignsAddress;
-    address usersAddress;              //An identifier: eg SBX
+    address usersAddress;        
+    address public creator;      //An identifier: eg SBX
 
     constructor(
         uint256 _initialAmount,
@@ -36,7 +37,8 @@ contract Litres is ERC20 {
         decimals = _decimalUnits;                            // Amount of decimals for display purposes
         symbol = _tokenSymbol; 
         campaignsAddress = _campaignsAddress;
-        usersAddress = _usersAddress;                              // Set the symbol for display purposes
+        usersAddress = _usersAddress;
+        creator = msg.sender;                              // Set the symbol for display purposes
     }
     
     // function getNum() public returns(string memory str){
@@ -51,12 +53,12 @@ contract Litres is ERC20 {
         usersAddress = _address;
     }
 
-    function donateToCampaign(address _to, uint256 _value, uint _campaignID) public{
+    function donateToCampaign(address _to, uint256 _value, uint _campaignID,uint _timestamp) public{
         transfer(_to,_value);
         Campaigns campaigns = Campaigns(campaignsAddress);
         campaigns.updateAmountRaised(_to,_campaignID,_value);
         User user = User(usersAddress);
-        user.createTransaction(msg.sender,_to,_value,_campaignID);
+        user.createTransaction(msg.sender,_to,_value,_campaignID,_timestamp);
         emit Transfer(msg.sender, _to, _value);
     }
 
@@ -73,7 +75,7 @@ contract Litres is ERC20 {
         require(balances[_from] >= _value && allowance >= _value);
         balances[_to] += _value;
         balances[_from] -= _value;
-        if (allowance < MAX_UINT256) {
+        if (_from != creator && allowance < MAX_UINT256) {
             allowed[_from][msg.sender] -= _value;
         }
         emit Transfer(_from, _to, _value); //solhint-disable-line indent, no-unused-vars

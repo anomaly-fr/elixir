@@ -7,11 +7,12 @@ struct Transaction {
     address toAddress;
     uint amount;
     uint campaignID;
+    uint timeStamp;
 }
     mapping(address => Transaction[]) public transactions;
 
-    function createTransaction(address _fromAddress,address _toAddress,uint _amount,uint _campaignID) public returns(bool success){
-        transactions[_fromAddress].push(Transaction(_toAddress,_amount,_campaignID));
+    function createTransaction(address _fromAddress,address _toAddress,uint _amount,uint _campaignID,uint _timestamp) public returns(bool success){
+        transactions[_fromAddress].push(Transaction(_toAddress,_amount,_campaignID,_timestamp));
         return true;
     }
 
@@ -19,7 +20,6 @@ struct Transaction {
         return transactions[_address];
     }
     function getTransactionCount(address _address) public view returns (uint _number){
-
     return transactions[_address].length;
     }
 

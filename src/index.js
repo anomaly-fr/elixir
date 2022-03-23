@@ -8,7 +8,6 @@ import Home from './routes/home/Home'
 import Landing from './admin/Landing'
 import MyProjects from './routes/MyProjects/MyProjects'
 import { MoralisProvider } from 'react-moralis'
-import Me from './profile/Me'
 import Projects from './routes/donate/Projects'
 import Donate from './routes/donate/Donate'
 import CreateCampaign from './routes/donate/CreateCampaign'
@@ -25,7 +24,6 @@ ReactDOM.render(
         <Routes>
           <Route path="/" element={<App />}>
             <Route path="/login" element={<ConnectWallet />} />
-            <Route path="/profile" element={<Me />} />
             <Route path="/projects" element={<Projects />}>
               <Route path="/projects/:projectID" element={<Donate />} />
             </Route>

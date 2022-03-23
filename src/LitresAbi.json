@@ -125,28 +125,6 @@
     "type": "function"
   },
   {
-    "constant": false,
-    "inputs": [
-      {
-        "name": "_to",
-        "type": "address"
-      },
-      {
-        "name": "_value",
-        "type": "uint256"
-      },
-      {
-        "name": "_campaignID",
-        "type": "uint256"
-      }
-    ],
-    "name": "donateToCampaign",
-    "outputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
     "constant": true,
     "inputs": [
       {
@@ -214,6 +192,32 @@
     ],
     "payable": false,
     "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_to",
+        "type": "address"
+      },
+      {
+        "name": "_value",
+        "type": "uint256"
+      },
+      {
+        "name": "_campaignID",
+        "type": "uint256"
+      },
+      {
+        "name": "_timestamp",
+        "type": "uint256"
+      }
+    ],
+    "name": "donateToCampaign",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
     "type": "function"
   },
   {

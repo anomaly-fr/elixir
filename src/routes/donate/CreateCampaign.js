@@ -48,7 +48,6 @@ const CreateCampaign = () => {
       campaignDescription,
       campaignImage,
       campaignAmount,
-
       campaignCategory.toString(),
     )
     alert('DoNe dEaL')

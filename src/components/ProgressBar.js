@@ -15,8 +15,8 @@ const ProgressBar = ({ progress }) => {
           backgroundColor: '#1976D2',
           width: `${progress}%`,
           padding: '5px',
-          borderBottomLeftRadius: '10px',
-          borderTopLeftRadius: '10px',
+
+          borderRadius: '10px',
         }}
       ></div>
     </div>
