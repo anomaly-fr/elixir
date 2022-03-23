@@ -86,8 +86,7 @@ const Project = ({ projectDetails, myProjects }) => {
             <Link
               to={`${
                 user.get('ethAddress').toUpperCase() !==
-                  projectDetails.owner.toUpperCase() &&
-                projectDetails.amountRaised < projectDetails.amountToRaise
+                projectDetails.owner.toUpperCase()
                   ? projectDetails.campaignID.toNumber()
                   : '/projects'
               }`}
@@ -98,8 +97,7 @@ const Project = ({ projectDetails, myProjects }) => {
                 <Button
                   disabled={
                     user.get('ethAddress').toUpperCase() ===
-                      projectDetails.owner.toUpperCase() ||
-                    projectDetails.amountRaised >= projectDetails.amountToRaise
+                    projectDetails.owner.toUpperCase()
                   }
                   onClick={() => {
                     console.log(':(')

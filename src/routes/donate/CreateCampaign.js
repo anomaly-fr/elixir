@@ -1,10 +1,20 @@
 import React, { useEffect } from 'react'
 import './CreateCampaign.css'
-import { Button, Chip, Input, TextareaAutosize, TextField } from '@mui/material'
+import {
+  Button,
+  Chip,
+  Input,
+  LinearProgress,
+  TextareaAutosize,
+  TextField,
+} from '@mui/material'
 import { useState } from 'react'
 import { useMoralis, useMoralisFile } from 'react-moralis'
 import CampaignsAbi from '../../CampaignsAbi.json'
 import { ethers } from 'ethers'
+import MyProjects from '../MyProjects/MyProjects'
+import { useNavigate } from 'react-router-dom'
+
 const CreateCampaign = () => {
   const [campaignCategory, setCampaignCategory] = useState(7)
   const [campaignName, setCampaignName] = useState('')
@@ -16,6 +26,8 @@ const CreateCampaign = () => {
   const [signer, setSigner] = useState()
   const [signerAddress, setSignerAddress] = useState()
   const [errorMessage, setErrorMessage] = useState('')
+  const [loading, setLoading] = useState(false)
+  const navigate = useNavigate()
 
   const { user } = useMoralis()
 
@@ -50,7 +62,10 @@ const CreateCampaign = () => {
       campaignAmount,
       campaignCategory.toString(),
     )
-    alert('DoNe dEaL')
+    setTimeout(() => {
+      navigate('/my-projects')
+      console.log('Timmeee')
+    }, 8000)
   }
   const setUp = async () => {
     const provider = new ethers.providers.Web3Provider(window.ethereum)
@@ -221,6 +236,7 @@ const CreateCampaign = () => {
                   campaignDescription
                 ) {
                   setErrorMessage('')
+                  setLoading(true)
                   submit()
                   console.log(
                     user.get('ethAddress'),
@@ -239,6 +255,7 @@ const CreateCampaign = () => {
             >
               Create Campaign
             </Button>
+            <LinearProgress style={{ opacity: loading ? 1 : 0 }} />
             <h4 style={{ color: 'red' }}>{errorMessage}</h4>
           </div>
         </form>

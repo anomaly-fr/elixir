@@ -94,7 +94,9 @@ export default function Transfer() {
   }
 
   const actualTransfer = async (litres) => {
-    await litres.transfer(toAddress, amount)
+    await litres.transfer(toAddress, amount, {
+      gasLimit: 1000000,
+    })
 
     return 'done'
   }

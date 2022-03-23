@@ -3,7 +3,13 @@ import '../donate/Projects.css'
 import Project from '../donate/Project'
 import { ethers } from 'ethers'
 import CampaignsAbi from '../../CampaignsAbi.json'
-import { Button, Divider, Grid, IconButton } from '@mui/material'
+import {
+  Button,
+  Divider,
+  Grid,
+  IconButton,
+  LinearProgress,
+} from '@mui/material'
 import { Link, Outlet, useLocation } from 'react-router-dom'
 import { useMoralis } from 'react-moralis'
 import AddIcon from '@mui/icons-material/Add'
@@ -12,6 +18,7 @@ const MyProjects = () => {
   const location = useLocation()
   const [projects, setProjects] = useState([])
   const [contract, setContract] = useState()
+  const [loading, setLoading] = useState(true)
 
   const { isAuthenticated, user } = useMoralis()
 
@@ -63,6 +70,10 @@ const MyProjects = () => {
     }
     setTimeout(() => {
       getData()
+      if (projects) {
+        setLoading(false)
+      }
+
       console.log('AGAIN')
     }, 2000)
   }, [contract, projects])
@@ -87,11 +98,16 @@ const MyProjects = () => {
         ) : null}
         {window.location.pathname === '/my-projects' ? (
           <div>
-            {projects.map((campaign) => (
-              <Grid item xs={2} sm={4} md={4}>
-                <Project myProjects projectDetails={campaign} />
-              </Grid>
-            ))}
+            <LinearProgress style={{ opacity: loading ? 1 : 0 }} />
+            {projects.length === 0 ? (
+              <div>Such Empty!</div>
+            ) : (
+              projects.map((campaign) => (
+                <Grid item xs={2} sm={4} md={4}>
+                  <Project myProjects projectDetails={campaign} />
+                </Grid>
+              ))
+            )}
           </div>
         ) : null}
       </div>

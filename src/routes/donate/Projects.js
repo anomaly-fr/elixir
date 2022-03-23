@@ -3,14 +3,15 @@ import './Projects.css'
 import Project from './Project'
 import { ethers } from 'ethers'
 import CampaignsAbi from '../../CampaignsAbi.json'
-import { Button, Divider, Grid } from '@mui/material'
+import { Button, Divider, Grid, LinearProgress } from '@mui/material'
 import { Outlet, useLocation } from 'react-router-dom'
 
 const Projects = () => {
-  const [totalNumberOfCampaigns, setNumberOfCampaigns] = useState(0)
+  const [totalNumberOfCampaigns, setNumberOfCampaigns] = useState(-1)
   const location = useLocation()
   const [projects, setProjects] = useState([])
   const [contract, setContract] = useState()
+  const [loading, setLoading] = useState(true)
 
   const setup = async () => {
     const provider = new ethers.providers.Web3Provider(window.ethereum)
@@ -92,7 +93,13 @@ const Projects = () => {
   }
   useLayoutEffect(() => {
     setTimeout(() => {
-      getData()
+      getData().then(() => {
+        if (totalNumberOfCampaigns > -1) {
+          setTimeout(() => {
+            setLoading(false)
+          }, 100)
+        }
+      })
       console.log('AGAIN')
     }, 2000)
     return () => {
@@ -233,7 +240,12 @@ const Projects = () => {
         Add New
       </Button> */}
 
-      {location.pathname === '/projects' ? <ProjectList /> : null}
+      {location.pathname === '/projects' ? (
+        <div>
+          <LinearProgress style={{ opacity: loading ? 1 : 0 }} />
+          <ProjectList />
+        </div>
+      ) : null}
     </>
   )
 }

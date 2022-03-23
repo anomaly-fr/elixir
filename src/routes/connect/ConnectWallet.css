@@ -26,3 +26,9 @@
   background-size: cover;
   flex-direction: column;
 }
+.connect-body {
+  background-color: #423b7d;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}

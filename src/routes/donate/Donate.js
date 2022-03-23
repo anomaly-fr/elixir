@@ -1,14 +1,16 @@
 import { React, useEffect, useState } from 'react'
 import { useLocation, useParams } from 'react-router-dom'
-import { Avatar, Button, TextField, Alert } from '@mui/material'
+import { Avatar, Button, TextField, Alert, LinearProgress } from '@mui/material'
 import image from '../../charity.jpg'
 import './Donate.css'
 import ProgressBar from '../../components/ProgressBar'
 import { useMoralis } from 'react-moralis'
 import { ethers } from 'ethers'
 import LitresAbi from '../../LitresAbi.json'
+import { useNavigate } from 'react-router-dom'
 
 const Donate = () => {
+  const navigate = useNavigate()
   const location = useLocation()
   console.log('This', location.state)
   const project = location.state
@@ -23,6 +25,7 @@ const Donate = () => {
   const [amountToRaise, setAmountToRaise] = useState(
     parseInt(project?.amountToRaise._hex),
   )
+  const [loading, setLoading] = useState(false)
 
   const { isAuthenticated, user, auth } = useMoralis()
 
@@ -46,6 +49,7 @@ const Donate = () => {
     const provider = new ethers.providers.Web3Provider(window.ethereum)
     await provider.send('eth_requestAccounts', [])
     const signer = await provider.getSigner()
+    //  const signer = new ethers.Wallet(pk, provider)
     const address = await signer.getAddress()
     setSignerAddress(address)
 
@@ -61,21 +65,27 @@ const Donate = () => {
   const makeDonation = async () => {
     setErrorText('')
     console.log(project.owner, amount, parseInt(project.campaignID._hex))
+    setLoading(true)
     await contract
       .donateToCampaign(
         project.owner,
         amount,
         parseInt(project.campaignID._hex),
         Math.floor(new Date().getTime() / 1000),
+        {
+          gasLimit: 1000000,
+        },
       )
       .then(async () => {
-        const newAmount = await contract.campaigns(project.campaignID._hex)
-          .amountRaised
-        console.log('newAmount', newAmount)
-        setAmountRaised(amountRaised + amount)
+        // setAmountRaised(amountRaised + amount)
+        setTimeout(() => {
+          navigate('/projects')
+        }, 8000)
+        // setLoading(false)
       })
       .catch((e) => {
-        setErrorText('You might have insufficent funds')
+        //   setErrorText('You might have insufficent funds')
+        console.log(e)
       })
     // console.log('Alive', contract)
     // const bal = await contract.balanceOf(contract.signer.getAddress())
@@ -123,6 +133,8 @@ const Donate = () => {
         >{`${amountRaised} LIT raised out of ${amountToRaise} LIT`}</p>
         <ProgressBar progress={(amountRaised / amountToRaise) * 100} />
         <p className="about">{project.aboutHash}</p>
+        <LinearProgress style={{ opacity: loading ? 1 : 0 }} />
+
         <div
           style={{
             display: 'flex',

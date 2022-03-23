@@ -5,11 +5,37 @@ import './ConnectWallet.css'
 import { ethers } from 'ethers'
 import UserAbi from '../../UserAbi.json'
 import Me from './Me'
+import TransactionCard from '../../components/TransactionCard'
 
 export default function ConnectWallet() {
   const { authenticate, isAuthenticated, user, auth, logout } = useMoralis()
   const [contract, setContract] = useState()
-  const [transactions, setTransactions] = useState([])
+  const [transactions, setTransactions] = useState([
+    {
+      timeStamp: 'Mon 21 Aug 2020',
+      campaignID: '1',
+      amount: '100 LIT',
+      toAddress: '0x95ecb96042969c8026F25aB0dEec130B4E8fE040',
+    },
+    {
+      timeStamp: 'Mon 21 Aug 2020',
+      campaignID: '1',
+      amount: '100 LIT',
+      toAddress: '0x95ecb96042969c8026F25aB0dEec130B4E8fE040',
+    },
+    {
+      timeStamp: 'Mon 21 Aug 2020',
+      campaignID: '1',
+      amount: '100 LIT',
+      toAddress: '0x95ecb96042969c8026F25aB0dEec130B4E8fE040',
+    },
+    {
+      timeStamp: 'Mon 21 Aug 2020',
+      campaignID: '1',
+      amount: '100 LIT',
+      toAddress: '0x95ecb96042969c8026F25aB0dEec130B4E8fE040',
+    },
+  ])
   useEffect(() => {
     window.ethereum.on('accountsChanged', () => {
       window.location.reload()
@@ -95,7 +121,11 @@ export default function ConnectWallet() {
               <Me />
             </div>
 
-            <div className="connect-body"></div>
+            <div className="connect-body">
+              {transactions.map((transaction, index) => (
+                <TransactionCard transaction={transaction} />
+              ))}
+            </div>
           </div>
         </div>
       )}
