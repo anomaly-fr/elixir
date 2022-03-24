@@ -1,0 +1,11 @@
+.transaction-root {
+  display: flex;
+  width: 100%;
+  background-color: antiquewhite;
+  margin: 1%;
+}
+.transaction-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}

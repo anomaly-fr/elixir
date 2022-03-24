@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+.App-header {
+  display: flex;
+  min-height: 30vh;
+  flex-direction: column;
+  justify-content: space-between;
+}
+html {
+  scroll-behavior: smooth;
+}
+.App-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  background-size: cover;
+}
+.App-main-heading {
+  color: blue;
+  font-weight: bold;
+  font-size: 2.3rem;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  padding-left: 3%;
+}
+
+.App-main-heading-small {
+  font-weight: 500;
+  font-size: 1.3rem;
+  font-weight: 600;
+  padding-left: 3%;
+
+  font-family: 'Poppins', sans-serif;
+}
+.App-link {
+  color: #61dafb;
+  text-decoration: none;
+}
+
+.div-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 8;
+  width: 60vw;
+  height: 60vh;
+}
+
+.App-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex: 3;
+}
+.App-headings {
+  color: #423b7d;
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin: 0.5rem;
+}
+
+.App-paragraphs {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  font-weight: 500;
+  padding: 3%;
+}
+
+.App-sections {
+  display: flex;
+  padding: 3%;
+  flex-direction: column;
+  justify-content: space-around;
+}
