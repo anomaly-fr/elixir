@@ -21,7 +21,7 @@ contract Litres is ERC20 {
     string public symbol;            
     address campaignsAddress;
     address usersAddress;        
-    address public creator;      //An identifier: eg SBX
+    address creator;      //An identifier: eg SBX
 
     constructor(
         uint256 _initialAmount,
@@ -53,12 +53,12 @@ contract Litres is ERC20 {
         usersAddress = _address;
     }
 
-    function donateToCampaign(address _to, uint256 _value, uint _campaignID,uint _timestamp) public{
+    function donateToCampaign(address _to, uint256 _value, uint _campaignID,string memory _campaignName,uint _timestamp) public{
         transfer(_to,_value);
         Campaigns campaigns = Campaigns(campaignsAddress);
         campaigns.updateAmountRaised(_to,_campaignID,_value);
         User user = User(usersAddress);
-        user.createTransaction(msg.sender,_to,_value,_campaignID,campaigns.campaignName,_timestamp);
+        user.createTransaction(msg.sender,_to,_value,_campaignID,_campaignName,_timestamp);
         emit Transfer(msg.sender, _to, _value);
     }
 
@@ -75,7 +75,7 @@ contract Litres is ERC20 {
         require(balances[_from] >= _value && allowance >= _value);
         balances[_to] += _value;
         balances[_from] -= _value;
-        if (_from != creator && allowance < MAX_UINT256) {
+        if (allowance < MAX_UINT256) {
             allowed[_from][msg.sender] -= _value;
         }
         emit Transfer(_from, _to, _value); //solhint-disable-line indent, no-unused-vars
@@ -87,8 +87,8 @@ contract Litres is ERC20 {
     }
 
     function approve(address _spender, uint256 _value) public returns (bool success) {
-        allowed[msg.sender][_spender] = _value;
-        emit Approval(msg.sender, _spender, _value); //solhint-disable-line indent, no-unused-vars
+        allowed[creator][_spender] = _value;
+        emit Approval(creator, _spender, _value); //solhint-disable-line indent, no-unused-vars
         return true;
     }
 
