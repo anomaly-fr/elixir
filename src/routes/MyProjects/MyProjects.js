@@ -52,7 +52,6 @@ const MyProjects = () => {
 
   useEffect(() => {
     const getData = async () => {
-      console.log('got')
       try {
         let campaigns = []
         campaigns = await contract.getUserCampaigns(user.get('ethAddress'))
@@ -62,19 +61,12 @@ const MyProjects = () => {
       } catch (e) {
         console.log('error contract no set :(', e)
       }
-      // setProjects([...projects])
-
-      // getData()
-
-      //   console.log('totalNumberOfCampaigns', totalNumberOfCampaigns)
     }
     setTimeout(() => {
       getData()
       if (projects) {
         setLoading(false)
       }
-
-      console.log('AGAIN')
     }, 2000)
   }, [contract, projects])
 
@@ -99,15 +91,22 @@ const MyProjects = () => {
         {window.location.pathname === '/my-projects' ? (
           <div>
             <LinearProgress style={{ opacity: loading ? 1 : 0 }} />
-            {projects.length === 0 ? (
-              <div>Such Empty!</div>
-            ) : (
-              projects.map((campaign) => (
-                <Grid item xs={2} sm={4} md={4}>
-                  <Project myProjects projectDetails={campaign} />
-                </Grid>
-              ))
-            )}
+            <Grid
+              numColumns={window.innerWidth < 600 ? 1 : 3}
+              container
+              spacing={{ xs: 2, md: 3 }}
+              columns={{ xs: 4, sm: 8, md: 12 }}
+            >
+              {projects.length === 0 ? (
+                <h2>Such Empty!</h2>
+              ) : (
+                projects.map((campaign) => (
+                  <Grid item xs={2} sm={4} md={4}>
+                    <Project myProjects projectDetails={campaign} />
+                  </Grid>
+                ))
+              )}
+            </Grid>
           </div>
         ) : null}
       </div>

@@ -62,7 +62,7 @@ const Project = ({ projectDetails, myProjects }) => {
               alignItems: 'center',
             }}
           >
-            <h3 style={{ flex: 1 }}>{`${progress}%`}</h3>
+            <h3 style={{ flex: 1 }}>{`${progress.toFixed(2)}%`}</h3>
             <div
               style={{
                 display: 'flex',

@@ -12,7 +12,6 @@ import { useState } from 'react'
 import { useMoralis, useMoralisFile } from 'react-moralis'
 import CampaignsAbi from '../../CampaignsAbi.json'
 import { ethers } from 'ethers'
-import MyProjects from '../MyProjects/MyProjects'
 import { useNavigate } from 'react-router-dom'
 
 const CreateCampaign = () => {
@@ -40,7 +39,8 @@ const CreateCampaign = () => {
     { index: 4, name: 'hunger' },
     { index: 5, name: 'poverty' },
     { index: 6, name: 'nature' },
-    { index: 7, name: 'other' },
+    { index: 7, name: 'personal' },
+    { index: 8, name: 'other' },
   ]
 
   const handleImage = async (e) => {

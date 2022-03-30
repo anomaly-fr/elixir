@@ -1,5 +1,63 @@
 [
   {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_fromAddress",
+        "type": "address"
+      },
+      {
+        "name": "_toAddress",
+        "type": "address"
+      },
+      {
+        "name": "_amount",
+        "type": "uint256"
+      },
+      {
+        "name": "_campaignID",
+        "type": "uint256"
+      },
+      {
+        "name": "_campaignName",
+        "type": "string"
+      },
+      {
+        "name": "_timestamp",
+        "type": "uint256"
+      }
+    ],
+    "name": "createTransaction",
+    "outputs": [
+      {
+        "name": "success",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "_address",
+        "type": "address"
+      }
+    ],
+    "name": "getTransactionCount",
+    "outputs": [
+      {
+        "name": "_number",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
     "constant": true,
     "inputs": [
       {
@@ -22,6 +80,10 @@
           {
             "name": "campaignID",
             "type": "uint256"
+          },
+          {
+            "name": "campaignName",
+            "type": "string"
           },
           {
             "name": "timeStamp",
@@ -63,66 +125,16 @@
         "type": "uint256"
       },
       {
+        "name": "campaignName",
+        "type": "string"
+      },
+      {
         "name": "timeStamp",
         "type": "uint256"
       }
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [
-      {
-        "name": "_address",
-        "type": "address"
-      }
-    ],
-    "name": "getTransactionCount",
-    "outputs": [
-      {
-        "name": "_number",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": false,
-    "inputs": [
-      {
-        "name": "_fromAddress",
-        "type": "address"
-      },
-      {
-        "name": "_toAddress",
-        "type": "address"
-      },
-      {
-        "name": "_amount",
-        "type": "uint256"
-      },
-      {
-        "name": "_campaignID",
-        "type": "uint256"
-      },
-      {
-        "name": "_timestamp",
-        "type": "uint256"
-      }
-    ],
-    "name": "createTransaction",
-    "outputs": [
-      {
-        "name": "success",
-        "type": "bool"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "nonpayable",
     "type": "function"
   }
 ]

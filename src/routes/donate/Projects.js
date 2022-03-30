@@ -22,12 +22,10 @@ const Projects = () => {
       provider,
     )
     setContract(campaignContract)
-    console.log('End of setup function')
   }
 
   useEffect(() => {
     setup()
-    console.log('setup done', contract)
   }, [])
 
   const getData = async () => {
@@ -36,8 +34,6 @@ const Projects = () => {
     try {
       numberOfProjects = await contract.numberOfCampaigns()
       setNumberOfCampaigns(() => numberOfProjects.toNumber())
-
-      console.log(numberOfProjects.toNumber(), 'Now set')
     } catch (e) {
       //  setNumberOfCampaigns(0)
       console.log('Error fetching number of campaigns')
@@ -53,10 +49,8 @@ const Projects = () => {
       other: [],
     }
 
-    //   console.log('totalNumberOfCampaigns', totalNumberOfCampaigns)
     for (let i = 1; i <= numberOfProjects; i++) {
       let campaign = await contract.campaigns(i)
-      console.log(i, campaign.campaignID.toNumber())
       switch (campaign.category) {
         case '1':
           allCampaigns.health.push(campaign)
@@ -79,19 +73,14 @@ const Projects = () => {
         case '7':
           allCampaigns.personal.push(campaign)
           break
-        case '8':
-          allCampaigns.other.push(campaign)
-          break
         default:
           allCampaigns.other.push(campaign)
       }
-
-      console.log('Data is got')
     }
     setProjects(allCampaigns)
     // return allCampaigns
   }
-  useLayoutEffect(() => {
+  useEffect(() => {
     setTimeout(() => {
       getData().then(() => {
         if (totalNumberOfCampaigns > -1) {
@@ -100,11 +89,8 @@ const Projects = () => {
           }, 100)
         }
       })
-      console.log('AGAIN')
     }, 2000)
-    return () => {
-      console.log('Unmounting')
-    }
+    return () => {}
   }, [projects])
 
   const ProjectList = () => {
@@ -124,28 +110,6 @@ const Projects = () => {
     }
     return (
       <div className="projects-body">
-        {projects.refugees && projects.refugees.length !== 0 ? (
-          <div>
-            <h1>Refugees</h1>
-
-            <Grid
-              container
-              spacing={{ xs: 2, md: 3 }}
-              columns={{ xs: 4, sm: 8, md: 12 }}
-            >
-              {projects.refugees.map((campaign) => (
-                <Grid item xs={2} sm={4} md={4}>
-                  <Project
-                    id={3}
-                    key={campaign.campaignID}
-                    projectDetails={campaign}
-                  />
-                </Grid>
-              ))}
-            </Grid>
-          </div>
-        ) : null}
-
         {projects.health && projects.health.length !== 0 ? (
           <div>
             <h1>Health</h1>
@@ -179,7 +143,49 @@ const Projects = () => {
               {projects.education.map((campaign) => (
                 <Grid item xs={2} sm={4} md={4}>
                   <Project
+                    id={3}
+                    key={campaign.campaignID}
+                    projectDetails={campaign}
+                  />
+                </Grid>
+              ))}
+            </Grid>
+          </div>
+        ) : null}
+
+        {projects.refugees && projects.refugees.length !== 0 ? (
+          <div>
+            <h1>Refugees</h1>
+
+            <Grid
+              container
+              spacing={{ xs: 2, md: 3 }}
+              columns={{ xs: 4, sm: 8, md: 12 }}
+            >
+              {projects.refugees.map((campaign) => (
+                <Grid item xs={2} sm={4} md={4}>
+                  <Project
                     id={2}
+                    key={campaign.campaignID}
+                    projectDetails={campaign}
+                  />
+                </Grid>
+              ))}
+            </Grid>
+          </div>
+        ) : null}
+        {projects.hunger && projects.hunger.length !== 0 ? (
+          <div>
+            <h1>Hunger</h1>
+            <Grid
+              container
+              spacing={{ xs: 2, md: 3 }}
+              columns={{ xs: 4, sm: 8, md: 12 }}
+            >
+              {projects.hunger.map((campaign) => (
+                <Grid item xs={2} sm={4} md={4}>
+                  <Project
+                    id={4}
                     key={campaign.campaignID}
                     projectDetails={campaign}
                   />
@@ -195,12 +201,78 @@ const Projects = () => {
 
             {projects.poverty.map((campaign) => (
               <Project
-                id={1}
+                id={5}
                 key={campaign.campaignID}
                 projectDetails={campaign}
               />
             ))}
           </Grid>
+        ) : null}
+
+        {projects.nature && projects.nature.length !== 0 ? (
+          <div>
+            <h1>Nature</h1>
+
+            <Grid
+              container
+              spacing={{ xs: 2, md: 3 }}
+              columns={{ xs: 4, sm: 8, md: 12 }}
+            >
+              {projects.nature.map((campaign) => (
+                <Grid item xs={2} sm={4} md={4}>
+                  <Project
+                    id={6}
+                    key={campaign.campaignID}
+                    projectDetails={campaign}
+                  />
+                </Grid>
+              ))}
+            </Grid>
+          </div>
+        ) : null}
+
+        {projects.personal && projects.personal.length !== 0 ? (
+          <div>
+            <h1>Personal Project</h1>
+
+            <Grid
+              container
+              spacing={{ xs: 2, md: 3 }}
+              columns={{ xs: 4, sm: 8, md: 12 }}
+            >
+              {projects.personal.map((campaign) => (
+                <Grid item xs={2} sm={4} md={4}>
+                  <Project
+                    id={7}
+                    key={campaign.campaignID}
+                    projectDetails={campaign}
+                  />
+                </Grid>
+              ))}
+            </Grid>
+          </div>
+        ) : null}
+
+        {projects.other && projects.other.length !== 0 ? (
+          <div>
+            <h1>Other</h1>
+
+            <Grid
+              container
+              spacing={{ xs: 2, md: 3 }}
+              columns={{ xs: 4, sm: 8, md: 12 }}
+            >
+              {projects.other.map((campaign) => (
+                <Grid item xs={2} sm={4} md={4}>
+                  <Project
+                    id={8}
+                    key={campaign.campaignID}
+                    projectDetails={campaign}
+                  />
+                </Grid>
+              ))}
+            </Grid>
+          </div>
         ) : null}
       </div>
     )

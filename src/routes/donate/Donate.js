@@ -14,6 +14,7 @@ const Donate = () => {
   const location = useLocation()
   console.log('This', location.state)
   const project = location.state
+  console.log(project)
 
   const [errorText, setErrorText] = useState('')
   const [amount, setAmount] = useState()
@@ -71,6 +72,7 @@ const Donate = () => {
         project.owner,
         amount,
         parseInt(project.campaignID._hex),
+        project.campaignName,
         Math.floor(new Date().getTime() / 1000),
         {
           gasLimit: 1000000,
@@ -87,9 +89,9 @@ const Donate = () => {
         //   setErrorText('You might have insufficent funds')
         console.log(e)
       })
-    // console.log('Alive', contract)
-    // const bal = await contract.balanceOf(contract.signer.getAddress())
-    // console.log('BAL', bal)
+    console.log('Alive', contract)
+    const bal = await contract.balanceOf(contract.signer.getAddress())
+    console.log('BAL', bal)
   }
 
   return (

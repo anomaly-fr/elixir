@@ -7,12 +7,13 @@ struct Transaction {
     address toAddress;
     uint amount;
     uint campaignID;
+    string campaignName;
     uint timeStamp;
 }
     mapping(address => Transaction[]) public transactions;
 
-    function createTransaction(address _fromAddress,address _toAddress,uint _amount,uint _campaignID,uint _timestamp) public returns(bool success){
-        transactions[_fromAddress].push(Transaction(_toAddress,_amount,_campaignID,_timestamp));
+    function createTransaction(address _fromAddress,address _toAddress,uint _amount,uint _campaignID,string memory _campaignName,uint _timestamp) public returns(bool success){
+        transactions[_fromAddress].push(Transaction(_toAddress,_amount,_campaignID,_campaignName,_timestamp));
         return true;
     }
 

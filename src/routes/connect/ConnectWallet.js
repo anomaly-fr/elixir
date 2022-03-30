@@ -4,43 +4,16 @@ import { useMoralis } from 'react-moralis'
 import './ConnectWallet.css'
 import { ethers } from 'ethers'
 import UserAbi from '../../UserAbi.json'
+import CampaignsAbi from '../../CampaignsAbi.json'
 import Me from './Me'
 import TransactionCard from '../../components/TransactionCard'
 
 export default function ConnectWallet() {
   const { authenticate, isAuthenticated, user, auth, logout } = useMoralis()
   const [contract, setContract] = useState()
-  const [transactions, setTransactions] = useState([
-    {
-      timeStamp: 'Mon 21 Aug 2020',
-      campaignID: '1',
-      amount: '100 LIT',
-      toAddress: '0x95ecb96042969c8026F25aB0dEec130B4E8fE040',
-    },
-    {
-      timeStamp: 'Mon 21 Aug 2020',
-      campaignID: '1',
-      amount: '100 LIT',
-      toAddress: '0x95ecb96042969c8026F25aB0dEec130B4E8fE040',
-    },
-    {
-      timeStamp: 'Mon 21 Aug 2020',
-      campaignID: '1',
-      amount: '100 LIT',
-      toAddress: '0x95ecb96042969c8026F25aB0dEec130B4E8fE040',
-    },
-    {
-      timeStamp: 'Mon 21 Aug 2020',
-      campaignID: '1',
-      amount: '100 LIT',
-      toAddress: '0x95ecb96042969c8026F25aB0dEec130B4E8fE040',
-    },
-  ])
-  useEffect(() => {
-    window.ethereum.on('accountsChanged', () => {
-      window.location.reload()
-    })
-  })
+  const [campaignsContract, setCampaignsContract] = useState()
+  const [transactions, setTransactions] = useState([])
+  const [campaigns, setCampaigns] = useState(new Map())
 
   useEffect(() => {
     window.ethereum.on('chainChanged', () => {
@@ -55,12 +28,23 @@ export default function ConnectWallet() {
       UserAbi,
       provider,
     )
+    const campaignsContract = new ethers.Contract(
+      process.env.REACT_APP_CAMPAIGNS_CONTRACT_ADDRESS,
+      CampaignsAbi,
+      provider,
+    )
     setContract(contract)
+    setCampaignsContract(campaignsContract)
   }
 
   const getData = async () => {
     const data = await contract.getTransactions(user.get('ethAddress'))
+
+    const map = new Map()
+
+    console.log('MAP', map)
     setTransactions(data)
+    setCampaigns(map)
     console.log('DATA', Date(parseInt(data[0].timeStamp._hex)))
   }
   useEffect(() => {
@@ -70,6 +54,11 @@ export default function ConnectWallet() {
   useEffect(() => {
     getData()
   }, [contract])
+
+  useEffect(() => {
+    getData()
+    console.log('auth')
+  }, [isAuthenticated])
 
   return (
     <div>

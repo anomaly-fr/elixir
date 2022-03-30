@@ -58,7 +58,7 @@ contract Litres is ERC20 {
         Campaigns campaigns = Campaigns(campaignsAddress);
         campaigns.updateAmountRaised(_to,_campaignID,_value);
         User user = User(usersAddress);
-        user.createTransaction(msg.sender,_to,_value,_campaignID,_timestamp);
+        user.createTransaction(msg.sender,_to,_value,_campaignID,campaigns.campaignName,_timestamp);
         emit Transfer(msg.sender, _to, _value);
     }
 
