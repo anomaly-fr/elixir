@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import './Charity.css'
 
-export default function Charity({ charityName, charityImage, path }) {
+export default function Cause({ charityName }) {
   const [hover, setHover] = useState(false)
   return (
     <Card
@@ -11,8 +11,7 @@ export default function Charity({ charityName, charityImage, path }) {
       onMouseLeave={() => setHover(false)}
       onMouseEnter={() => setHover(true)}
     >
-      <Link style={{ textDecoration: null }} to={path}>
-        <img src={charityImage} />
+      <Link style={{ textDecoration: null }} to={'projects'}>
         <Typography>{charityName}</Typography>
       </Link>
     </Card>

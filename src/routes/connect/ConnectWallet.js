@@ -11,9 +11,7 @@ import TransactionCard from '../../components/TransactionCard'
 export default function ConnectWallet() {
   const { authenticate, isAuthenticated, user, auth, logout } = useMoralis()
   const [contract, setContract] = useState()
-  const [campaignsContract, setCampaignsContract] = useState()
   const [transactions, setTransactions] = useState([])
-  const [campaigns, setCampaigns] = useState(new Map())
 
   useEffect(() => {
     window.ethereum.on('chainChanged', () => {
@@ -28,23 +26,14 @@ export default function ConnectWallet() {
       UserAbi,
       provider,
     )
-    const campaignsContract = new ethers.Contract(
-      process.env.REACT_APP_CAMPAIGNS_CONTRACT_ADDRESS,
-      CampaignsAbi,
-      provider,
-    )
+
     setContract(contract)
-    setCampaignsContract(campaignsContract)
   }
 
   const getData = async () => {
     const data = await contract.getTransactions(user.get('ethAddress'))
 
-    const map = new Map()
-
-    console.log('MAP', map)
     setTransactions(data)
-    setCampaigns(map)
     console.log('DATA', Date(parseInt(data[0].timeStamp._hex)))
   }
   useEffect(() => {

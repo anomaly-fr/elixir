@@ -6,28 +6,33 @@ import {
   ImageListItemBar,
 } from '@mui/material'
 import React from 'react'
-import Charity from '../../components/Charity'
+import Cause from '../../components/Cause'
 
-export default function CharityList({ loggedIn }) {
-  console.log('Cl ' + loggedIn)
+export default function Causes() {
   let charities = [
     {
-      name: 'Helping Hands',
+      name: 'Health',
     },
     {
-      name: 'In Need',
+      name: 'Refugees',
     },
     {
-      name: 'Magical Helpers',
+      name: 'Education',
     },
     {
-      name: 'Helping Hands',
+      name: 'Hunger',
     },
     {
-      name: 'In Need',
+      name: 'Poverty',
     },
     {
-      name: 'Magical Helpers',
+      name: 'Nature',
+    },
+    {
+      name: 'Personal Projects',
+    },
+    {
+      name: 'Other',
     },
   ]
   return (
@@ -42,8 +47,7 @@ export default function CharityList({ loggedIn }) {
       <ImageList cols={3} rowHeight={164}>
         {charities.map((item) => (
           <ImageListItem>
-            <Charity path={'/pay-to-charity'} charityName={item.name} />
-            <ImageListItemBar position="below" title={item.name} />
+            <Cause path={'/pay-to-charity'} charityName={item.name} />
           </ImageListItem>
         ))}
       </ImageList>

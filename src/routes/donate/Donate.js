@@ -73,7 +73,7 @@ const Donate = () => {
         amount,
         parseInt(project.campaignID._hex),
         project.campaignName,
-        Math.floor(new Date().getTime() / 1000),
+        Math.floor(new Date().getTime()),
         {
           gasLimit: 1000000,
         },

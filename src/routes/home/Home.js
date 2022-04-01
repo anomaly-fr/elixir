@@ -2,7 +2,7 @@ import React from 'react'
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import '../../App.css'
 import Logo from '../../components/Logo'
-import CharityList from './CharityList'
+import Causes from './Causes'
 import { ethers } from 'ethers'
 
 export default function Home() {
@@ -138,8 +138,8 @@ export default function Home() {
         </div>
         {}
         <div className="App-sections">
-          <div className="App-headings">Charities</div>
-          <CharityList loggedIn />
+          <div className="App-headings">Donate to Causes</div>
+          <Causes loggedIn />
         </div>
       </div>
     </div>

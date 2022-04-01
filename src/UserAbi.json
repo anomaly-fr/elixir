@@ -3,12 +3,16 @@
     "constant": false,
     "inputs": [
       {
-        "name": "_fromAddress",
+        "name": "_transactionOwner",
         "type": "address"
       },
       {
-        "name": "_toAddress",
+        "name": "_toOrFromAddress",
         "type": "address"
+      },
+      {
+        "name": "_transactionType",
+        "type": "bool"
       },
       {
         "name": "_amount",
@@ -70,8 +74,12 @@
       {
         "components": [
           {
-            "name": "toAddress",
+            "name": "toOrFromAddress",
             "type": "address"
+          },
+          {
+            "name": "transactionType",
+            "type": "bool"
           },
           {
             "name": "amount",
@@ -113,8 +121,12 @@
     "name": "transactions",
     "outputs": [
       {
-        "name": "toAddress",
+        "name": "toOrFromAddress",
         "type": "address"
+      },
+      {
+        "name": "transactionType",
+        "type": "bool"
       },
       {
         "name": "amount",
