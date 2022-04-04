@@ -6,6 +6,7 @@
   align-items: center;
   justify-content: center;
 }
+
 .projects-header {
   background-color: #f9f9f9;
   text-align: center;
@@ -26,13 +27,21 @@ h1 {
   display: flex;
   flex-direction: column;
   padding: 2%;
-  align-items: center;
-
-  /* align-items: center; */
 }
 
 @media screen and (max-width: 600px) {
   .projects-header {
     height: 20vh;
+  }
+  .projects-body {
+    display: flex;
+    flex-direction: column;
+    padding: 2%;
+    align-items: center;
+  }
+  .projects-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 }

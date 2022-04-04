@@ -114,7 +114,7 @@ const Projects = () => {
     return (
       <div className="projects-body">
         {projects.health && projects.health.length !== 0 ? (
-          <div>
+          <div className="projects-div">
             <h1>Health</h1>
             <Grid
               numColumns={width < 600 ? 1 : 3}
@@ -137,7 +137,7 @@ const Projects = () => {
         ) : null}
 
         {projects.education && projects.education.length !== 0 ? (
-          <div>
+          <div className="projects-div">
             <h1>Education</h1>
             <Grid
               numColumns={width < 600 ? 1 : 3}
@@ -160,7 +160,7 @@ const Projects = () => {
         ) : null}
 
         {projects.refugees && projects.refugees.length !== 0 ? (
-          <div>
+          <div className="projects-div">
             <h1>Refugees</h1>
 
             <Grid
@@ -183,7 +183,7 @@ const Projects = () => {
           </div>
         ) : null}
         {projects.hunger && projects.hunger.length !== 0 ? (
-          <div>
+          <div className="projects-div">
             <h1>Hunger</h1>
             <Grid
               numColumns={width < 600 ? 1 : 3}
@@ -206,7 +206,7 @@ const Projects = () => {
         ) : null}
 
         {projects.poverty && projects.poverty.length !== 0 ? (
-          <div>
+          <div className="projects-div">
             <h1>Poverty</h1>
             <Grid
               numColumns={width < 600 ? 1 : 3}
@@ -229,7 +229,7 @@ const Projects = () => {
         ) : null}
 
         {projects.nature && projects.nature.length !== 0 ? (
-          <div>
+          <div className="projects-div">
             <h1>Nature</h1>
 
             <Grid
@@ -253,7 +253,7 @@ const Projects = () => {
         ) : null}
 
         {projects.personal && projects.personal.length !== 0 ? (
-          <div>
+          <div className="projects-div">
             <h1>Personal Project</h1>
 
             <Grid
@@ -277,7 +277,7 @@ const Projects = () => {
         ) : null}
 
         {projects.other && projects.other.length !== 0 ? (
-          <div>
+          <div className="projects-div">
             <h1>Other</h1>
 
             <Grid

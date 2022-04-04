@@ -13,7 +13,7 @@ import {
 import { Link, Outlet, useLocation } from 'react-router-dom'
 import { useMoralis } from 'react-moralis'
 import AddIcon from '@mui/icons-material/Add'
-import useWindowDimentions from '../../components/useWindowDimensions'
+import useWindowDimensions from '../../components/useWindowDimensions'
 
 const MyProjects = () => {
   const location = useLocation()
@@ -22,7 +22,7 @@ const MyProjects = () => {
   const [loading, setLoading] = useState(true)
 
   const { isAuthenticated, user } = useMoralis()
-  const { width } = useWindowDimentions()
+  const { width } = useWindowDimensions()
 
   const setup = async () => {
     const provider = new ethers.providers.Web3Provider(window.ethereum)
