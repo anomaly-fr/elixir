@@ -13,6 +13,7 @@ import {
 import { Link, Outlet, useLocation } from 'react-router-dom'
 import { useMoralis } from 'react-moralis'
 import AddIcon from '@mui/icons-material/Add'
+import useWindowDimentions from '../../components/useWindowDimensions'
 
 const MyProjects = () => {
   const location = useLocation()
@@ -21,6 +22,7 @@ const MyProjects = () => {
   const [loading, setLoading] = useState(true)
 
   const { isAuthenticated, user } = useMoralis()
+  const { width } = useWindowDimentions()
 
   const setup = async () => {
     const provider = new ethers.providers.Web3Provider(window.ethereum)
@@ -39,15 +41,19 @@ const MyProjects = () => {
     })
   }, [])
   useEffect(() => {
-    window.ethereum.on('accountsChanged', () => {
-      window.location.reload()
-    })
+    if (window.ethereum) {
+      window.ethereum.on('accountsChanged', () => {
+        window.location.reload()
+      })
+    }
   })
 
   useEffect(() => {
-    window.ethereum.on('chainChanged', () => {
-      window.location.reload()
-    })
+    if (window.ethereum) {
+      window.ethereum.on('chainChanged', () => {
+        window.location.reload()
+      })
+    }
   })
 
   useEffect(() => {
@@ -89,10 +95,16 @@ const MyProjects = () => {
           </div>
         ) : null}
         {window.location.pathname === '/my-projects' ? (
-          <div>
+          <div
+            style={{
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
             <LinearProgress style={{ opacity: loading ? 1 : 0 }} />
             <Grid
-              numColumns={window.innerWidth < 600 ? 1 : 3}
+              direction={width > 600 ? 'row' : 'column'}
+              numColumns={width < 600 ? 1 : 3}
               container
               spacing={{ xs: 2, md: 3 }}
               columns={{ xs: 4, sm: 8, md: 12 }}
@@ -112,7 +124,13 @@ const MyProjects = () => {
       </div>
     )
   }
-
+  if (!window.ethereum) {
+    return (
+      <div className="no-metamask">
+        <h1>You need Metamask to see this page!</h1>
+      </div>
+    )
+  }
   return (
     <>
       {location.pathname === '/projects' ||

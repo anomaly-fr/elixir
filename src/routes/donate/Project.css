@@ -1,21 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 .project-card {
-  background-color: #fff;
-
+  margin: 2%;
   display: flex;
   flex-direction: column;
-  width: 30vw;
   font-family: 'poppins', 'roboto';
 }
 
-@media only screen and (max-width: 600px) {
-  .project-card {
-    width: 100vw;
-  }
-}
 .project-container {
   display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .project-chip {
   color: 'white';
@@ -44,4 +39,16 @@ h4 {
 .project-image {
   width: 30vw;
   height: 50vh;
+}
+@media screen and (max-width: 600px) {
+  .project-card {
+    display: flex;
+    flex-direction: column;
+    font-family: 'poppins', 'roboto';
+    height: 60vh;
+  }
+  .project-image {
+    width: 100vw;
+    height: 60vh;
+  }
 }

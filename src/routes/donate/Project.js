@@ -3,9 +3,7 @@ import React, { useState, useEffect } from 'react'
 import ProgressBar from '../../components/ProgressBar'
 import './Project.css'
 import { Link, Outlet, useLocation } from 'react-router-dom'
-import image from '../../charity.jpg'
-import image2 from '../../charity2.jfif'
-import image3 from '../../charity3.jpg'
+
 import { useMoralis } from 'react-moralis'
 
 const Project = ({ projectDetails, myProjects }) => {
@@ -31,7 +29,12 @@ const Project = ({ projectDetails, myProjects }) => {
   })
 
   return (
-    <>
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+      }}
+    >
       <div className="project-container">
         <Card
           style={{ backgroundColor: over ? '#EEF4F8' : null }}
@@ -110,7 +113,7 @@ const Project = ({ projectDetails, myProjects }) => {
           </div>
         </Card>
       </div>
-    </>
+    </div>
   )
 }
 

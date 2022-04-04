@@ -6,9 +6,57 @@ import { Link } from 'react-router-dom'
 import { ethers } from 'ethers'
 import CampaignsAbi from '../CampaignsAbi.json'
 import { useMoralis } from 'react-moralis'
+import useWindowDimensions from './useWindowDimensions'
+import MenuIcon from '@mui/icons-material/Menu'
+import { Box, List, ListItem, ListItemText, Drawer } from '@mui/material'
 
 const AppTopBar = ({ about, location }) => {
-  const { isAuthenticated } = useMoralis()
+  const [state, setState] = React.useState(false)
+
+  const { height, width } = useWindowDimensions()
+  const toggleDrawer = (anchor, open) => (event) => {
+    if (
+      event.type === 'keydown' &&
+      (event.key === 'Tab' || event.key === 'Shift')
+    ) {
+      return
+    }
+
+    setState({ ...state, [anchor]: open })
+  }
+  const list = (anchor) => (
+    <Box
+      sx={{ width: 250 }}
+      role="presentation"
+      onClick={toggleDrawer(anchor, false)}
+      onKeyDown={toggleDrawer(anchor, false)}
+    >
+      <List>
+        <ListItem button>
+          <Link className="link" to="/">
+            <ListItemText>Home</ListItemText>
+          </Link>
+        </ListItem>
+
+        <ListItem button>
+          <Link className="link" to="/projects">
+            <ListItemText>Donate</ListItemText>
+          </Link>
+        </ListItem>
+        <ListItem>
+          <Link className="link" to="/my-projects">
+            <ListItemText>My Projects</ListItemText>
+          </Link>
+        </ListItem>
+
+        <ListItem button>
+          <Link className="link" to="/login">
+            <ListItemText>Connect</ListItemText>
+          </Link>
+        </ListItem>
+      </List>
+    </Box>
+  )
   return (
     <div className="App-top-bar">
       <div className="icon">
@@ -16,24 +64,41 @@ const AppTopBar = ({ about, location }) => {
       </div>
 
       <div className="empty" />
-      <div className="App-top-bar-menu">
-        <Link className="link" to="/">
-          <MenuButton title={'Home'} />
-        </Link>
-        <Link className="link" to="/projects">
-          <MenuButton title={'Donate'} />
-        </Link>
-        <Link
-          className="link"
-          to={'/my-projects'}
-          //    state={projects}
-        >
-          <MenuButton title={'My Projects'} />
-        </Link>
-        <Link className="link" to="/login">
-          <MenuButton title={'Connect'} />
-        </Link>
-      </div>
+      {width <= 600 ? (
+        <div>
+          {['right'].map((anchor) => (
+            <React.Fragment>
+              <MenuIcon key={anchor} onClick={toggleDrawer(anchor, true)} />
+              <Drawer
+                anchor={anchor}
+                open={state[anchor]}
+                onClose={toggleDrawer(anchor, false)}
+              >
+                {list(anchor)}
+              </Drawer>
+            </React.Fragment>
+          ))}
+        </div>
+      ) : (
+        <div className="App-top-bar-menu">
+          <Link className="link" to="/">
+            <MenuButton title={'Home'} />
+          </Link>
+          <Link className="link" to="/projects">
+            <MenuButton title={'Donate'} />
+          </Link>
+          <Link
+            className="link"
+            to={'/my-projects'}
+            //    state={projects}
+          >
+            <MenuButton title={'My Projects'} />
+          </Link>
+          <Link className="link" to="/login">
+            <MenuButton title={'Connect'} />
+          </Link>
+        </div>
+      )}
     </div>
   )
 }

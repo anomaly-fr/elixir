@@ -1,8 +1,10 @@
 import React from 'react'
 import './TransactionCard.css'
 import { Card, CardContent, Typography, Grid } from '@mui/material'
+import useWindowDimensions from './useWindowDimensions'
 
 const TransactionCard = ({ transaction }) => {
+  const { width } = useWindowDimensions()
   const timeStamp = new Date(parseInt(transaction.timeStamp._hex))
   console.log(timeStamp)
   console.log(transaction, 'transaction')
@@ -13,7 +15,12 @@ const TransactionCard = ({ transaction }) => {
           console.log('Clicked', transaction.campaignID)
         }}
       >
-        <Grid className="transaction-card" item spacing={3}>
+        <Grid
+          direction={width > 600 ? 'row' : 'column'}
+          className="transaction-card"
+          item
+          spacing={3}
+        >
           {' '}
           <h5 style={{ flex: 2 }}>
             {timeStamp.getDate() +

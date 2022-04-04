@@ -35,15 +35,19 @@ const Donate = () => {
   }, [])
 
   useEffect(() => {
-    window.ethereum.on('accountsChanged', () => {
-      window.location.reload()
-    })
+    if (window.ethereum) {
+      window.ethereum.on('accountsChanged', () => {
+        window.location.reload()
+      })
+    }
   })
 
   useEffect(() => {
-    window.ethereum.on('chainChanged', () => {
-      window.location.reload()
-    })
+    if (window.ethereum) {
+      window.ethereum.on('chainChanged', () => {
+        window.location.reload()
+      })
+    }
   })
 
   const setUp = async () => {

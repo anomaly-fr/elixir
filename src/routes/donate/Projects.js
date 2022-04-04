@@ -5,6 +5,7 @@ import { ethers } from 'ethers'
 import CampaignsAbi from '../../CampaignsAbi.json'
 import { Button, Divider, Grid, LinearProgress } from '@mui/material'
 import { Outlet, useLocation } from 'react-router-dom'
+import useWindowDimensions from '../../components/useWindowDimensions'
 
 const Projects = () => {
   const [totalNumberOfCampaigns, setNumberOfCampaigns] = useState(-1)
@@ -12,6 +13,7 @@ const Projects = () => {
   const [projects, setProjects] = useState([])
   const [contract, setContract] = useState()
   const [loading, setLoading] = useState(true)
+  const { width } = useWindowDimensions()
 
   const setup = async () => {
     const provider = new ethers.providers.Web3Provider(window.ethereum)
@@ -108,14 +110,16 @@ const Projects = () => {
         </div>
       )
     }
+
     return (
       <div className="projects-body">
         {projects.health && projects.health.length !== 0 ? (
           <div>
             <h1>Health</h1>
             <Grid
-              numColumns={window.innerWidth < 600 ? 1 : 3}
+              numColumns={width < 600 ? 1 : 3}
               container
+              direction={width < 600 ? 'column' : 'row'}
               spacing={{ xs: 2, md: 3 }}
               columns={{ xs: 4, sm: 8, md: 12 }}
             >
@@ -136,7 +140,9 @@ const Projects = () => {
           <div>
             <h1>Education</h1>
             <Grid
+              numColumns={width < 600 ? 1 : 3}
               container
+              direction={width < 600 ? 'column' : 'row'}
               spacing={{ xs: 2, md: 3 }}
               columns={{ xs: 4, sm: 8, md: 12 }}
             >
@@ -158,7 +164,9 @@ const Projects = () => {
             <h1>Refugees</h1>
 
             <Grid
+              numColumns={width < 600 ? 1 : 3}
               container
+              direction={width < 600 ? 'column' : 'row'}
               spacing={{ xs: 2, md: 3 }}
               columns={{ xs: 4, sm: 8, md: 12 }}
             >
@@ -178,7 +186,9 @@ const Projects = () => {
           <div>
             <h1>Hunger</h1>
             <Grid
+              numColumns={width < 600 ? 1 : 3}
               container
+              direction={width < 600 ? 'column' : 'row'}
               spacing={{ xs: 2, md: 3 }}
               columns={{ xs: 4, sm: 8, md: 12 }}
             >
@@ -196,17 +206,26 @@ const Projects = () => {
         ) : null}
 
         {projects.poverty && projects.poverty.length !== 0 ? (
-          <Grid>
+          <div>
             <h1>Poverty</h1>
-
-            {projects.poverty.map((campaign) => (
-              <Project
-                id={5}
-                key={campaign.campaignID}
-                projectDetails={campaign}
-              />
-            ))}
-          </Grid>
+            <Grid
+              numColumns={width < 600 ? 1 : 3}
+              container
+              direction={width < 600 ? 'column' : 'row'}
+              spacing={{ xs: 2, md: 3 }}
+              columns={{ xs: 4, sm: 8, md: 12 }}
+            >
+              {projects.poverty.map((campaign) => (
+                <Grid item xs={2} sm={4} md={4}>
+                  <Project
+                    id={4}
+                    key={campaign.campaignID}
+                    projectDetails={campaign}
+                  />
+                </Grid>
+              ))}
+            </Grid>
+          </div>
         ) : null}
 
         {projects.nature && projects.nature.length !== 0 ? (
@@ -214,7 +233,9 @@ const Projects = () => {
             <h1>Nature</h1>
 
             <Grid
+              numColumns={width < 600 ? 1 : 3}
               container
+              direction={width < 600 ? 'column' : 'row'}
               spacing={{ xs: 2, md: 3 }}
               columns={{ xs: 4, sm: 8, md: 12 }}
             >
@@ -236,7 +257,9 @@ const Projects = () => {
             <h1>Personal Project</h1>
 
             <Grid
+              numColumns={width < 600 ? 1 : 3}
               container
+              direction={width < 600 ? 'column' : 'row'}
               spacing={{ xs: 2, md: 3 }}
               columns={{ xs: 4, sm: 8, md: 12 }}
             >
@@ -258,7 +281,9 @@ const Projects = () => {
             <h1>Other</h1>
 
             <Grid
+              numColumns={width < 600 ? 1 : 3}
               container
+              direction={width < 600 ? 'column' : 'row'}
               spacing={{ xs: 2, md: 3 }}
               columns={{ xs: 4, sm: 8, md: 12 }}
             >
@@ -278,16 +303,28 @@ const Projects = () => {
     )
   }
   useEffect(() => {
-    window.ethereum.on('accountsChanged', () => {
-      window.location.reload()
-    })
+    if (window.ethereum) {
+      window.ethereum.on('accountsChanged', () => {
+        window.location.reload()
+      })
+    }
   })
 
   useEffect(() => {
-    window.ethereum.on('chainChanged', () => {
-      window.location.reload()
-    })
+    if (window.ethereum) {
+      window.ethereum.on('chainChanged', () => {
+        window.location.reload()
+      })
+    }
   })
+  if (!window.ethereum) {
+    return (
+      <div className="no-metamask">
+        <h1>You need Metamask to see this page!</h1>
+      </div>
+    )
+  }
+
   return (
     <>
       <Outlet />

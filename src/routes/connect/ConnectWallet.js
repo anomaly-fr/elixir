@@ -14,9 +14,11 @@ export default function ConnectWallet() {
   const [transactions, setTransactions] = useState([])
 
   useEffect(() => {
-    window.ethereum.on('chainChanged', () => {
-      window.location.reload()
-    })
+    if (window.ethereum) {
+      window.ethereum.on('chainChanged', () => {
+        window.location.reload()
+      })
+    }
   })
 
   const setUp = async () => {
@@ -41,14 +43,21 @@ export default function ConnectWallet() {
   }, [])
 
   useEffect(() => {
-    getData()
+    if (window.ethereum) {
+      getData()
+    }
   }, [contract])
 
   useEffect(() => {
     getData()
     console.log('auth')
   }, [isAuthenticated])
-
+  // if (!window.ethereum) {
+  //   return <h1>Metamask</h1>
+  // }
+  if (!window.ethereum) {
+    alert('You need Metamask to use this website!')
+  }
   return (
     <div>
       {!isAuthenticated ? (

@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
+.no-metamask {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
 .projects-header {
   background-color: #f9f9f9;
   text-align: center;
@@ -19,6 +25,14 @@ h1 {
 .projects-body {
   display: flex;
   flex-direction: column;
-  margin: 2%;
+  padding: 2%;
+  align-items: center;
+
   /* align-items: center; */
+}
+
+@media screen and (max-width: 600px) {
+  .projects-header {
+    height: 20vh;
+  }
 }

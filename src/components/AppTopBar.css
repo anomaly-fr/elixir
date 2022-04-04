@@ -3,7 +3,8 @@
   display: flex;
   background-color: #eef4f8;
   flex-direction: row;
-  height: min-content;
+  height: 7vh;
+  align-items: center;
   justify-content: space-around;
 }
 .icon {
@@ -50,4 +51,15 @@
 .link {
   text-decoration: none;
   color: black;
+}
+@media only screen and (max-width: 600px) {
+  .App-top-bar-menu {
+    cursor: pointer;
+    flex: 4;
+    background-color: antiquewhite;
+
+    display: flex;
+
+    justify-content: space-around;
+  }
 }
