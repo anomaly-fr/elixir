@@ -1,0 +1,35 @@
+.Cause {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  background-color: lightblue;
+  border-width: 0.5ch;
+  border-style: solid;
+  border-color: transparent;
+  border-radius: 5ch;
+  margin: 3%;
+  height: 40vh;
+  aspect-ratio: 1;
+}
+
+/* .Cause-hover {
+  flex-direction: row;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: lightblue;
+  border-width: 0.1ch;
+  border-style: solid;
+  border-color: black;
+  border-radius: 5ch;
+  margin: 3%;
+  height: 40vh;
+  cursor: pointer;
+  aspect-ratio: 1;
+} */
+
+.link {
+  text-decoration: none;
+}
