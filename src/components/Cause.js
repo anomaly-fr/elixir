@@ -1,19 +1,19 @@
+import Restaurant from '@mui/icons-material/Restaurant'
 import { Card, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import './Charity.css'
+import './Cause.css'
 
-export default function Cause({ charityName }) {
+export default function Cause({ charityName, icon }) {
   const [hover, setHover] = useState(false)
   return (
-    <Card
-      className={hover ? 'Charity-hover' : 'Charity'}
+    <div
+      className={'Cause'}
       onMouseLeave={() => setHover(false)}
       onMouseEnter={() => setHover(true)}
     >
-      <Link style={{ textDecoration: null }} to={'projects'}>
-        <Typography>{charityName}</Typography>
-      </Link>
-    </Card>
+      <div>{charityName}</div>
+      {icon}
+    </div>
   )
 }

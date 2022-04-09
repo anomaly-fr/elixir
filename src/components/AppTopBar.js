@@ -64,7 +64,7 @@ const AppTopBar = ({ about, location }) => {
       </div>
 
       <div className="empty" />
-      {width <= 600 ? (
+      {width <= 700 ? (
         <div>
           {['right'].map((anchor) => (
             <React.Fragment>

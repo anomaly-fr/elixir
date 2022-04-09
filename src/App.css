@@ -1,9 +1,39 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+.App {
+  background-size: cover;
+}
+html {
+  overflow-x: hidden;
+}
 .App-header {
   display: flex;
   min-height: 30vh;
   flex-direction: column;
   justify-content: space-between;
+}
+.App-home-header {
+  display: flex;
+  flex-direction: row;
+  flex: 5;
+  justify-content: space-between;
+  height: max-content;
+}
+.div-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 3;
+}
+@media screen and (max-width: 600px) {
+  .div-column {
+    align-items: center;
+    justify-content: center;
+  }
+}
+.App-logo {
+  align-items: center;
+  justify-content: center;
+  flex: 2;
 }
 html {
   scroll-behavior: smooth;
@@ -15,17 +45,16 @@ html {
   background-size: cover;
 }
 .App-main-heading {
-  color: blue;
   font-weight: bold;
-  font-size: 2.3rem;
+  font-size: 2.8rem;
   font-weight: 600;
   font-family: 'Poppins', sans-serif;
   padding-left: 3%;
 }
 
 .App-main-heading-small {
-  font-weight: 500;
-  font-size: 1.3rem;
+  font-weight: 300;
+  font-size: 1.5rem;
   font-weight: 600;
   padding-left: 3%;
 
@@ -36,22 +65,6 @@ html {
   text-decoration: none;
 }
 
-.div-column {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  flex: 8;
-  width: 60vw;
-  height: 60vh;
-}
-
-.App-logo {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  flex: 3;
-}
 .App-headings {
   color: #423b7d;
   text-align: center;

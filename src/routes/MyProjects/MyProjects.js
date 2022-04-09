@@ -83,15 +83,18 @@ const MyProjects = () => {
         <Outlet />
 
         {window.location.pathname === '/my-projects' ? (
-          <div style={{ margin: '2%' }}>
-            <Link
-              style={{ textDecoration: 'none' }}
-              to={isAuthenticated ? '/my-projects/new' : '/login'}
-            >
-              <Button startIcon={<AddIcon />} variant={'contained'}>
-                Create New Campaign
-              </Button>
-            </Link>
+          <div style={{ width: '100%' }}>
+            <div className="myprojects-top">
+              <Link
+                style={{ textDecoration: 'none' }}
+                to={isAuthenticated ? '/my-projects/new' : '/login'}
+              >
+                <Button startIcon={<AddIcon />} variant={'contained'}>
+                  Create New Campaign
+                </Button>
+              </Link>
+            </div>
+            <LinearProgress style={{ opacity: loading ? 1 : 0 }} />
           </div>
         ) : null}
         {window.location.pathname === '/my-projects' ? (
@@ -101,7 +104,6 @@ const MyProjects = () => {
               justifyContent: 'center',
             }}
           >
-            <LinearProgress style={{ opacity: loading ? 1 : 0 }} />
             <Grid
               direction={width > 600 ? 'row' : 'column'}
               numColumns={width < 600 ? 1 : 3}
@@ -110,7 +112,9 @@ const MyProjects = () => {
               columns={{ xs: 4, sm: 8, md: 12 }}
             >
               {projects.length === 0 ? (
-                <h2>Such Empty!</h2>
+                <div
+                  style={{ display: 'flex', width: '100%', padding: '1%' }}
+                ></div>
               ) : (
                 projects.map((campaign) => (
                   <Grid item xs={2} sm={4} md={4}>

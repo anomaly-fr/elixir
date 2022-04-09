@@ -88,8 +88,9 @@ const Project = ({ projectDetails, myProjects }) => {
           >
             <Link
               to={`${
+                user &&
                 user.get('ethAddress').toUpperCase() !==
-                projectDetails.owner.toUpperCase()
+                  projectDetails.owner.toUpperCase()
                   ? projectDetails.campaignID.toNumber()
                   : '/projects'
               }`}
@@ -99,8 +100,10 @@ const Project = ({ projectDetails, myProjects }) => {
               {location.pathname === '/projects' ? (
                 <Button
                   disabled={
-                    user.get('ethAddress').toUpperCase() ===
-                    projectDetails.owner.toUpperCase()
+                    !user ||
+                    (user &&
+                      user.get('ethAddress').toUpperCase() ===
+                        projectDetails.owner.toUpperCase())
                   }
                   onClick={() => {
                     console.log(':(')

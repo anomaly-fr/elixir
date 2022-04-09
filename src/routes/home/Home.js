@@ -1,42 +1,34 @@
 import React from 'react'
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import '../../App.css'
-import Logo from '../../components/Logo'
+import logo from '../../charity-blocks-logo.png'
 import Causes from './Causes'
-import { ethers } from 'ethers'
+import useWindowDimensions from '../../components/useWindowDimensions'
 
 export default function Home() {
+  const { width, height } = useWindowDimensions()
   return (
     <div>
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-        }}
-      >
+      <div className="App-home-header">
         <div className="div-column">
-          <p
-            // onClick={() => {
-            //   aboutRef.current.scrollIntoView({ behavior: 'smooth' })
-            // }}
-            className="App-main-heading"
-          >
-            Elixir
-          </p>
-          <p className="App-main-heading-small">A Blockchain based platform</p>
+          <div className="App-main-heading">Elixir</div>
+          <div className="App-main-heading-small">
+            A Blockchain based platform
+          </div>
         </div>
-        <div className="App-logo">
-          <Logo />
-        </div>
+        {width > 600 ? (
+          <div className="App-logo">
+            <img src={logo} />
+          </div>
+        ) : null}
       </div>
       <div className="App-body">
         <div className="App-sections">
           <div className="App-headings">About Us</div>
           <div className="App-paragraphs">
             We are the most trusted and powerful blockchain based platform. Use
-            our token, Dona Coin to to donate to a cause that you care about.
-            Every cause is supported by a trusted charity that will be verified
-            by us
+            our token, LIT to to donate to a campaign that you care about. Every
+            cause is supported by a trusted charity that will be verified by us
           </div>
         </div>
         <div className="App-sections" style={{ backgroundColor: '#eff7f6' }}>
@@ -139,7 +131,7 @@ export default function Home() {
         {}
         <div className="App-sections">
           <div className="App-headings">Donate to Causes</div>
-          <Causes loggedIn />
+          <Causes />
         </div>
       </div>
     </div>

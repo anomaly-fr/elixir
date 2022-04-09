@@ -3,6 +3,7 @@ import './CreateCampaign.css'
 import {
   Button,
   Chip,
+  Grid,
   Input,
   LinearProgress,
   TextareaAutosize,
@@ -87,20 +88,23 @@ const CreateCampaign = () => {
   const CategoryArray = () => {
     return (
       <>
-        {categoryArray.map((category) => (
-          <Chip
-            style={{
-              backgroundColor:
-                campaignCategory === category.index ? 'purple' : 'gray',
-            }}
-            key={category.index}
-            onClick={() => {
-              setCampaignCategory(category.index)
-              console.log(campaignCategory)
-            }}
-            label={category.name}
-          />
-        ))}
+        <Grid padding={2} container>
+          {categoryArray.map((category) => (
+            <Chip
+              style={{
+                backgroundColor:
+                  campaignCategory === category.index ? 'purple' : 'gray',
+                margin: '5px',
+              }}
+              key={category.index}
+              onClick={() => {
+                setCampaignCategory(category.index)
+                console.log(campaignCategory)
+              }}
+              label={category.name}
+            />
+          ))}
+        </Grid>
       </>
     )
   }
@@ -217,7 +221,6 @@ const CreateCampaign = () => {
             style={{
               alignItem: 'center',
               justifyContent: 'center',
-              backgroundColor: '#f5f5f5',
               margin: '2%',
             }}
           >
@@ -251,7 +254,6 @@ const CreateCampaign = () => {
                 } else setErrorMessage('All fields are mandatory')
               }}
               variant="contained"
-              color="primary"
             >
               Create Campaign
             </Button>

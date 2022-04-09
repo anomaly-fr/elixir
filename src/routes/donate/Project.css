@@ -11,6 +11,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  height: max-content;
 }
 .project-chip {
   color: 'white';
@@ -37,7 +38,6 @@ h4 {
   text-decoration: none;
 }
 .project-image {
-  width: 30vw;
   height: 50vh;
 }
 @media screen and (max-width: 600px) {
@@ -45,7 +45,6 @@ h4 {
     display: flex;
     flex-direction: column;
     font-family: 'poppins', 'roboto';
-    height: 60vh;
   }
   .project-image {
     width: 100vw;

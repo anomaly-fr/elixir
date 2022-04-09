@@ -28,7 +28,12 @@ h1 {
   flex-direction: column;
   padding: 2%;
 }
-
+.myprojects-top {
+  display: flex;
+  margin: 1%;
+  justify-content: center;
+  align-items: center;
+}
 @media screen and (max-width: 600px) {
   .projects-header {
     height: 20vh;
