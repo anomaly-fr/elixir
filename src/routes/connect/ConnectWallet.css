@@ -7,9 +7,13 @@
   text-align: center;
   margin: 0.5rem;
 }
+html {
+  overflow-x: hidden;
+}
 .address {
   margin: 0.5rem;
 }
+
 .center {
   display: flex;
   flex-direction: column;
@@ -23,7 +27,7 @@
 }
 .me {
   display: flex;
-  background-size: cover;
+
   flex-direction: column;
 }
 .connect-body {

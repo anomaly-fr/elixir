@@ -100,9 +100,9 @@ export default function ConnectWallet() {
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'flex-start',
+                backgroundColor: '#EEF4F8',
 
-                width: '100%',
-                height: '30vh',
+                width: '50%',
               }}
             >
               <Me />
