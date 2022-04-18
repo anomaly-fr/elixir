@@ -28,6 +28,7 @@ const Projects = () => {
 
   useEffect(() => {
     setup()
+    console.log('here', contract)
   }, [])
 
   const getData = async () => {
@@ -38,7 +39,8 @@ const Projects = () => {
       setNumberOfCampaigns(() => numberOfProjects.toNumber())
     } catch (e) {
       //  setNumberOfCampaigns(0)
-      console.log('Error fetching number of campaigns')
+      console.log(contract, 'again')
+      console.log('Error fetching number of campaigns', e)
     }
     let allCampaigns = {
       health: [],
