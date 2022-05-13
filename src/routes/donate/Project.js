@@ -37,9 +37,10 @@ const Project = ({ projectDetails, myProjects }) => {
     >
       <div className="project-container">
         <Card
-          style={{ backgroundColor: over ? '#EEF4F8' : null }}
-          // onMouseEnter={() => isOver(true)}
-          // onMouseLeave={() => isOver(false)}
+          style={{
+            backgroundColor: '#9c94d1',
+            border: 'white solid 3px',
+          }}
           elevation={1}
           className="project-card"
         >
@@ -48,9 +49,12 @@ const Project = ({ projectDetails, myProjects }) => {
             alt="project"
             className="project-image"
           />
-          <h3>{projectDetails.campaignName}</h3>
+          <h3 className="project-campaign-name">
+            {projectDetails.campaignName}
+          </h3>
+
           {!myProjects ? (
-            <h4>{`Created by ${projectDetails.ownerName}`}</h4>
+            <h4 className="project-created-by">{`Created by ${projectDetails.ownerName}`}</h4>
           ) : null}
 
           {/* <Chip
@@ -65,20 +69,25 @@ const Project = ({ projectDetails, myProjects }) => {
               alignItems: 'center',
             }}
           >
-            <h3 style={{ flex: 1 }}>{`${progress.toFixed(2)}%`}</h3>
+            <h3 style={{ flex: 1, margin: '5%' }}>{`${progress.toFixed(
+              2,
+            )}%`}</h3>
             <div
               style={{
                 display: 'flex',
-                flex: 4,
+                flex: 5,
                 margin: '2%',
+                marginRight: '5%',
               }}
             >
               <ProgressBar progress={progress} />
             </div>
           </div>
-          <h4>{`${projectDetails.amountRaised} ${
-            !myProjects ? `LIT raised out` : `LIT received out of`
-          } ${projectDetails.amountToRaise} LIT!`}</h4>
+          <p className="project-amount-raised">{`${
+            projectDetails.amountRaised
+          } ${!myProjects ? `LIT raised out` : `LIT received out of`} ${
+            projectDetails.amountToRaise
+          } LIT!`}</p>
           <div
             style={{
               display: 'flex',
@@ -99,6 +108,25 @@ const Project = ({ projectDetails, myProjects }) => {
             >
               {location.pathname === '/projects' ? (
                 <Button
+                  elevation={0}
+                  variant="contained"
+                  style={{
+                    marginBottom: '5%',
+                    backgroundColor:
+                      !user ||
+                      (user &&
+                        user.get('ethAddress').toUpperCase() ===
+                          projectDetails.owner.toUpperCase())
+                        ? 'transparent'
+                        : '#231d50',
+                    color:
+                      !user ||
+                      (user &&
+                        user.get('ethAddress').toUpperCase() ===
+                          projectDetails.owner.toUpperCase())
+                        ? '#807aae'
+                        : 'white',
+                  }}
                   disabled={
                     !user ||
                     (user &&

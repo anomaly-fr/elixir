@@ -1,8 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-
-h1 {
-  font-family: 'poppins', 'roboto';
-}
+@import url('https://fonts.googleapis.com/css2?family=Catamaran:wght@700&family=Montserrat:wght@200&family=Open+Sans&display=swap');
 
 img {
   width: 30vw;
@@ -18,9 +15,9 @@ img {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   flex-direction: row;
-  width: 100%;
+  width: 15%;
 }
 .about {
   display: flex;
@@ -30,4 +27,8 @@ img {
   font-weight: 200;
   font-family: 'poppins', 'roboto';
   padding: 3%;
+}
+.donate-heading {
+  font-family: 'Catamaran', 'Poppins';
+  font-size: 2rem;
 }

@@ -11,7 +11,7 @@ export default function Home() {
     <div>
       <div className="App-home-header">
         <div className="div-column">
-          <div className="App-main-heading">Elixir</div>
+          <div className="App-main-heading">ELIXIR</div>
           <div className="App-main-heading-small">
             A Blockchain based platform
           </div>
@@ -24,15 +24,17 @@ export default function Home() {
       </div>
       <div className="App-body">
         <div className="App-sections">
-          <div className="App-headings">About Us</div>
+          <div className="App-headings">ABOUT US</div>
           <div className="App-paragraphs">
             We are the most trusted and powerful blockchain based platform. Use
             our token, LIT to to donate to a campaign that you care about. Every
             cause is supported by a trusted charity that will be verified by us
           </div>
         </div>
-        <div className="App-sections" style={{ backgroundColor: '#eff7f6' }}>
-          <div className="App-headings">Key Features</div>
+        <div className="App-features-sections">
+          <div className="App-headings" style={{ color: '#7263cf' }}>
+            FEATURES
+          </div>
 
           <div
             style={{
@@ -41,10 +43,10 @@ export default function Home() {
               alignItems: 'center',
             }}
           >
-            <CheckCircleOutlineIcon style={{ color: '#5AACA8' }} />
+            <CheckCircleOutlineIcon style={{ color: '#7263cf' }} />
             <div
               className="App-headings"
-              style={{ color: 'black', fontSize: '1rem' }}
+              style={{ color: 'white', fontSize: '1rem' }}
             >
               Increased Transparencey
             </div>
@@ -64,10 +66,10 @@ export default function Home() {
               alignItems: 'center',
             }}
           >
-            <CheckCircleOutlineIcon style={{ color: '#5AACA8' }} />
+            <CheckCircleOutlineIcon style={{ color: '#7263cf' }} />
             <div
               className="App-headings"
-              style={{ color: 'black', fontSize: '1rem' }}
+              style={{ color: 'white', fontSize: '1rem' }}
             >
               Quick Donations
             </div>
@@ -87,10 +89,10 @@ export default function Home() {
               alignItems: 'center',
             }}
           >
-            <CheckCircleOutlineIcon style={{ color: '#5AACA8' }} />
+            <CheckCircleOutlineIcon style={{ color: '#7263cf' }} />
             <div
               className="App-headings"
-              style={{ color: 'black', fontSize: '1rem' }}
+              style={{ color: 'white', fontSize: '1rem' }}
             >
               Immutable Structure
             </div>
@@ -111,10 +113,10 @@ export default function Home() {
               alignItems: 'center',
             }}
           >
-            <CheckCircleOutlineIcon style={{ color: '#5AACA8' }} />
+            <CheckCircleOutlineIcon style={{ color: '#7263cf' }} />
             <div
               className="App-headings"
-              style={{ color: 'black', fontSize: '1rem' }}
+              style={{ color: 'white', fontSize: '1rem' }}
             >
               Decentralized Network{' '}
             </div>
@@ -130,7 +132,7 @@ export default function Home() {
         </div>
         {}
         <div className="App-sections">
-          <div className="App-headings">Donate to Causes</div>
+          <div className="App-headings">DONATE TO CAUSES</div>
           <Causes />
         </div>
       </div>

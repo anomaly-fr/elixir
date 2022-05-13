@@ -22,35 +22,35 @@ export default function Causes() {
   let charities = [
     {
       name: 'Health',
-      icon: <LocalHospitalIcon />,
+      icon: <LocalHospitalIcon color="#1c183c" />,
     },
     {
       name: 'Refugees',
-      icon: <NightShelterIcon />,
+      icon: <NightShelterIcon color="#1c183c" />,
     },
     {
       name: 'Education',
-      icon: <SchoolIcon />,
+      icon: <SchoolIcon color="#1c183c" />,
     },
     {
       name: 'Hunger',
-      icon: <RestaurantIcon />,
+      icon: <RestaurantIcon color="#1c183c" />,
     },
     {
       name: 'Poverty',
-      icon: <ElderlyWomanIcon />,
+      icon: <ElderlyWomanIcon color="#1c183c" />,
     },
     {
       name: 'Nature',
-      icon: <ForestIcon />,
+      icon: <ForestIcon color="#1c183c" />,
     },
     {
-      name: 'Personal Projects',
-      icon: <PsychologyIcon />,
+      name: 'Personal',
+      icon: <PsychologyIcon color="#1c183c" />,
     },
     {
       name: 'Other',
-      icon: <MonetizationOnIcon />,
+      icon: <MonetizationOnIcon color="#1c183c" />,
     },
   ]
   return (
@@ -59,10 +59,17 @@ export default function Causes() {
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'space-around',
       }}
     >
-      <ImageList cols={width < 600 ? 1 : 2} rowHeight={60}>
+      <ImageList
+        style={{
+          width: '40%',
+          justifyContent: 'center',
+        }}
+        cols={width < 600 ? 1 : 2}
+        rowHeight={110}
+      >
         {charities.map((item) => (
           <ImageListItem>
             <Cause

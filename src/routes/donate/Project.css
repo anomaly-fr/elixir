@@ -4,6 +4,8 @@
   margin: 2%;
   display: flex;
   flex-direction: column;
+  color: #9c94d1;
+
   font-family: 'poppins', 'roboto';
 }
 
@@ -18,33 +20,44 @@
   background-color: plum;
 }
 
-h3 {
-  padding: 1%;
-  margin: 3%;
-  font-family: 'poppins', 'roboto';
+.project-campaign-name {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-left: 5%;
+  font-family: 'Catamaran', 'poppins';
 }
-h2 {
-  padding: 1%;
-  margin: 3%;
-  font-weight: 400;
-  font-family: 'poppins', 'roboto';
+.project-created-by {
+  font-family: 'Poppins';
+  font-size: 0.8rem;
+  font-weight: 100;
+  margin-left: 5%;
+  margin-top: -5%;
 }
-h4 {
-  padding: 1%;
-  margin: 3%;
-  font-family: 'poppins', 'roboto';
-}
+
 .project-link {
   text-decoration: none;
 }
 .project-image {
   height: 50vh;
+  margin: 2%;
+  width: 95%;
+  border-radius: 0.5vh;
+  align-self: center;
+  margin-top: 3%;
+}
+.project-amount-raised {
+  font-family: 'Poppins';
+  color: #160a66;
+  margin: 5%;
+
+  font-size: 1.2rem;
+  font-weight: bold;
 }
 @media screen and (max-width: 600px) {
   .project-card {
     display: flex;
     flex-direction: column;
-    font-family: 'poppins', 'roboto';
+    font-family: 'Catamaran', 'Poppins';
   }
   .project-image {
     width: 100vw;

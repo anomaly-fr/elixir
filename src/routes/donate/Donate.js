@@ -105,16 +105,18 @@ const Donate = () => {
         justifyContent: 'center',
         display: 'flex',
         flexDirection: 'column',
+        color: 'white',
+        backgroundColor: '#0b111b',
       }}
     >
-      <h1
+      <p
         // align="center"
         // fontSize={20}
         // fontFamily={'Poppins'}
         className="donate-heading"
       >
         {project?.campaignName}
-      </h1>
+      </p>
       <img
         className="donate-image"
         src={`https://ipfs.moralis.io:2053/ipfs/${project.imageHash}`}
@@ -122,6 +124,8 @@ const Donate = () => {
       />
       <div
         style={{
+          display: 'flex',
+          flexDirection: 'column',
           justifyContent: 'center',
           alignItems: 'center',
           textAlign: 'center',
@@ -143,51 +147,50 @@ const Donate = () => {
 
         <div
           style={{
+            backgroundColor: 'white',
             display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            margin: '1%',
-            backgroundColor: '#EEF4F8',
+            marginBottom: '3%',
           }}
         >
           <TextField
             inputMode="numeric"
-            style={{ padding: '2%' }}
             id="outlined-basic"
             placeholder="Amount in LIT"
             variant="outlined"
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
           />
-          <Button
-            onClick={() => {
-              if (!isAuthenticated)
-                setErrorText('Connect with Metamask to donate!')
-              else if (
-                signerAddress.toUpperCase() !==
-                user.get('ethAddress').toUpperCase()
-              ) {
-                setErrorText('You are logged in with a different account!')
-                console.log(
-                  'Signer',
-                  signerAddress,
-                  'User',
-                  user.get('ethAddress'),
-                )
-              } else if (amount <= 0 || amount > amountToRaise - amountRaised) {
-                setErrorText('Invalid amount!')
-              } else if (amount) {
-                makeDonation()
-                //  console.log(user, auth)
-              }
-            }}
-            variant="contained"
-            color="primary"
-          >
-            Contribute Now
-          </Button>
+
           <h4 style={{ color: 'red' }}>{errorText}</h4>
         </div>
+        <Button
+          style={{ backgroundColor: '#8a83bc' }}
+          onClick={() => {
+            if (!isAuthenticated)
+              setErrorText('Connect with Metamask to donate!')
+            else if (
+              signerAddress.toUpperCase() !==
+              user.get('ethAddress').toUpperCase()
+            ) {
+              setErrorText('You are logged in with a different account!')
+              console.log(
+                'Signer',
+                signerAddress,
+                'User',
+                user.get('ethAddress'),
+              )
+            } else if (amount <= 0 || amount > amountToRaise - amountRaised) {
+              setErrorText('Invalid amount!')
+            } else if (amount) {
+              makeDonation()
+              //  console.log(user, auth)
+            }
+          }}
+          variant="contained"
+          color="primary"
+        >
+          Contribute Now
+        </Button>
       </div>
     </div>
   )

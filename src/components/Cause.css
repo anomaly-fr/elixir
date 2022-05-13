@@ -1,16 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Catamaran:wght@800&family=Montserrat:wght@200&family=Open+Sans&display=swap');
+
 .Cause {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
-  background-color: lightblue;
-  border-width: 0.5ch;
-  border-style: solid;
-  border-color: transparent;
-  border-radius: 5ch;
+  background: rgba(156, 148, 209, 0.86);
+  border: 2px solid white;
+  box-sizing: border-box;
+  box-shadow: -5px 4px 5px rgba(0, 0, 0, 0.25);
+  border-radius: 32px;
+  font-family: 'Catamaran', 'Poppins';
+  font-size: 1.5rem;
+  color: #1c183c;
   margin: 3%;
-  height: 40vh;
-  aspect-ratio: 1;
+  height: 100vh;
 }
 
 /* .Cause-hover {

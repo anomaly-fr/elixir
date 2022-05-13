@@ -9,9 +9,12 @@ import { useMoralis } from 'react-moralis'
 import useWindowDimensions from './useWindowDimensions'
 import MenuIcon from '@mui/icons-material/Menu'
 import { Box, List, ListItem, ListItemText, Drawer } from '@mui/material'
+import logo from '../logo.png'
 
-const AppTopBar = ({ about, location }) => {
+const AppTopBar = () => {
   const [state, setState] = React.useState(false)
+
+  const { isAuthenticated, user, logout } = useMoralis()
 
   const { height, width } = useWindowDimensions()
   const toggleDrawer = (anchor, open) => (event) => {
@@ -54,13 +57,19 @@ const AppTopBar = ({ about, location }) => {
             <ListItemText>Connect</ListItemText>
           </Link>
         </ListItem>
+
+        <ListItem button>
+          <Link className="link" to="/login">
+            <ListItemText>Logout</ListItemText>
+          </Link>
+        </ListItem>
       </List>
     </Box>
   )
   return (
     <div className="App-top-bar">
-      <div className="icon">
-        <CardGiftcardIcon />
+      <div>
+        <img className="icon" src={logo} />
       </div>
 
       <div className="empty" />
@@ -96,6 +105,9 @@ const AppTopBar = ({ about, location }) => {
           </Link>
           <Link className="link" to="/login">
             <MenuButton title={'Connect'} />
+          </Link>
+          <Link className="link" to="/login">
+            {isAuthenticated ? <MenuButton title={'Logout'} /> : null}
           </Link>
         </div>
       )}

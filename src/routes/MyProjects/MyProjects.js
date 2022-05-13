@@ -65,7 +65,7 @@ const MyProjects = () => {
 
         console.log('Contract', contract)
       } catch (e) {
-        console.log('error contract no set :(', e)
+        console.log('error contract not set :(', e)
       }
     }
     setTimeout(() => {
@@ -89,7 +89,11 @@ const MyProjects = () => {
                 style={{ textDecoration: 'none' }}
                 to={isAuthenticated ? '/my-projects/new' : '/login'}
               >
-                <Button startIcon={<AddIcon />} variant={'contained'}>
+                <Button
+                  style={{ backgroundColor: '#8a83bc', marginBottom: '5%' }}
+                  startIcon={<AddIcon />}
+                  variant={'contained'}
+                >
                   Create New Campaign
                 </Button>
               </Link>

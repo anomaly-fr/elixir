@@ -106,6 +106,7 @@ const Projects = () => {
             alignItems: 'center',
             justifyContent: 'center',
             width: '100%',
+            backgroundColor: '#0b111b',
           }}
         >
           <h2>Such Empty!</h2>
@@ -334,7 +335,7 @@ const Projects = () => {
       location.pathname === '/projects/my-projects' ? (
         <div className="projects-header">
           <h1>
-            {location.pathname === '/projects' ? 'Campaigns!' : 'Your projects'}
+            {location.pathname === '/projects' ? 'CAMPAIGNS!' : 'Your projects'}
           </h1>
           {/* <h3>
             {location.pathname === '/projects'
@@ -352,8 +353,8 @@ const Projects = () => {
       </Button> */}
 
       {location.pathname === '/projects' ? (
-        <div>
-          <LinearProgress style={{ opacity: loading ? 1 : 0 }} />
+        <div style={{ backgroundColor: 'red' }}>
+          {loading ? <LinearProgress /> : null}
           <ProjectList />
         </div>
       ) : null}

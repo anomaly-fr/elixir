@@ -4,7 +4,8 @@ const ProgressBar = ({ progress }) => {
   return (
     <div
       style={{
-        backgroundColor: '#EEF4F8',
+        backgroundColor: '#c9c5e5',
+
         padding: '5px',
         width: '100%',
         borderRadius: '10px',
@@ -12,7 +13,7 @@ const ProgressBar = ({ progress }) => {
     >
       <div
         style={{
-          backgroundColor: '#1976D2',
+          backgroundColor: '#231d50',
           width: `${progress}%`,
           padding: '5px',
 

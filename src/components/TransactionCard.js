@@ -11,6 +11,7 @@ const TransactionCard = ({ transaction }) => {
   return (
     <div className="transaction-root">
       <Card
+        style={{ backgroundColor: '#9c94d1' }}
         onClick={() => {
           console.log('Clicked', transaction.campaignID)
         }}
@@ -52,7 +53,7 @@ const TransactionCard = ({ transaction }) => {
           </h5>{' '}
           <h5
             style={{
-              color: transaction.transactionType ? 'aquamarine' : 'red',
+              color: transaction.transactionType ? '#006b3c' : '#cc0000',
             }}
           >
             {transaction.transactionType ? 'CREDIT' : 'DEBIT'}

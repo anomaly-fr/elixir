@@ -1,16 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Catamaran:wght@700&family=Montserrat:wght@200&family=Open+Sans&display=swap');
 .App-top-bar {
   display: flex;
-  background-color: #eef4f8;
+  background-color: #231d50;
   flex-direction: row;
-  height: 7vh;
+  height: 10vh;
   align-items: center;
   justify-content: space-around;
 }
 .icon {
-  flex: 1;
-  align-items: center;
-  display: flex;
+  max-width: 60px;
+  height: 40px;
+  padding-top: 10%;
+  padding-left: 10%;
 }
 .empty {
   flex: 5;
@@ -26,31 +28,31 @@
 .menu {
   font-weight: 600;
   width: 8vw;
-  font-size: small;
+  font-size: medium;
   align-items: center;
   text-align: center;
   justify-content: center;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Catamaran', 'Poppins';
 }
 
 .menu-hover {
   text-align: center;
-  color: white;
+  color: #7263cf;
 
-  background-color: #5aaca8;
+  /* background-color: #5aaca8; */
   border-radius: 5px;
   width: 8vw;
   font-weight: 600;
-  font-size: small;
+  font-size: medium;
   align-items: center;
   text-align: center;
   justify-content: center;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Catamaran', 'Poppins';
 }
 
 .link {
   text-decoration: none;
-  color: black;
+  color: white;
 }
 @media only screen and (max-width: 600px) {
   .App-top-bar-menu {

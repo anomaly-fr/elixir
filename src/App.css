@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Catamaran:wght@800&family=Montserrat:wght@200&family=Open+Sans&display=swap');
 .App {
   background-size: cover;
 }
@@ -12,11 +13,13 @@ html {
   justify-content: space-between;
 }
 .App-home-header {
+  background-color: #0b111b;
+  align-items: center;
   display: flex;
   flex-direction: row;
   flex: 5;
   justify-content: space-between;
-  height: max-content;
+  height: 70vh;
 }
 .div-column {
   display: flex;
@@ -46,17 +49,18 @@ html {
 }
 .App-main-heading {
   font-weight: bold;
-  font-size: 2.8rem;
+  font-size: 5rem;
   font-weight: 600;
-  font-family: 'Poppins', sans-serif;
-  padding-left: 3%;
+  color: white;
+  font-family: 'Catamaran', 'Poppins';
+  padding-left: 6%;
 }
 
 .App-main-heading-small {
   font-weight: 300;
   font-size: 1.5rem;
-  font-weight: 600;
-  padding-left: 3%;
+  padding-left: 6%;
+  color: white;
 
   font-family: 'Poppins', sans-serif;
 }
@@ -66,10 +70,12 @@ html {
 }
 
 .App-headings {
-  color: #423b7d;
+  color: white;
   text-align: center;
   font-size: 1.8rem;
   font-weight: bold;
+  font-family: 'Catamaran', 'Poppins';
+
   margin: 0.5rem;
 }
 
@@ -79,10 +85,22 @@ html {
   flex-direction: column;
   text-align: center;
   font-weight: 500;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+
   padding: 3%;
 }
 
 .App-sections {
+  background: rgb(2, 0, 36);
+  background: linear-gradient(270deg, #1c183c 35.52%, #3e309a 134.86%);
+  display: flex;
+  padding: 3%;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.App-features-sections {
+  background-color: black;
   display: flex;
   padding: 3%;
   flex-direction: column;

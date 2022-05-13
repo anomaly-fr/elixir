@@ -1,13 +1,17 @@
 import React, { useLayoutEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import '../App.css'
-
+import { useMoralis } from 'react-moralis'
 const MenuButton = ({ title }) => {
   const [hover, setHover] = useState(false)
 
+  const { logout } = useMoralis()
+
   return (
     <div
+      onClick={title === 'Logout' ? logout : null}
       style={{
+        color: 'white',
         alignItems: 'center',
         justifyContent: 'center',
       }}

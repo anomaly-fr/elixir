@@ -4,7 +4,6 @@ import { useMoralis } from 'react-moralis'
 import './ConnectWallet.css'
 import { ethers } from 'ethers'
 import UserAbi from '../../UserAbi.json'
-import CampaignsAbi from '../../CampaignsAbi.json'
 import Me from './Me'
 import TransactionCard from '../../components/TransactionCard'
 
@@ -59,12 +58,35 @@ export default function ConnectWallet() {
     alert('You need Metamask to use this website!')
   }
   return (
-    <div>
+    <div
+      style={{
+        backgroundColor: '#0b111b',
+        backgroundSize: 'cover',
+        display: 'flex',
+
+        flexDirection: 'column',
+        flex: 1,
+      }}
+    >
       {!isAuthenticated ? (
-        <div>
+        <div
+          style={{
+            backgroundColor: '#0b111b',
+            backgroundSize: 'cover',
+            height: '100vh',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
           <p className="text">Connect with Metamask</p>
-          <Button variant="contained" onClick={authenticate}>
-            Sign with Metamask
+          <Button
+            style={{ backgroundColor: '#8A83BC' }}
+            variant="contained"
+            onClick={authenticate}
+          >
+            Sign In with Metamask
           </Button>
         </div>
       ) : (
@@ -76,33 +98,36 @@ export default function ConnectWallet() {
               alignItems: 'flex-start',
             }}
           >
+            {/* <Button
+              style={{
+                alignSelf: 'flex-end',
+                backgroundColor: '#8A83bc',
+                margin: '1%',
+              }}
+              onClick={logout}
+              variant="contained"
+            >
+              Logout
+            </Button> */}
             <div
               style={{
                 display: 'flex',
                 justifyContent: 'space-between',
                 alignItems: 'center',
+                flexDirection: 'column',
                 width: '100%',
                 height: '20vh',
               }}
             >
               <p className="text">Welcome to Elixir!</p>
-
-              <Button
-                style={{ alignSelf: 'flex-start', margin: '1%' }}
-                onClick={logout}
-                variant="contained"
-              >
-                Logout
-              </Button>
             </div>
             <div
               style={{
                 display: 'flex',
                 flexDirection: 'column',
-                alignItems: 'flex-start',
-                backgroundColor: '#EEF4F8',
+                alignItems: 'center',
 
-                width: '50%',
+                width: '100%',
               }}
             >
               <Me />
