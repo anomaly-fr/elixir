@@ -6,6 +6,8 @@
   width: 100%;
   align-items: center;
   justify-content: center;
+  background-color: white;
+  color: black;
 }
 
 .projects-header {
@@ -29,17 +31,26 @@ h1 {
 
   font-family: 'Catamaran', 'Poppins';
 }
+.myprojects-body {
+  height: 200vh;
+  flex-direction: column;
+  display: flex;
+  justify-content: flex-start;
+  background-color: #0b111b;
+  background-size: cover;
+}
 
 .projects-body {
   display: flex;
   flex-direction: column;
   background-color: #0b111b;
-  padding: 2%;
+  background-size: cover;
 }
 .myprojects-top {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 2%;
 }
 @media screen and (max-width: 600px) {
   .projects-header {

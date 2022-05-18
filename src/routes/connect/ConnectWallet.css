@@ -29,7 +29,6 @@ html {
 }
 .me {
   display: flex;
-  background-color: #423b7d;
 
   flex-direction: column;
 }

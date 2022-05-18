@@ -10,16 +10,15 @@ import {
   IconButton,
   LinearProgress,
 } from '@mui/material'
-import { Link, Outlet, useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { useMoralis } from 'react-moralis'
 import AddIcon from '@mui/icons-material/Add'
 import useWindowDimensions from '../../components/useWindowDimensions'
 
 const MyProjects = () => {
-  const location = useLocation()
   const [projects, setProjects] = useState([])
   const [contract, setContract] = useState()
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
 
   const { isAuthenticated, user } = useMoralis()
   const { width } = useWindowDimensions()
@@ -33,6 +32,7 @@ const MyProjects = () => {
       provider,
     )
     setContract(campaignContract)
+    setLoading(true)
   }
 
   useEffect(() => {
@@ -77,31 +77,33 @@ const MyProjects = () => {
   }, [contract, projects])
 
   const ProjectList = () => {
-    // console.log(window.location.pathname)
     return (
-      <div className="projects-body">
-        <Outlet />
-
-        {window.location.pathname === '/my-projects' ? (
-          <div style={{ width: '100%' }}>
-            <div className="myprojects-top">
-              <Link
-                style={{ textDecoration: 'none' }}
-                to={isAuthenticated ? '/my-projects/new' : '/login'}
-              >
-                <Button
-                  style={{ backgroundColor: '#8a83bc', marginBottom: '5%' }}
-                  startIcon={<AddIcon />}
-                  variant={'contained'}
+      <div className="myprojects-body">
+        <div>
+          <div>
+            {!window.ethereum ? (
+              <h1 style={{ display: 'flex', justifyContent: 'center' }}>
+                You need Metamask to view this site{' '}
+              </h1>
+            ) : (
+              <div className="myprojects-top">
+                <Link
+                  style={{ textDecoration: 'none' }}
+                  to={isAuthenticated ? '/my-projects/new' : '/login'}
                 >
-                  Create New Campaign
-                </Button>
-              </Link>
-            </div>
+                  <Button
+                    style={{ backgroundColor: '#8a83bc' }}
+                    startIcon={<AddIcon />}
+                    variant={'contained'}
+                  >
+                    Create New Campaign
+                  </Button>
+                </Link>
+              </div>
+            )}
             <LinearProgress style={{ opacity: loading ? 1 : 0 }} />
           </div>
-        ) : null}
-        {window.location.pathname === '/my-projects' ? (
+
           <div
             style={{
               alignItems: 'center',
@@ -117,7 +119,11 @@ const MyProjects = () => {
             >
               {projects.length === 0 ? (
                 <div
-                  style={{ display: 'flex', width: '100%', padding: '1%' }}
+                  style={{
+                    display: 'flex',
+                    width: '100%',
+                    padding: '1%',
+                  }}
                 ></div>
               ) : (
                 projects.map((campaign) => (
@@ -128,35 +134,15 @@ const MyProjects = () => {
               )}
             </Grid>
           </div>
-        ) : null}
-      </div>
-    )
-  }
-  if (!window.ethereum) {
-    return (
-      <div className="no-metamask">
-        <h1>You need Metamask to see this page!</h1>
-      </div>
-    )
-  }
-  return (
-    <>
-      {location.pathname === '/projects' ||
-      location.pathname === '/projects/my-projects' ? (
-        <div className="projects-header">
-          <h1>
-            {location.pathname === '/projects' ? 'Campaigns!' : 'Your projects'}
-          </h1>
-          <h3>
-            {location.pathname === '/projects'
-              ? 'All running campaigns'
-              : 'Start a Campaign and get funded'}
-          </h3>
         </div>
-      ) : null}
+      </div>
+    )
+  }
 
+  return (
+    <div>
       <ProjectList />
-    </>
+    </div>
   )
 }
 

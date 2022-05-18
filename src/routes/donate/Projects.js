@@ -3,8 +3,8 @@ import './Projects.css'
 import Project from './Project'
 import { ethers } from 'ethers'
 import CampaignsAbi from '../../CampaignsAbi.json'
-import { Button, Divider, Grid, LinearProgress } from '@mui/material'
-import { Outlet, useLocation } from 'react-router-dom'
+import { Grid, LinearProgress } from '@mui/material'
+import { useLocation } from 'react-router-dom'
 import useWindowDimensions from '../../components/useWindowDimensions'
 
 const Projects = () => {
@@ -12,7 +12,7 @@ const Projects = () => {
   const location = useLocation()
   const [projects, setProjects] = useState([])
   const [contract, setContract] = useState()
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
   const { width } = useWindowDimensions()
 
   const setup = async () => {
@@ -24,24 +24,24 @@ const Projects = () => {
       provider,
     )
     setContract(campaignContract)
+    setLoading(true)
   }
 
   useEffect(() => {
     setup()
-    console.log('here', contract)
   }, [])
 
   const getData = async () => {
-    //setTimeout(getData, 1500)
     let numberOfProjects
-    try {
-      numberOfProjects = await contract.numberOfCampaigns()
-      setNumberOfCampaigns(() => numberOfProjects.toNumber())
-    } catch (e) {
-      //  setNumberOfCampaigns(0)
-      console.log(contract, 'again')
-      console.log('Error fetching number of campaigns', e)
+    if (contract) {
+      try {
+        numberOfProjects = await contract.numberOfCampaigns()
+        setNumberOfCampaigns(() => numberOfProjects.toNumber())
+      } catch (e) {
+        console.log('Error fetching number of campaigns', e)
+      }
     }
+
     let allCampaigns = {
       health: [],
       refugees: [],
@@ -82,7 +82,6 @@ const Projects = () => {
       }
     }
     setProjects(allCampaigns)
-    // return allCampaigns
   }
   useEffect(() => {
     setTimeout(() => {
@@ -94,6 +93,7 @@ const Projects = () => {
         }
       })
     }, 2000)
+
     return () => {}
   }, [projects])
 
@@ -105,7 +105,7 @@ const Projects = () => {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            width: '100%',
+
             backgroundColor: '#0b111b',
           }}
         >
@@ -113,8 +113,9 @@ const Projects = () => {
         </div>
       )
     }
-
-    return (
+    return !window.ethereum ? (
+      <h1 className="no-metamask">You need Metamask to view this site</h1>
+    ) : (
       <div className="projects-body">
         {projects.health && projects.health.length !== 0 ? (
           <div className="projects-div">
@@ -305,59 +306,32 @@ const Projects = () => {
       </div>
     )
   }
-  useEffect(() => {
-    if (window.ethereum) {
-      window.ethereum.on('accountsChanged', () => {
-        window.location.reload()
-      })
-    }
-  })
+  // useEffect(() => {
+  //   if (window.ethereum) {
+  //     window.ethereum.on('accountsChanged', () => {
+  //       window.location.reload()
+  //     })
+  //   }
+  // })
 
-  useEffect(() => {
-    if (window.ethereum) {
-      window.ethereum.on('chainChanged', () => {
-        window.location.reload()
-      })
-    }
-  })
-  if (!window.ethereum) {
-    return (
-      <div className="no-metamask">
-        <h1>You need Metamask to see this page!</h1>
-      </div>
-    )
-  }
+  // useEffect(() => {
+  //   if (window.ethereum) {
+  //     window.ethereum.on('chainChanged', () => {
+  //       window.location.reload()
+  //     })
+  //   }
+  // })
 
   return (
     <>
-      <Outlet />
-      {location.pathname === '/projects' ||
-      location.pathname === '/projects/my-projects' ? (
-        <div className="projects-header">
-          <h1>
-            {location.pathname === '/projects' ? 'CAMPAIGNS!' : 'Your projects'}
-          </h1>
-          {/* <h3>
-            {location.pathname === '/projects'
-              ? 'All running campaigns'
-              : 'Start a Campaign and get funded'}
-          </h3> */}
-        </div>
-      ) : null}
-      {/* <Button
-        onClick={() => {
-          getData()
-        }}
-      >
-        Add New
-      </Button> */}
+      <div className="projects-header">
+        <h1>CAMPAIGNS</h1>
+        {loading ? <LinearProgress /> : null}
+      </div>
 
-      {location.pathname === '/projects' ? (
-        <div style={{ backgroundColor: 'red' }}>
-          {loading ? <LinearProgress /> : null}
-          <ProjectList />
-        </div>
-      ) : null}
+      <div>
+        <ProjectList />
+      </div>
     </>
   )
 }
