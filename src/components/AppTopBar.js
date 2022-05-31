@@ -34,7 +34,14 @@ const AppTopBar = () => {
     >
       <List>
         <ListItem button>
-          <Link className="link" to="/">
+          <Link
+            style={{
+              textDecoration: 'none',
+              color: '#231d50',
+            }}
+            className="link"
+            to="/"
+          >
             <ListItemText>Home</ListItemText>
           </Link>
         </ListItem>
@@ -58,7 +65,9 @@ const AppTopBar = () => {
 
         <ListItem button>
           <Link className="link" to="/login">
-            <ListItemText>Logout</ListItemText>
+            {isAuthenticated ? (
+              <ListItemText onClick={logout}>Logout</ListItemText>
+            ) : null}
           </Link>
         </ListItem>
       </List>

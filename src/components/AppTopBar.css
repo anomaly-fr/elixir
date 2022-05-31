@@ -52,7 +52,7 @@
 
 .link {
   text-decoration: none;
-  color: white;
+  color: #231d50;
 }
 @media only screen and (max-width: 600px) {
   .App-top-bar-menu {
