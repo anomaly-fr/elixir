@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import PaidIcon from '@mui/icons-material/Paid'
 import { ethers } from 'ethers'
 import LitresAbi from '../../LitresAbi.json'
+import useWindowDimensions from '../../components/useWindowDimensions'
 
 import './Transfer.css'
 
@@ -14,13 +15,14 @@ export default function Transfer() {
     'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',
   )
 
+  const { width } = useWindowDimensions()
   const { REACT_APP_LITRES_CONTRACT_ADDRESS } = process.env
   const [contractDetails, setContractDetails] = useState({
-    address: 'loading...',
-    name: 'loading...',
-    symbol: 'loading...',
-    decimals: 'loading...',
-    initialSupply: 'loading...',
+    address: 'Loading...',
+    name: 'Loading...',
+    symbol: 'Loading...',
+    decimals: 'Loading...',
+    initialSupply: 'Loading...',
   })
 
   const getData = async () => {
@@ -137,7 +139,13 @@ export default function Transfer() {
         {`   xxxxxx${adminAccount.slice(38, adminAccount.length)}`}
       </Typography>
 
-      <Card className="box">
+      <Card
+        style={{
+          width: width > 700 ? '40%' : '100%',
+          display: 'flex',
+          flexDirection: 'column',
+        }}
+      >
         <div style={{ display: 'flex', flexDirection: 'row' }}></div>
         <TextField
           onChange={(e) => {

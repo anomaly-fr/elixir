@@ -1,11 +1,13 @@
 import { TextField, Card, Button } from '@mui/material'
 import React, { useState } from 'react'
 import CompareArrowsIcon from '@mui/icons-material/CompareArrows'
+import useWindowDimensions from '../../components/useWindowDimensions'
 const EXCHANGE_RATE = 100
 
 export default function Convert() {
   const [LITFirst, isLITFirst] = useState(true)
   const [value, setValue] = useState(1)
+  const { width } = useWindowDimensions()
 
   return (
     <div
@@ -15,7 +17,13 @@ export default function Convert() {
         padding: '5%',
       }}
     >
-      <Card className="box">
+      <Card
+        style={{
+          width: width > 700 ? '40%' : '100%',
+          display: 'flex',
+          flexDirection: 'column',
+        }}
+      >
         <TextField
           id="filled-basic"
           variant="filled"

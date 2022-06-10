@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 import CompareArrowsIcon from '@mui/icons-material/CompareArrows'
 import CheckCircleIcon from '@mui/icons-material/CheckCircle'
 import { ethers } from 'ethers'
+import useWindowDimensions from '../../components/useWindowDimensions'
 import LitresAbi from '../../LitresAbi.json'
 
 export default function Balance() {
@@ -10,6 +11,7 @@ export default function Balance() {
 
   const [account, setAccount] = useState(null)
   const [balance, setBalance] = useState(null)
+  const { width } = useWindowDimensions()
   const getBalance = async () => {
     const provider = new ethers.providers.Web3Provider(window.ethereum)
     await provider.send('eth_requestAccounts', [])
@@ -48,7 +50,13 @@ export default function Balance() {
         padding: '5%',
       }}
     >
-      <Card className="box">
+      <Card
+        style={{
+          width: width > 700 ? '40%' : '100%',
+          display: 'flex',
+          flexDirection: 'column',
+        }}
+      >
         <TextField
           placeholder={'Account address'}
           id="filled-basic"
