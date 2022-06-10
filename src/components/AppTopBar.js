@@ -75,9 +75,11 @@ const AppTopBar = () => {
   )
   return (
     <div className="App-top-bar">
-      <div>
-        <img className="icon" src={logo} />
-      </div>
+      <Link className="link" to={'/lit'}>
+        <div>
+          <img className="icon" src={logo} />
+        </div>
+      </Link>
 
       <div className="empty" />
       {width <= 700 ? (

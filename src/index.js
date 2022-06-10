@@ -4,15 +4,12 @@ import './index.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import App from './App'
 import ConnectWallet from './routes/connect/ConnectWallet'
-import Home from './routes/home/Home'
 import Landing from './admin/Landing'
 import MyProjects from './routes/MyProjects/MyProjects'
 import { MoralisProvider } from 'react-moralis'
 import Projects from './routes/donate/Projects'
 import Donate from './routes/donate/Donate'
 import CreateCampaign from './routes/donate/CreateCampaign'
-
-const loggedIn = false
 
 const applicationID = '07z6U5ipLv5MMsTlziNN4F6Cme2WcqYVDaClT7ID'
 const serverURL = 'https://wxsne1sy4nz5.usemoralis.com:2053/server'
