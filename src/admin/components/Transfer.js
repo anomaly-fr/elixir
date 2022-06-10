@@ -120,13 +120,19 @@ export default function Transfer() {
   }
   return (
     <div className="root">
-      <Typography fontSize={'2em'} fontWeight={'bold'}>
+      <Typography color={'white'} fontSize={'2em'} fontWeight={'bold'}>
         Litres
       </Typography>
-      <Typography>{`Symbol: ${contractDetails.symbol}`}</Typography>
-      <Typography>{`InitialSupply: ${contractDetails.initialSupply}`}</Typography>
-      <Typography>{`Admin Balance: ${balance}`}</Typography>
-      <Typography fontWeight={'bold'}>Current account*: </Typography>
+      <Typography
+        color={'white'}
+      >{`Symbol: ${contractDetails.symbol}`}</Typography>
+      <Typography
+        color={'white'}
+      >{`Initial Supply: ${contractDetails.initialSupply}`}</Typography>
+      {/* <Typography>{`Admin Balance: ${balance}`}</Typography> */}
+      <Typography color={'white'} fontWeight={'bold'}>
+        Current account:{' '}
+      </Typography>
       <Typography style={{ color: 'blue' }}>
         {`   xxxxxx${adminAccount.slice(38, adminAccount.length)}`}
       </Typography>
@@ -149,7 +155,7 @@ export default function Transfer() {
           variant="filled"
         />
         <Button
-          style={{ margin: '5%' }}
+          style={{ backgroundColor: '#1c183c', margin: '5%' }}
           variant="contained"
           onClick={() => {
             transfer().then((res) => {

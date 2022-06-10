@@ -56,18 +56,18 @@ const Landing = () => {
           flexDirection: 'row',
         }}
       >
-        <div className="div-column">
-          <p className="App-main-heading">Elixir</p>
-          <p className="App-main-heading-small">A Blockchain based platform</p>
+        <div className="lit-portal-header">
+          <p className="lit-portal-heading">ELIXIR - LIT Portal</p>
         </div>
-        <div className="App-logo">
+        {/* <div className="App-logo">
           <Logo />
-        </div>
+        </div> */}
       </div>
 
       <Box sx={{ width: '100%' }}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <Tabs
+            style={{ backgroundColor: 'white', color: 'white' }}
             centered
             // textColor="#9cf5ed"
             // indicatorColor="#9cf5ed"

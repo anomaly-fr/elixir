@@ -65,7 +65,7 @@ export default function Balance() {
           value={balance}
         />
         <Button
-          style={{ margin: '2%' }}
+          style={{ backgroundColor: '#1c183c', margin: '5%' }}
           variant="contained"
           endIcon={<CheckCircleIcon />}
           onClick={() =>

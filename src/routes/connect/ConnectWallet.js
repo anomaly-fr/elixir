@@ -133,11 +133,17 @@ export default function ConnectWallet() {
               <Me />
             </div>
 
-            <div className="connect-body">
-              {transactions.map((transaction, index) => (
-                <TransactionCard transaction={transaction} />
-              ))}
-            </div>
+            {transactions.length !== 0 ? (
+              <div className="connect-body">
+                {transactions.map((transaction, index) => (
+                  <TransactionCard transaction={transaction} />
+                ))}
+              </div>
+            ) : (
+              <div className="connect-body">
+                <p className="text">No transactions yet</p>
+              </div>
+            )}
           </div>
         </div>
       )}

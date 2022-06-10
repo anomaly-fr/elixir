@@ -34,14 +34,14 @@ const CreateCampaign = () => {
   const { saveFile } = useMoralisFile()
 
   let categoryArray = [
-    { index: 1, name: 'health' },
-    { index: 2, name: 'refugees' },
-    { index: 3, name: 'education' },
-    { index: 4, name: 'hunger' },
-    { index: 5, name: 'poverty' },
-    { index: 6, name: 'nature' },
-    { index: 7, name: 'personal' },
-    { index: 8, name: 'other' },
+    { index: 1, name: 'Health' },
+    { index: 2, name: 'Refugees' },
+    { index: 3, name: 'Education' },
+    { index: 4, name: 'Hunger' },
+    { index: 5, name: 'Poverty' },
+    { index: 6, name: 'Nature' },
+    { index: 7, name: 'Personal' },
+    { index: 8, name: 'Other' },
   ]
 
   const handleImage = async (e) => {
@@ -93,7 +93,9 @@ const CreateCampaign = () => {
             <Chip
               style={{
                 backgroundColor:
-                  campaignCategory === category.index ? 'purple' : 'gray',
+                  campaignCategory === category.index ? '#1c183c' : 'gray',
+
+                color: 'white',
                 margin: '5px',
               }}
               key={category.index}
@@ -136,6 +138,7 @@ const CreateCampaign = () => {
           <div className="form-row">
             <h3>Campaign Name</h3>
             <TextField
+              style={{ backgroundColor: 'white' }}
               required
               onChange={(e) => setCampaignName(e.target.value)}
               className="form-text-field"
@@ -146,6 +149,7 @@ const CreateCampaign = () => {
           <div className="form-row">
             <h3>Creator Name</h3>
             <TextField
+              style={{ backgroundColor: 'white' }}
               required
               onChange={(e) => setCampaignCreator(e.target.value)}
               className="form-text-field"
@@ -155,11 +159,14 @@ const CreateCampaign = () => {
           </div>
           <div className="form-row">
             <h3>Category</h3>
-            <CategoryArray />
+            <div>
+              <CategoryArray />
+            </div>
           </div>
           <div className="form-row">
             <h3>About Campaign</h3>
             <TextareaAutosize
+              style={{ backgroundColor: 'white' }}
               required
               minRows={6}
               onChange={(e) => setCampaignDescription(e.target.value)}
@@ -170,28 +177,18 @@ const CreateCampaign = () => {
           </div>
           <div className="form-row">
             <h3>Campaign Image</h3>
-            <Input
-              required
-              inputProps={{ accept: 'image/*' }}
-              onChange={(e) => {
-                handleImage(e)
-              }}
-              type="file"
-            />
-          </div>
-          {/* <div
-            style={{
-              backgroundColor: '#f5f5f5',
-            }}
-          >
-            {campaignImage ? (
-              <img
-                className="form-image"
-                src={`https://ipfs.moralis.io:2053/ipfs/${campaignImage}`}
-                alt="campaignImage"
+            <div style={{ width: '68%' }}>
+              <Input
+                style={{ backgroundColor: 'white' }}
+                required
+                inputProps={{ accept: 'image/*' }}
+                onChange={(e) => {
+                  handleImage(e)
+                }}
+                type="file"
               />
-            ) : null}
-          </div> */}
+            </div>
+          </div>
 
           <div
             style={{
@@ -200,16 +197,26 @@ const CreateCampaign = () => {
             }}
             className="form-row"
           >
-            {campaignImage ? (
-              <a href={`https://ipfs.moralis.io:2053/ipfs/${campaignImage}`}>
-                https://ipfs.moralis.io:2053/ipfs/{campaignImage}
-              </a>
-            ) : null}
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'flex-end',
+
+                width: '100%',
+              }}
+            >
+              {campaignImage ? (
+                <a href={`https://ipfs.moralis.io:2053/ipfs/${campaignImage}`}>
+                  https://ipfs.moralis.io:2053/ipfs/{campaignImage}
+                </a>
+              ) : null}
+            </div>
           </div>
 
           <div className="form-row">
             <h3>Target Amount</h3>
             <TextField
+              style={{ backgroundColor: 'white' }}
               required
               onChange={(e) => setCampaignAmount(e.target.value)}
               className="form-text-field"
@@ -217,14 +224,10 @@ const CreateCampaign = () => {
               type="numeric"
             />
           </div>
-          <div
-            style={{
-              alignItem: 'center',
-              justifyContent: 'center',
-              margin: '2%',
-            }}
-          >
+
+          <div style={{ marginTop: '3%' }} className="form-row">
             <Button
+              style={{ backgroundColor: '#8a83bc' }}
               onClick={() => {
                 if (
                   user.get('ethAddress').toUpperCase() !==
@@ -257,9 +260,9 @@ const CreateCampaign = () => {
             >
               Create Campaign
             </Button>
-            <LinearProgress style={{ opacity: loading ? 1 : 0 }} />
-            <h4 style={{ color: 'red' }}>{errorMessage}</h4>
           </div>
+          <LinearProgress style={{ opacity: loading ? 1 : 0 }} />
+          <h4 style={{ color: 'red' }}>{errorMessage}</h4>
         </form>
       </div>
     </div>

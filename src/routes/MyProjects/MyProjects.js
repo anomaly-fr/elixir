@@ -108,6 +108,7 @@ const MyProjects = () => {
             style={{
               alignItems: 'center',
               justifyContent: 'center',
+              backgroundColor: '#0b111b',
             }}
           >
             <Grid

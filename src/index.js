@@ -29,9 +29,9 @@ ReactDOM.render(
             </Route>
             <Route path="/my-projects" element={<MyProjects />} />
             <Route path="/my-projects/new" element={<CreateCampaign />} />
+            <Route path="/lit" element={<Landing />} />
           </Route>
 
-          <Route path="/admin" element={<Landing />} />
           <Route
             path="*"
             element={

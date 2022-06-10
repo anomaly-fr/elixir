@@ -31,7 +31,7 @@ export default function Convert() {
           value={LITFirst ? LITToINR(value) : INRToLIT(value)}
         />
         <Button
-          style={{ margin: '2%' }}
+          style={{ backgroundColor: '#1c183c', margin: '5%' }}
           variant="contained"
           endIcon={<CompareArrowsIcon />}
           onClick={() => isLITFirst(!LITFirst)}
