@@ -26,9 +26,10 @@ export default function Home() {
         <div className="App-sections">
           <div className="App-headings">ABOUT US</div>
           <div className="App-paragraphs">
-            We are the most trusted and powerful blockchain based platform. Use
-            our token, LIT to to donate to a campaign that you care about. Every
-            cause is supported by a trusted charity that will be verified by us
+            A truly decentralised fund-raising system using Blockchain
+            technology which provides a transparent, safe, and a reliable
+            platform for raising donations by reducing fraud and middle-party
+            meddling.
           </div>
         </div>
         <div className="App-features-sections">
@@ -102,8 +103,7 @@ export default function Home() {
             className="App-paragraphs"
             style={{ fontWeight: 'normal', padding: '1%' }}
           >
-            Donations cannot be falsified and are permanently recorded for
-            donors to see{' '}
+            Donations cannot be falsified and are permanently recorded
           </div>
 
           <div
@@ -126,8 +126,7 @@ export default function Home() {
             className="App-paragraphs"
             style={{ fontWeight: 'normal', padding: '1%' }}
           >
-            The number of middlemen between donors and beneficiaries is brought
-            to a minimum{' '}
+            Adminless architecture
           </div>
         </div>
         {}
